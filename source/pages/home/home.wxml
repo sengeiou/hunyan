@@ -1,0 +1,34 @@
+<swiper circular="true" class="indexbanner" autoplay="true">
+  <swiper-item class="indexbanner" wx:for="{{indexbanner}}" wx:key="k">
+    <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
+  </swiper-item>
+</swiper>
+
+
+<view class="padding-40 margin-top">
+
+<view class="h6" style="color:#787979">活动城市</view>
+
+<view class="h5" style="color:#000000">您要在哪里举行宴会</view>
+
+<view class="margin-top-20" style="width:668rpx;height:3rpx;background:#BBBBBB"></view>
+
+
+</view>
+
+<view class="padding-40 margin-top">
+
+<view class="h6" style="color:#787979">宴会需求</view>
+
+<view class="h5" style="color:#000000">您需要提供什么服务</view>
+
+<view class="margin-top-20" style="width:668rpx;height:3rpx;background:#BBBBBB"></view>
+
+
+</view>
+
+
+
+<view class="btn">获取优惠礼包以及免费咨询服务</view>
+
+<view class="text-center h6 margin-top-10">提交需求即视为同意喜宴天下《服务条款》和《隐私条款》</view>
