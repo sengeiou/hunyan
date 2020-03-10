@@ -1,15 +1,15 @@
 /*******使用方法，下面两句复制到page的js文件的头部
 
 import { ApiConfig } from '../../apis/apiconfig';
-import { InstApi } from '../../apis/member.api';
+import { InstApi } from '../../apis/shangjia.api';
 
-var memberApi=new MemberApi();
+var shangjiaApi=new ShangjiaApi();
 *******/
 import { ApiConfig } from 'apiconfig';
-export class MemberApi{
+export class ShangjiaApi{
 
 
-    aboutus(json, callback, showLoading = true) {
+    biaoqian(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -18,7 +18,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/aboutus',
+            url: ApiConfig.GetApiUrl() + 'shangjia/biaoqian',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -41,7 +41,7 @@ export class MemberApi{
         })
     }
 
-    getuserinfo(json, callback, showLoading = true) {
+    shangjiadetail(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -50,7 +50,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/getuserinfo',
+            url: ApiConfig.GetApiUrl() + 'shangjia/shangjiadetail',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -73,7 +73,7 @@ export class MemberApi{
         })
     }
 
-    info(json, callback, showLoading = true) {
+    shangjialist(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -82,7 +82,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/info',
+            url: ApiConfig.GetApiUrl() + 'shangjia/shangjialist',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -105,7 +105,7 @@ export class MemberApi{
         })
     }
 
-    register(json, callback, showLoading = true) {
+    type(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -114,7 +114,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/register',
+            url: ApiConfig.GetApiUrl() + 'shangjia/type',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -137,7 +137,7 @@ export class MemberApi{
         })
     }
 
-    sendregverifycode(json, callback, showLoading = true) {
+    lunbo(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -146,7 +146,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/sendregverifycode',
+            url: ApiConfig.GetApiUrl() + 'shangjia/lunbo',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -169,7 +169,7 @@ export class MemberApi{
         })
     }
 
-    setvalue(json, callback, showLoading = true) {
+    duanlunbo(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -178,71 +178,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/setvalue',
-            data: json,
-            method: 'POST',
-            dataType: 'json',
-            header: header,
-            success: function (res) {
-                if (callback != null) {
-                    callback(res.data);
-                }
-            },
-            fail: function (res) {
-                console.log(res);
-                callback(false);
-            },
-            complete: function (res) {
-                console.log(res);
-            
-                if (showLoading)
-                    ApiConfig.CloseLoading();
-            }
-        })
-    }
-
-    update(json, callback, showLoading = true) {
-
-        if (showLoading)
-            ApiConfig.ShowLoading();
-
-        var header = ApiConfig.GetHeader();
-        console.log(header);
-        console.log(json);
-        wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/update',
-            data: json,
-            method: 'POST',
-            dataType: 'json',
-            header: header,
-            success: function (res) {
-                if (callback != null) {
-                    callback(res.data);
-                }
-            },
-            fail: function (res) {
-                console.log(res);
-                callback(false);
-            },
-            complete: function (res) {
-                console.log(res);
-            
-                if (showLoading)
-                    ApiConfig.CloseLoading();
-            }
-        })
-    }
-
-    updatelocation(json, callback, showLoading = true) {
-
-        if (showLoading)
-            ApiConfig.ShowLoading();
-
-        var header = ApiConfig.GetHeader();
-        console.log(header);
-        console.log(json);
-        wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/updatelocation',
+            url: ApiConfig.GetApiUrl() + 'shangjia/duanlunbo',
             data: json,
             method: 'POST',
             dataType: 'json',

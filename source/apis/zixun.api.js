@@ -1,15 +1,15 @@
 /*******使用方法，下面两句复制到page的js文件的头部
 
 import { ApiConfig } from '../../apis/apiconfig';
-import { InstApi } from '../../apis/inst.api';
+import { InstApi } from '../../apis/zixun.api';
 
-var instApi=new InstApi();
+var zixunApi=new ZixunApi();
 *******/
 import { ApiConfig } from 'apiconfig';
-export class InstApi{
+export class ZixunApi{
 
 
-    aboutus(json, callback, showLoading = true) {
+    addpeople(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -18,7 +18,7 @@ export class InstApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/aboutus',
+            url: ApiConfig.GetApiUrl() + 'zixun/addpeople',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -41,7 +41,7 @@ export class InstApi{
         })
     }
 
-    aboutuslist(json, callback, showLoading = true) {
+    jianpeople(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -50,7 +50,7 @@ export class InstApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/aboutuslist',
+            url: ApiConfig.GetApiUrl() + 'zixun/jianpeople',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -73,7 +73,7 @@ export class InstApi{
         })
     }
 
-    indexbanner(json, callback, showLoading = true) {
+    zixunlist(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -82,7 +82,7 @@ export class InstApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/indexbanner',
+            url: ApiConfig.GetApiUrl() + 'zixun/zixunlist',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -105,7 +105,7 @@ export class InstApi{
         })
     }
 
-    info(json, callback, showLoading = true) {
+    zixuntype(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -114,39 +114,7 @@ export class InstApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/info',
-            data: json,
-            method: 'POST',
-            dataType: 'json',
-            header: header,
-            success: function (res) {
-                if (callback != null) {
-                    callback(res.data);
-                }
-            },
-            fail: function (res) {
-                console.log(res);
-                callback(false);
-            },
-            complete: function (res) {
-                console.log(res);
-            
-                if (showLoading)
-                    ApiConfig.CloseLoading();
-            }
-        })
-    }
-
-    resources(json, callback, showLoading = true) {
-
-        if (showLoading)
-            ApiConfig.ShowLoading();
-
-        var header = ApiConfig.GetHeader();
-        console.log(header);
-        console.log(json);
-        wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/resources',
+            url: ApiConfig.GetApiUrl() + 'zixun/zixuntype',
             data: json,
             method: 'POST',
             dataType: 'json',

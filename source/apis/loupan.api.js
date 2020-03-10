@@ -1,15 +1,15 @@
 /*******使用方法，下面两句复制到page的js文件的头部
 
 import { ApiConfig } from '../../apis/apiconfig';
-import { InstApi } from '../../apis/inst.api';
+import { InstApi } from '../../apis/loupan.api';
 
-var instApi=new InstApi();
+var loupanApi=new LoupanApi();
 *******/
 import { ApiConfig } from 'apiconfig';
-export class InstApi{
+export class LoupanApi{
 
 
-    aboutus(json, callback, showLoading = true) {
+    loupandetail(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -18,7 +18,7 @@ export class InstApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/aboutus',
+            url: ApiConfig.GetApiUrl() + 'loupan/loupandetail',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -41,7 +41,7 @@ export class InstApi{
         })
     }
 
-    aboutuslist(json, callback, showLoading = true) {
+    loupanlist(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -50,7 +50,7 @@ export class InstApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/aboutuslist',
+            url: ApiConfig.GetApiUrl() + 'loupan/loupanlist',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -73,7 +73,7 @@ export class InstApi{
         })
     }
 
-    indexbanner(json, callback, showLoading = true) {
+    loupantype(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -82,7 +82,7 @@ export class InstApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/indexbanner',
+            url: ApiConfig.GetApiUrl() + 'loupan/loupantype',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -105,7 +105,7 @@ export class InstApi{
         })
     }
 
-    info(json, callback, showLoading = true) {
+    pricerange(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -114,39 +114,7 @@ export class InstApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/info',
-            data: json,
-            method: 'POST',
-            dataType: 'json',
-            header: header,
-            success: function (res) {
-                if (callback != null) {
-                    callback(res.data);
-                }
-            },
-            fail: function (res) {
-                console.log(res);
-                callback(false);
-            },
-            complete: function (res) {
-                console.log(res);
-            
-                if (showLoading)
-                    ApiConfig.CloseLoading();
-            }
-        })
-    }
-
-    resources(json, callback, showLoading = true) {
-
-        if (showLoading)
-            ApiConfig.ShowLoading();
-
-        var header = ApiConfig.GetHeader();
-        console.log(header);
-        console.log(json);
-        wx.request({
-            url: ApiConfig.GetApiUrl() + 'inst/resources',
+            url: ApiConfig.GetApiUrl() + 'loupan/pricerange',
             data: json,
             method: 'POST',
             dataType: 'json',

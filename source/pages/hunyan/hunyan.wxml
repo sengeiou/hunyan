@@ -1,2 +1,13 @@
-<!--pages/hunyan/hunyan.wxml-->
-<text>pages/hunyan/hunyan.wxml</text>
+
+<swiper circular="true" class="indexbanner" autoplay="true">
+  <swiper-item class="indexbanner" wx:for="{{lunbo}}" wx:key="k">
+    <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
+  </swiper-item>
+</swiper>
+
+
+<!-- <view class="flex-row flex-center">
+
+  <view style="width:100rpx;">{{city}}</view>
+  <input class="inp"></input>
+</view> -->

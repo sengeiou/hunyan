@@ -2,9 +2,9 @@
   "pages": [
     "pages/home/home",
     "pages/hunyan/hunyan",
-   
-    
-    "pages/auth/auth"
+    "pages/auth/auth",
+    "pages/fuwu/fuwu",
+    "pages/yinsi/yinsi"
   ],
   "permission": {
     "scope.userLocation": {

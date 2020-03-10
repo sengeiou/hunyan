@@ -1,15 +1,15 @@
 /*******使用方法，下面两句复制到page的js文件的头部
 
 import { ApiConfig } from '../../apis/apiconfig';
-import { InstApi } from '../../apis/member.api';
+import { InstApi } from '../../apis/activity.api';
 
-var memberApi=new MemberApi();
+var activityApi=new ActivityApi();
 *******/
 import { ApiConfig } from 'apiconfig';
-export class MemberApi{
+export class ActivityApi{
 
 
-    aboutus(json, callback, showLoading = true) {
+    activitylist(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -18,7 +18,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/aboutus',
+            url: ApiConfig.GetApiUrl() + 'activity/activitylist',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -41,7 +41,7 @@ export class MemberApi{
         })
     }
 
-    getuserinfo(json, callback, showLoading = true) {
+    atlunbo(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -50,7 +50,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/getuserinfo',
+            url: ApiConfig.GetApiUrl() + 'activity/atlunbo',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -73,7 +73,7 @@ export class MemberApi{
         })
     }
 
-    info(json, callback, showLoading = true) {
+    jianbao(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -82,7 +82,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/info',
+            url: ApiConfig.GetApiUrl() + 'activity/jianbao',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -105,7 +105,7 @@ export class MemberApi{
         })
     }
 
-    register(json, callback, showLoading = true) {
+    types(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -114,7 +114,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/register',
+            url: ApiConfig.GetApiUrl() + 'activity/types',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -137,7 +137,7 @@ export class MemberApi{
         })
     }
 
-    sendregverifycode(json, callback, showLoading = true) {
+    zhibo(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -146,7 +146,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/sendregverifycode',
+            url: ApiConfig.GetApiUrl() + 'activity/zhibo',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -169,7 +169,7 @@ export class MemberApi{
         })
     }
 
-    setvalue(json, callback, showLoading = true) {
+    zhuanjia(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -178,7 +178,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/setvalue',
+            url: ApiConfig.GetApiUrl() + 'activity/zhuanjia',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -201,7 +201,7 @@ export class MemberApi{
         })
     }
 
-    update(json, callback, showLoading = true) {
+    zhuanjiaac(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -210,7 +210,7 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/update',
+            url: ApiConfig.GetApiUrl() + 'activity/zhuanjiaac',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -233,7 +233,7 @@ export class MemberApi{
         })
     }
 
-    updatelocation(json, callback, showLoading = true) {
+    addmsg(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -242,7 +242,39 @@ export class MemberApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'member/updatelocation',
+            url: ApiConfig.GetApiUrl() + 'activity/addmsg',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
+    msglist(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'activity/msglist',
             data: json,
             method: 'POST',
             dataType: 'json',

@@ -1,0 +1,12 @@
+/* pages/fuwu/fuwu.wxss */
+.nostyle view,navigator,input,text,textarea{
+  /* color:#777777; */
+  font-size:unset;
+  
+  word-break: normal;
+  background: #ffffff;
+}
+
+.padding-28 {
+  padding: 40rpx 80rpx 0; 
+}

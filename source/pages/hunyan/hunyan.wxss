@@ -1,1 +1,14 @@
 /* pages/hunyan/hunyan.wxss */
+
+.indexbanner {
+  width: 100vw;
+  height: 380rpx;
+}
+
+.inp {
+  width: 65%;
+  height: 60rpx;
+  background: #ccc;
+  border-radius: 40rpx;
+  padding-left: 30rpx;
+}
