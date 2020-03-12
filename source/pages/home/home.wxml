@@ -12,8 +12,9 @@
   <!-- <view class="h5" style="color:#000000">您要在哪里举行宴会</view> -->
 
   <view class=" ">
-    <picker mode="region" bindchange="bindRegionChange">
-      <input placeholder="您要在哪里举行宴会" placeholder-class="h5" placeholder-style="color:#000000;" name="name" value="{{city}}" disabled="{{true}}" class="h5" style="color:#000000"></input>
+    <picker range='{{multiArray}}' mode='multiSelector' range-key="name"   bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
+      <input placeholder="您要在哪里举行宴会" placeholder-class="h5" placeholder-style="color:#000000;" name="name" value="{{city ||memberinfo.address}}" disabled="{{true}}" class="h5" style="color:#000000"></input>
+      <view wx:if='{{city==""}}'>{{city}}</view>
     </picker>
   </view>
 
@@ -42,8 +43,8 @@
 
 
 
-<button class="btn" open-type="getPhoneNumber" bindgetphonenumber="huoqu" wx:if='{{memberinfo==undefined}}'>获取优惠礼包以及免费咨询服务</button>
-<view class="btn" bindtap="huoqu" wx:if='{{memberinfo!=undefined}}'>获取优惠礼包以及免费咨询服务</view>
+<button class="btn" data-currentadd="{{city}}" data-currentfuwu="{{fuwu}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNo" wx:if='{{memberinfo.mobile==""}}'>获取优惠礼包以及免费咨询服务</button>
+<view class="btn" bindtap="huoqu" wx:if='{{memberinfo.mobile!=""}}'>获取优惠礼包以及免费咨询服务</view>
 
 <view class="h6 margin-top-10 flex-row flex-center">
   <view class="flex-1"></view>

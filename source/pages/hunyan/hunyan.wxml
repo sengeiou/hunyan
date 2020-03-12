@@ -1,4 +1,3 @@
-
 <swiper circular="true" class="indexbanner" autoplay="true">
   <swiper-item class="indexbanner" wx:for="{{lunbo}}" wx:key="k">
     <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
@@ -6,8 +5,46 @@
 </swiper>
 
 
-<!-- <view class="flex-row flex-center">
+<view class="flex-row flex-center ser">
+  <view style="width:66rpx;"></view>
+ 
 
-  <view style="width:100rpx;">{{city}}</view>
-  <input class="inp"></input>
-</view> -->
+  <view class=" ">
+    <picker range='{{multiArray}}' mode='multiSelector' range-key="name"   bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
+      <view class="h5" style="width:102rpx;color:#101010;">{{city}}</view>
+    </picker>
+  </view>
+
+
+  <view style="width:28rpx;"></view>
+  <view class="inp flex-row flex-center">
+    <view class="hg h6">|</view>
+    <input class="h6" bindconfirm="sendmsg" confirm-hold="true" placeholder="请输入关键字" placeholder-style="color:#A9A9A9;"></input>
+  </view>
+</view>
+
+
+<view class="flex-row flex-wrap bq">
+
+  <view wx:for='{{biaoqian}}' wx:key='k' bindtap="biaodetail" id='{{item.id}}' class="flex-row flex-column margin-right-80">
+    <image src="{{uploadpath}}biaoqian/{{item.photo}}" class="icon-30"></image>
+    <view class="h5" style="color:#000000;">{{item.name}}</view>
+  </view>
+</view>
+
+<swiper circular="true" class="indexbanner2" autoplay="true">
+  <swiper-item class="indexbanner" wx:for="{{duanlunbo}}" wx:key="k">
+    <image class="indexbanner2" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
+  </swiper-item>
+</swiper>
+
+<view class="flex-row flex-wrap padding-10">
+  <view wx:for='{{shangjialist}}' wx:key='k'>
+    <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:230rpx;height:230rpx;margin:0 6rpx;"></image>
+  </view>
+</view>
+
+
+<view class="flex-row flex-center text-center pob">
+  <view class="flex-1 h4-5 txt-10 {{seq==idx?'active':''}}" bindtap="qiehuan" id='{{item.id}}' data-currentidx="{{idx}}" wx:for='{{type}}' wx:key='k' wx:for-index='idx'>{{item.name}}</view>
+</view>

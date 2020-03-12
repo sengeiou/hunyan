@@ -114,8 +114,8 @@ export class AppBase {
       contactkefu: base.contactkefu,
       contactweixin: base.contactweixin,
       download: base.download,
-      checkPermission: base.checkPermission
-
+      checkPermission: base.checkPermission,
+      getUserInfo: base.getUserInfo,
 
 
     }
@@ -196,64 +196,93 @@ export class AppBase {
         success: res => {
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           console.log(res);
-          wx.getUserInfo({
-            success: userres => {
-              AppBase.UserInfo = userres.userInfo;
-              console.log(userres);
+          console.log('成功登录中')
 
-              var memberapi = new MemberApi();
-              memberapi.getuserinfo({
-                code: res.code,
-                grant_type: "authorization_code"
-              }, data => {
-                console.log("here");
-                console.log(data);
-                AppBase.UserInfo.openid = data.openid;
-                AppBase.UserInfo.session_key = data.session_key;
-                console.log(AppBase.UserInfo);
-                ApiConfig.SetToken(data.openid);
-                console.log("goto update info");
-                //this.loadtabtype();
-
-
-                memberapi.update(AppBase.UserInfo, () => {
-
-                  console.log(AppBase.UserInfo);
-                  that.Base.setMyData({
-                    UserInfo: AppBase.UserInfo
-                  });
-
-                  that.checkPermission();
-
-                });
-
-                //that.Base.getAddress();
+          var memberapi = new MemberApi();
+         
+          memberapi.getuserinfo({
+            code: res.code,
+            grant_type: "authorization_code"
+          }, data => {
+            console.log("loginres2", data);
+            AppBase.UserInfo.openid = data.openid;
+            AppBase.UserInfo.session_key = data.session_key;
+            ApiConfig.SetToken(data.openid);
+            memberapi.update(AppBase.UserInfo, (res) => {
+              console.log("loginres3", res);
+              that.Base.setMyData({
+                UserInfo: AppBase.UserInfo
               });
-            },
-            fail: faukres => {
-              var memberapi = new MemberApi();
-              console.log(res);
-              memberapi.getuserinfo({
-                code: res.code,
-                grant_type: "authorization_code"
-              }, data => {
-                console.log(data);
-                AppBase.UserInfo.openid = data.openid;
-                AppBase.UserInfo.session_key = data.session_key;
-                ApiConfig.SetToken(data.openid);
-                memberapi.update(AppBase.UserInfo, () => {
-                  if (this.Base.needauth == true) {
-                    wx.redirectTo({
-                      url: '/pages/auth/auth',
-                    })
-                  } else {
-                    that.onMyShow();
-                  }
-                });
-              });
+              that.checkPermission();
 
-            }
-          })
+              that.getUserInfo();
+
+
+            });
+
+
+
+          });
+          // wx.getUserInfo({
+          //   success: userres => {
+          //     AppBase.UserInfo = userres.userInfo;
+          //     console.log(userres);
+          //     console.log('获取用户')
+          //     var memberapi = new MemberApi();
+          //     memberapi.getuserinfo({
+          //       code: res.code,
+          //       grant_type: "authorization_code"
+          //     }, data => {
+          //       console.log("here");
+          //       console.log(data);
+          //       AppBase.UserInfo.openid = data.openid;
+          //       AppBase.UserInfo.session_key = data.session_key;
+          //       console.log(AppBase.UserInfo);
+          //       ApiConfig.SetToken(data.openid);
+          //       console.log("goto update info");
+          //       //this.loadtabtype();
+
+
+          //       memberapi.update(AppBase.UserInfo, () => {
+
+          //         console.log(AppBase.UserInfo);
+          //         that.Base.setMyData({
+          //           UserInfo: AppBase.UserInfo
+          //         });
+
+          //         that.checkPermission();
+
+          //       });
+
+          //       that.Base.getAddress();
+          //     });
+          //   },
+          //   fail: faukres => {
+          //     var memberapi = new MemberApi();
+          //     console.log(res);
+          //     console.log('失败了');
+          //     memberapi.getuserinfo({
+          //       code: res.code,
+          //       grant_type: "authorization_code"
+          //     }, data => {
+          //       console.log(data);
+          //       console.log('llll');
+          //       AppBase.UserInfo.openid = data.openid;
+          //       AppBase.UserInfo.session_key = data.session_key;
+          //       ApiConfig.SetToken(data.openid);
+          //       memberapi.update(AppBase.UserInfo, () => {
+          //         if (this.Base.needauth == true) {
+          //           wx.redirectTo({
+          //             url: '/pages/auth/auth',
+          //           })
+          //         } else {
+          //           that.onMyShow();
+          //         }
+          //       });
+          //     });
+
+          //   }
+          // })
         }
       });
       return false;
@@ -272,10 +301,74 @@ export class AppBase {
       that.Base.setMyData({
         UserInfo: AppBase.UserInfo
       });
-
+      that.getUserInfo();
       that.checkPermission();
     }
 
+  }
+  getUserInfo() {
+    var that = this;
+    var memberapi = new MemberApi();
+    wx.getUserInfo({
+      success: userres => {
+        var openid = AppBase.UserInfo.openid;
+        var session_key = AppBase.UserInfo.session_key;
+        AppBase.UserInfo = userres.userInfo;
+        AppBase.UserInfo.openid = openid;
+        AppBase.UserInfo.session_key = session_key;
+        console.log("loginres4", userres);
+
+
+        var api = new WechatApi();
+        api.decrypteddata({
+          iv: userres.iv,
+          encryptedData: userres.encryptedData
+        }, ret => {
+          AppBase.jump = true;
+          AppBase.UserInfo.unionid = ret.return.unionId;
+          ApiConfig.SetTokenKey(ret.return.unionId);
+          console.log("loginres5", ret);
+          console.log("loginres6", AppBase.UserInfo);
+
+          memberapi.update(AppBase.UserInfo, () => {
+
+            console.log(AppBase.UserInfo);
+            that.Base.setMyData({
+              UserInfo: AppBase.UserInfo
+            });
+            memberapi.info({}, (info) => {
+              console.log({
+                tick: "member",
+                info
+              });
+
+              this.Base.setMyData({
+                memberinfo: info
+              });
+            });
+
+          });
+        });
+
+      },
+      fail: userloginres => {
+        console.log("auth fail");
+        console.log(userloginres);
+
+        if (that.Base.needauth == true) {
+
+          AppBase.jump = false;
+
+
+
+          console.log("得到的", AppBase.jump);
+          // wx.navigateTo({
+          //   url: '/pages/auth/auth',
+          // })
+
+        }
+      }
+    })
   }
   checkPermission() {
     var memberapi = new MemberApi();
@@ -292,6 +385,15 @@ export class AppBase {
         });
         that.onMyShow();
       }
+      that.Base.getAddress((address)=>{
+        console.log(address,'啦啦啦啦啦');
+        info.city = address.address_component.city;
+        info.qu = address.address_component.district;
+        info.address = address.address;
+        this.Base.setMyData({
+          memberinfo: info
+        });
+      })
     });
   }
   loadtabtype() {
@@ -346,22 +448,53 @@ export class AppBase {
   getPhoneNo(e) {
     var that = this;
     console.log(e);
+    var city = e.currentTarget.dataset.currentadd;
+    var fuwu = e.currentTarget.dataset.currentfuwu;
+    
     var api = new WechatApi();
     var data = this.Base.getMyData();
     console.log(data);
-
+    var memberapi = new MemberApi();
     e.detail.session_key = AppBase.UserInfo.session_key;
     e.detail.openid = AppBase.UserInfo.openid;
     console.log(e.detail);
     api.decrypteddata(e.detail, (ret) => {
       console.log(ret);
       that.phonenoCallback(ret.return.phoneNumber, e);
+      memberapi.updatephone({
+        mobile: ret.return.phoneNumber,
+        nickName: ret.return.phoneNumber
+      }, (updatephone)=>{
+        that.checkPermission();
+      })
+
+      wx.navigateTo({
+        url: '/pages/hunyan/hunyan?city='+city+'&fuwu='+fuwu,
+      })
+
     });
   }
   phonenoCallback(phoneno, e) {
     console.log("phone no callback");
     console.log(phoneno);
     console.log(e);
+    var json={
+      mobile:phoneno,
+      nickName:phoneno
+    }
+    var memberapi = new MemberApi();
+    var that = this;
+    // memberapi.update(json, () => {
+
+      // console.log(AppBase.UserInfo);
+      // that.Base.setMyData({
+      //   UserInfo: AppBase.UserInfo
+      // });
+
+      that.checkPermission();
+
+    // });
+
   }
   viewPhoto(e) {
     var img = e.currentTarget.id;

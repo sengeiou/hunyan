@@ -1,14 +1,49 @@
 /* pages/hunyan/hunyan.wxss */
-
+Page {
+  background: #F4F4F4;
+}
 .indexbanner {
   width: 100vw;
-  height: 380rpx;
+  height: 386rpx;
 }
 
+.indexbanner2 {
+  width: 100vw;
+  height: 260rpx;
+}
+.ser {
+  height: 98rpx;
+  width: 100vw;
+  background: #ffffff;
+}
 .inp {
-  width: 65%;
-  height: 60rpx;
-  background: #ccc;
-  border-radius: 40rpx;
-  padding-left: 30rpx;
+  width: 524rpx;
+  height: 70rpx;
+  background: #EFF0F5;
+  border-radius: 20rpx;
+  /* padding-left: 30rpx; */
+}
+.hg {
+  margin-left: 80rpx;
+  margin-right: 14rpx;
+  color: #A9A9A9;
+}
+.bq {
+  padding: 30rpx 40rpx;
+  background: #F4F4F4;
+}
+.pob {
+  width: 100vw;
+  height: 100rpx;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  box-shadow:12rpx 0 0 2 rgba(170, 170, 170, 1); 
+}
+.active {
+  color: #195ED7 !important;
+}
+.txt-10 {
+  color:#101010;
 }

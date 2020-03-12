@@ -4,7 +4,9 @@
     "pages/hunyan/hunyan",
     "pages/auth/auth",
     "pages/fuwu/fuwu",
-    "pages/yinsi/yinsi"
+    "pages/yinsi/yinsi",
+    "pages/search/search",
+    "pages/list/list"
   ],
   "permission": {
     "scope.userLocation": {

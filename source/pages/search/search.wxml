@@ -1,0 +1,28 @@
+<view class="flex-row flex-center bb">
+  <view class="flex-1"></view>
+  <view class="inp flex-row flex-center">
+    <view class="hg h6">|</view>
+    <input class="h6" value="{{content}}" bindconfirm="sendmsg" confirm-hold="true" focus="{{focus}}" placeholder="请输入关键字" placeholder-style="color:#A9A9A9;"></input>
+  </view>
+  <view class="h5" style="color:#656565;" bindtap="cancel">取消</view>
+  <view class="flex-1"></view>
+</view>
+
+<view>
+  <view class="re h6 txt-black">搜索结果</view>
+  <view style="height:30rpx;"></view>
+  <view wx:for='{{shangjialist}}' wx:key='k'>
+    <view class="flex-row flex-center" style="padding:0 30rpx 0 34rpx;">
+    
+      <image src="{{uploadpath}}shanjia/{{item.photo}}" class="icon-100"></image>
+      <view style="margin-left:34rpx;width:420rpx;">
+        <view class="h4-5 txt-black">{{item.name}}</view>
+        <view class="h6 chaochu2" style="color:#8A8A8A;margin: 20rpx 0;">{{item.jianjie}}</view>
+        <view class="h6" style="color:#8A8A8A;">{{item.address}}</view>
+      </view>
+
+    </view>
+      <view style="height:56rpx;"></view>
+  </view>
+
+</view>

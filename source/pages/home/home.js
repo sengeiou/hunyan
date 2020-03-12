@@ -3,6 +3,7 @@ import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
 import { ShangjiaApi } from "../../apis/shangjia.api.js";
+import { CityApi } from "../../apis/city.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -22,27 +23,79 @@ class Content extends AppBase {
     var instapi = new InstApi();
     var memberinfo = this.Base.getMyData().memberinfo;
     this.Base.setMyData({memberinfo})
+
     instapi.indexbanner({}, (indexbanner) => {
       this.Base.setMyData({
         indexbanner
       });
     });
+
     var shangjiaapi = new ShangjiaApi();
     shangjiaapi.type({}, (type)=>{
       this.Base.setMyData({
         type
       })
     })
+
+    var cityapi = new CityApi();
+    cityapi.citylist({}, (citylist)=>{
+      var multiArray = [[],[]];
+      var customIndex=[0,0];
+      for(var i=0;i<citylist.length;i++){
+        multiArray[0].push(citylist[i]);
+       
+      }
+      for (var j = 0; j < citylist[customIndex[0]].qu.length; j++) {
+        multiArray[1].push(citylist[customIndex[0]].qu[j]);
+      }
+     
+      
+      this.Base.setMyData({ citylist, multiArray, customIndex})
+    })
+
   }
 
   bindRegionChange(e) {
 
     console.log(e);
-    var city = e.detail.value[0] + " " + e.detail.value[1] + " " + e.detail.value[2]
+   var citylist = this.Base.getMyData().citylist;
+    if (e.detail.value[1]==null){
+      e.detail.value[1]=0;
+    }
+    var city = citylist[e.detail.value[0]].name + citylist[e.detail.value[0]].qu[e.detail.value[1]].name
     console.log(city);
     // return
     this.Base.setMyData({
       city: city
+    })
+
+  }
+  bindMultiPickerColumnChange(e){
+    console.log(e,'kkk');
+    var customIndex = this.Base.getMyData().customIndex;
+    var multiArray = this.Base.getMyData().multiArray;
+    var citylist = this.Base.getMyData().citylist;
+    customIndex[e.detail.column] = e.detail.value;
+    console.log(customIndex,'customIndex');
+
+      for (var j = 0; j < citylist.length; j++) {
+        var arr = [];
+        if (j == customIndex[0]) {
+          for (var i = 0; i < citylist[j].qu.length; i++) {
+            arr.push(citylist[j].qu[i]);
+          }
+          multiArray[1] = arr;
+        }
+
+      }
+ 
+      
+    
+    console.log(multiArray, 'customIndex');
+
+    this.Base.setMyData({
+      multiArray,
+      customIndex
     })
 
   }
@@ -73,9 +126,14 @@ class Content extends AppBase {
     var fuwu = this.Base.getMyData().fuwu;
     var fuwu_id = this.Base.getMyData().fuwu_id;
     console.log(city,fuwu,'pp')
-    if(city==''){
+    var memberinfo=this.Base.getMyData().memberinfo;
+    console.log(memberinfo);
+    if(city=='' && memberinfo.city==''){
       city='北京市';
+    }else if(city==''){
+      city=memberinfo.city+memberinfo.qu;
     }
+    console.log(city)
     wx.navigateTo({
       url: '/pages/hunyan/hunyan?city=' + city + '&fuwu=' + fuwu + '&fuwu_id=' + fuwu_id,
     })
@@ -91,4 +149,5 @@ body.fuwuFn = content.fuwuFn;
 body.fuwutkFn = content.fuwutkFn;
 body.yinsifn = content.yinsifn;
 body.huoqu = content.huoqu;
+body.bindMultiPickerColumnChange = content.bindMultiPickerColumnChange;
 Page(body)

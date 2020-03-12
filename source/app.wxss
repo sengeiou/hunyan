@@ -78,6 +78,9 @@ view,navigator,input,text,textarea{
 .text-center{
   text-align: center;
 }
+.text-left{
+  text-align: left;
+}
 .text-right{
   text-align: right;
 }
@@ -309,6 +312,9 @@ button[disabled][type=primary] {
 .padding-right-30{
   padding-right: 30rpx;
 }
+.padding-right-40{
+  padding-right: 40rpx;
+}
 .margin-10{
   margin:10rpx;
 }
@@ -374,6 +380,9 @@ button[disabled][type=primary] {
 }
 .margin-right-40{
   margin-right:40rpx;
+}
+.margin-right-80{
+  margin-right:80rpx;
 }
 .margin-left-15{
   margin-left:15rpx;
