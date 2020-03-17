@@ -1,16 +1,37 @@
 .indexbanner {
   width: 100vw;
-  height: 380rpx;
+  height: 506rpx;
+  z-index: 10;
+}
+.fixed {
+  position: fixed;
+  left: 40%;
+  color: #ffffff;
+  z-index: 99999;
 }
 
 .btn {
-  width: 668rpx;
-  height: 90rpx;
-  background: #195ed7;
-  color: white;
-  font-size: 30rpx;
-  line-height: 90rpx;
-  text-align: center;
-  margin-top: 40rpx;
-  margin-left: 40rpx;
+  width: 634rpx;
+  height: 123rpx;
+  margin-top: 66rpx;
+  margin-left: 30rpx;
+  overflow: hidden;
+}
+.enr {
+  width: 694rpx;
+  height: 558rpx;
+  border-radius: 26rpx;
+  box-shadow: 1rpx 1rpx 0rpx  #231815; 
+  position: fixed;
+  top: 410rpx;
+  left: 28rpx;
+  background: #ffffff;
+}
+.pp {
+  width: 642rpx;
+  margin: 70rpx auto 0;
+}
+.con {
+  margin-left:26rpx;
+  margin-top:29rpx;
 }

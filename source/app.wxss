@@ -158,6 +158,15 @@ view,navigator,input,text,textarea{
 white-space:nowrap;          /* 不换行 */
 overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
 }
+.chaochu{
+ text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
 .h1{
   font-size: 120rpx !important;
 }
@@ -178,6 +187,10 @@ overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内�
 }
 .h6{
   font-size: 24rpx !important;
+}
+
+.f-26{
+  font-size: 26rpx !important;
 }
 .h7{
   font-size: 20rpx !important;

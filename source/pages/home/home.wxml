@@ -1,56 +1,87 @@
-<swiper circular="true" class="indexbanner" autoplay="true">
+<!-- <view class='cu-custom'>
+  <view class="cu-bar fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='cuIcon-back' style="color:#ffffff"></text>
+    </navigator>
+    <view class='content' style='top:{{StatusBar}}px;color:#000000'>{{instinfo.name}}</view>
+  </view>
+</view> -->
+
+<view class="cu-bar fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">{{instinfo.name}}</view>
+
+
+<swiper circular="true" class="indexbanner" autoplay="true" bindchange='currntimg'>
   <swiper-item class="indexbanner" wx:for="{{indexbanner}}" wx:key="k">
     <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
   </swiper-item>
 </swiper>
 
 
-<view class="padding-40 margin-top">
+<view class="enr">
 
-  <view class="h6" style="color:#787979">活动城市</view>
+  <view class="pp">
+    <view class="flex-row flex-center">
 
-  <!-- <view class="h5" style="color:#000000">您要在哪里举行宴会</view> -->
+      <image src="{{uploadpath}}resource/{{res.yuan}}" style="width:14rpx;height:14rpx;"></image>
+      <view class="f-26 margin-left-10" style="color:#494949;">活动城市</view>
+    </view>
 
-  <view class=" ">
-    <picker range='{{multiArray}}' mode='multiSelector' range-key="name"   bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
-      <input placeholder="您要在哪里举行宴会" placeholder-class="h5" placeholder-style="color:#000000;" name="name" value="{{city ||memberinfo.address}}" disabled="{{true}}" class="h5" style="color:#000000"></input>
-      <view wx:if='{{city==""}}'>{{city}}</view>
-    </picker>
+
+    <view class=" con flex-row flex-center" style="">
+      <picker range='{{multiArray}}' mode='multiSelector' range-key="name" bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
+        <input c placeholder="您要在哪里举行宴会" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{city ||memberinfo.address}}" disabled="{{true}}" class="f-26" style="color:#000000;width:600rpx;"></input>
+        <view wx:if='{{city==""}}'>{{city}}</view>
+      </picker>
+      <view class="flex-1"></view>
+      <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx"></image>
+    </view>
+
+    <view class="margin-top-20" style="height:1rpx;background:#EEEEEE;"></view>
+
+
   </view>
 
-  <view class="margin-top-20" style="width:668rpx;height:3rpx;background:#BBBBBB"></view>
+  <view style="margin: auto; width: 642rpx;">
+    <view style="height:36rpx;"></view>
+    <view class="flex-row flex-center">
+
+      <image src="{{uploadpath}}resource/{{res.yuan}}" style="width:14rpx;height:14rpx;"></image>
+      <view class="f-26 margin-left-10" style="color:#494949;">宴会需求</view>
+    </view>
+
+
+
+    <view class="flex-row flex-center" style="margin-left:26rpx;margin-top:29rpx;">
+      <picker bindchange='fuwuFn' range='{{type}}' range-key='name'>
+        <input placeholder="您需要提供什么服务" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{fuwu}}" disabled="{{true}}" class="f-26" style="color:#000000;width:600rpx;"></input>
+        <view wx:if='{{fuwu==""}}'>{{fuwu}}</view>
+      </picker>
+      <view class="flex-1"></view>
+      <image src="{{uploadpath}}resource/{{res.arrowright}}" style="width:13rpx;height:21rpx"></image>
+    </view>
+
+    <view class="margin-top-20" style="height:1rpx;background:#EEEEEE;"></view>
+
+
+  </view>
+
+
+  <button class="btn" data-currentadd="{{city}}" data-currentfuwu="{{fuwu}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNo" wx:if='{{memberinfo.mobile==""}}'> <image src="{{uploadpath}}resource/{{res.denglu}}" style='width:100%;height:100%'></image></button>
+  <view class="btn" bindtap="huoqu" wx:if='{{memberinfo.mobile!=""}}'>
+    <image src="{{uploadpath}}resource/{{res.denglu}}" style='width:100%;height:100%'></image>
+  </view>
 
 
 </view>
 
-<view class="padding-40 margin-top">
 
-  <view class="h6" style="color:#787979">宴会需求</view>
-
-  <!-- <view class="h5" style="color:#000000">您需要提供什么服务</view> -->
-
-  <view>
-    <picker bindchange='fuwuFn' range='{{type}}' range-key='name'>
-      <input placeholder="您需要提供什么服务" placeholder-class="h5" placeholder-style="color:#000000;" name="name" value="{{fuwu}}" disabled="{{true}}" class="h5" style="color:#000000"></input>
-      <view wx:if='{{fuwu==""}}'>{{fuwu}}</view>
-    </picker>
-  </view>
-
-  <view class="margin-top-20" style="width:668rpx;height:3rpx;background:#BBBBBB"></view>
-
-
-</view>
-
-
-
-<button class="btn" data-currentadd="{{city}}" data-currentfuwu="{{fuwu}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNo" wx:if='{{memberinfo.mobile==""}}'>获取优惠礼包以及免费咨询服务</button>
-<view class="btn" bindtap="huoqu" wx:if='{{memberinfo.mobile!=""}}'>获取优惠礼包以及免费咨询服务</view>
+<view style="height:500rpx;"></view>
 
 <view class="h6 margin-top-10 flex-row flex-center">
   <view class="flex-1"></view>
-  <view class="h6">提交需求即视为同意喜宴天下</view>
-  <view class="h6" bindtap="fuwutkFn">《服务条款》</view>
-  <view class="h6">和</view>
-  <view class="h6" bindtap="yinsifn">《隐私条款》</view>
+  <view class="h6" style="color:#5D5D5D;">提交需求即视为同意喜宴天下</view>
+  <view class="h6" style="color:#1B7FC1;" bindtap="fuwutkFn">《服务条款》</view>
+  <view class="h6" style="color:#5D5D5D;">和</view>
+  <view class="h6" bindtap="yinsifn " style="color:#1B7FC1;" >《隐私条款》</view>
   <view class="flex-1"></view>
 </view>

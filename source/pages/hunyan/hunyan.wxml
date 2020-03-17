@@ -1,3 +1,10 @@
+<view class="flex-row flex-center fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;width:100vw;">
+  <image src="{{uploadpath}}resource/{{res.fanhui}}" bindtap="backPage" style="height:50rpx;width:50rpx;"></image>
+  <view style="width:36%;"></view>
+  <view class='content ' style='top:{{StatusBar}}px;color:#ffffff'>{{instinfo.name}}</view>
+  <!-- <view class="flex-1"></view> -->
+</view>
+
 <swiper circular="true" class="indexbanner" autoplay="true">
   <swiper-item class="indexbanner" wx:for="{{lunbo}}" wx:key="k">
     <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
@@ -6,45 +13,77 @@
 
 
 <view class="flex-row flex-center ser">
-  <view style="width:66rpx;"></view>
- 
 
-  <view class=" ">
-    <picker range='{{multiArray}}' mode='multiSelector' range-key="name"   bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
-      <view class="h5" style="width:102rpx;color:#101010;">{{city}}</view>
+  <view style="width:22rpx;"></view>
+
+  <image src="{{uploadpath}}resource/{{res.didian}}" style="width:20rpx;height:25rpx;margin-right:10rpx;"></image>
+  <view>
+
+    <picker range='{{multiArray}}' mode='multiSelector' range-key="name" bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
+      <view class="f-26" style="color:#000000;">{{city}}</view>
+      <view class="f-26" style="color:#000000;" wx:if='{{cityqu!="undefined"}}'>{{cityqu}}</view>
     </picker>
   </view>
 
-
-  <view style="width:28rpx;"></view>
   <view class="inp flex-row flex-center">
-    <view class="hg h6">|</view>
-    <input class="h6" bindconfirm="sendmsg" confirm-hold="true" placeholder="请输入关键字" placeholder-style="color:#A9A9A9;"></input>
+    <view class="xian"></view>
+    <input class="f-26" bindconfirm="sendmsg" confirm-hold="true" placeholder="请输入关键字" placeholder-style="color:#A4A4A4;"></input>
+    <view class="flex-1"></view>
+    <image src="{{uploadpath}}resource/{{res.search}}" style="width:37rpx;height:37rpx;margin-right:55rpx;"></image>
   </view>
+
 </view>
 
+<view style="height:80rpx;"></view>
 
 <view class="flex-row flex-wrap bq">
 
-  <view wx:for='{{biaoqian}}' wx:key='k' bindtap="biaodetail" id='{{item.id}}' class="flex-row flex-column margin-right-80">
-    <image src="{{uploadpath}}biaoqian/{{item.photo}}" class="icon-30"></image>
-    <view class="h5" style="color:#000000;">{{item.name}}</view>
+  <view wx:for='{{biaoqian}}' wx:key='k' bindtap="biaodetail" id='{{item.id}}' class="flex-row flex-column">
+    <image src="{{uploadpath}}biaoqian/{{item.photo}}" class="hyimg"></image>
+    <!-- <view class="h5" style="color:#000000;">{{item.name}}</view> -->
   </view>
 </view>
 
+<view style="height:10rpx;"></view>
+
 <swiper circular="true" class="indexbanner2" autoplay="true">
-  <swiper-item class="indexbanner" wx:for="{{duanlunbo}}" wx:key="k">
-    <image class="indexbanner2" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
+  <swiper-item class="indexbanner" wx:for="{{duanlunbo}}" wx:key="k" style='position:relative;'>
+
+    <image style="width:100%;height:100%;" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
+    <view class="pop">
+      <view class="h5 txt-white">{{item.shan_zhuti}}</view>
+      <view style="height:16rpx;"></view>
+      <view class="h6 txt-white chaochu">{{item.shan_jianjie}}</view>
+    </view>
   </swiper-item>
 </swiper>
 
-<view class="flex-row flex-wrap padding-10">
-  <view wx:for='{{shangjialist}}' wx:key='k'>
-    <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:230rpx;height:230rpx;margin:0 6rpx;"></image>
+<view style="height:42rpx;"></view>
+
+<view class=" padding-22 bg-f7 {{shangjialist.length>2?'flow':'flex-wrap'}}">
+  <view wx:for='{{shangjialist}}' wx:key='k' class="sj" style="">
+    <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:336rpx;height:333rpx;"></image>
+    <view class="tao h7">{{item.baiqianname}} | {{item.taocan}}</view>
+    <view class="con">
+      <view class="h5 txt-black chaochu2">{{item.biaoyu}}</view>
+      <view style="height:23rpx;"></view>
+      <view class="h4-5" style="color:#FF4153;">￥{{item.money}}</view>
+      <view style="height:28rpx;"></view>
+      <view class="flex-row flex-center">
+        <image src='{{uploadpath}}shanjia/{{item.logo}}' style="width:33rpx;height:33rpx;"></image>
+        <view class="f-26" style="color:#4F4F4F;margin-left:10rpx;">{{item.name}}</view>
+      </view>
+    </view>
+
   </view>
 </view>
 
+<view style="height:100rpx;"></view>
 
 <view class="flex-row flex-center text-center pob">
-  <view class="flex-1 h4-5 txt-10 {{seq==idx?'active':''}}" bindtap="qiehuan" id='{{item.id}}' data-currentidx="{{idx}}" wx:for='{{type}}' wx:key='k' wx:for-index='idx'>{{item.name}}</view>
+  <view class="flex-1" bindtap="qiehuan" id='{{item.id}}' data-currentidx="{{idx}}" wx:for='{{type}}' wx:key='k' wx:for-index='idx'>
+  <image src="{{uploadpath}}type/{{item.icon}}" wx:if='{{seq!=idx}}' style="width:39rpx;height:33rpx"></image>
+  <image src="{{uploadpath}}type/{{item.icon2}}" wx:if='{{seq==idx}}' style="width:39rpx;height:33rpx"></image>
+  <view class="flex-1 f-26 txt-black {{seq==idx?'active':''}}">{{item.name}}</view>
+  </view>
 </view>

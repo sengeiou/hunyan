@@ -16,8 +16,15 @@
   "window": {
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": true,
-    "navigationBarBackgroundColor": "#07264a",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+  
+    "navBar": "/components/navBar/navBar",
+
+    "timePicker": "/components/timePicker/timePicker"
   },
   "sitemapLocation": "sitemap.json"
 }

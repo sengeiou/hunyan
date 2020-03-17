@@ -12,12 +12,20 @@ class Content extends AppBase {
   onLoad(options) {
     this.Base.Page = this;
     //options.id=5;
-    options.fuwu_id=1;
+    // options.fuwu_id=1;
+    var fuwu_id = options.fuwu_id;
+    if (fuwu_id == "undefined") {
+      fuwu_id = 1;
+    }
     super.onLoad(options);
     this.Base.setMyData({
+      StatusBar: getApp().globalData.StatusBar,
+      CustomBar: getApp().globalData.CustomBar,
+      Custom: getApp().globalData.Custom,
       city: this.Base.options.city,
-      // city:'北京市 北京市',
-      fuwu:this.Base.options.fuwu
+      // city:'北京市',
+      cityqu: this.Base.options.cityqu,
+      fuwu_id: fuwu_id,
     })
   }
   onMyShow() {
@@ -31,9 +39,10 @@ class Content extends AppBase {
     var lunbo = [];
     var duanlunbo =[];
     var seq = 0;
+    var fuwu_id = this.Base.getMyData().fuwu_id;
     shangjiaapi.type({}, (type) => {
       for(var i=0;i<type.length;i++){
-        if(type[i].id == this.Base.options.fuwu_id){
+        if (type[i].id == fuwu_id){
           seq = type[i].seq-1;
           lunbo=type[i].dinbu;
           duanlunbo=type[i].zhonbu;
@@ -66,7 +75,8 @@ class Content extends AppBase {
 
   getbiaoqian(){
     var shangjiaapi = new ShangjiaApi();
-    shangjiaapi.biaoqian({ shanjialeixin_id: this.Base.options.fuwu_id}, (biaoqian) => {
+    var fuwu_id = this.Base.getMyData().fuwu_id;
+    shangjiaapi.biaoqian({ shanjialeixin_id: fuwu_id}, (biaoqian) => {
 
       this.Base.setMyData({
         biaoqian
@@ -79,18 +89,30 @@ class Content extends AppBase {
     var shangjiaapi = new ShangjiaApi();
     var that = this;
     var arr = [];
+    var fuwu_id = this.Base.getMyData().fuwu_id;
     shangjiaapi.shangjialist({}, (shangjialist) => {
-
+      
       for(var i=0;i<shangjialist.length;i++){
+        var baiqianname = '';
+        // shangjialist[i].typename = shangjialist[i].types[0];
         for(var j=0;j<shangjialist[i].types.length;j++){
-          if (shangjialist[i].types[j].id == that.Base.options.fuwu_id ){
+          if (shangjialist[i].types[j].id == fuwu_id ){
             arr.push(shangjialist[i]);
           }
         }
+        for(var k=0;k<shangjialist[i].biaoqian.length;k++){
+         
+          if(baiqianname!=''){
+            // baiqianname +='/'+ shangjialist[i].biaoqian[k].name;
+          }else {
+            baiqianname += shangjialist[i].biaoqian[0].name;
+          }
+        }
+        shangjialist[i].baiqianname = baiqianname;
       }
 
       this.Base.setMyData({
-        shangjialist:arr
+        shangjialist: arr
       });
     });
   }
@@ -98,9 +120,11 @@ class Content extends AppBase {
     console.log(e);
     var idx = e.currentTarget.dataset.currentidx;
     var id = e.currentTarget.id;
-    this.Base.options.fuwu_id=id;
+    // this.Base.options.fuwu_id=id;
+    var fuwu_id = this.Base.getMyData().fuwu_id;
     this.Base.setMyData({
-      seq:idx
+      seq:idx,
+      fuwu_id
     })
     this.onMyShow();
   }
@@ -120,11 +144,14 @@ class Content extends AppBase {
     if (e.detail.value[1] == null) {
       e.detail.value[1] = 0;
     }
-    var city = citylist[e.detail.value[0]].name + citylist[e.detail.value[0]].qu[e.detail.value[1]].name
+    // var city = citylist[e.detail.value[0]].name + citylist[e.detail.value[0]].qu[e.detail.value[1]].name;
+    var city = citylist[e.detail.value[0]].name ;
     console.log(city);
+    var cityqu = citylist[e.detail.value[0]].qu[e.detail.value[1]].name;
     // return
     this.Base.setMyData({
-      city: city
+      city: city,
+      cityqu: cityqu
     })
 
   }

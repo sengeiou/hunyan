@@ -1,49 +1,131 @@
 /* pages/hunyan/hunyan.wxss */
+
 Page {
-  background: #F4F4F4;
+  background: #fff;
 }
+
 .indexbanner {
   width: 100vw;
-  height: 386rpx;
+  height: 420rpx;
+}
+
+.fixed {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  z-index: 99999;
 }
 
 .indexbanner2 {
-  width: 100vw;
-  height: 260rpx;
+  width: 694rpx;
+  height: 240rpx;
+  margin-left: 28rpx;
 }
+
 .ser {
-  height: 98rpx;
-  width: 100vw;
-  background: #ffffff;
+  height: 120rpx;
+  width: 694rpx;
+  background: #fff;
+  border-radius: 26rpx;
+  position: absolute;
+  top: 367rpx;
+  left: 28rpx;
+  box-shadow: 1rpx 1rpx 0rpx #231815;
 }
+
 .inp {
   width: 524rpx;
   height: 70rpx;
-  background: #EFF0F5;
+  /* background: #EFF0F5; */
   border-radius: 20rpx;
   /* padding-left: 30rpx; */
 }
-.hg {
-  margin-left: 80rpx;
-  margin-right: 14rpx;
-  color: #A9A9A9;
-}
+
 .bq {
-  padding: 30rpx 40rpx;
-  background: #F4F4F4;
+  padding: 0rpx 40rpx;
+  /* background: #F4F4F4; */
 }
+
 .pob {
   width: 100vw;
   height: 100rpx;
-  background: #ffffff;
+  background: #fff;
   position: fixed;
   bottom: 0;
   z-index: 10;
-  box-shadow:12rpx 0 0 2 rgba(170, 170, 170, 1); 
+  box-shadow: 12rpx 0 0 2 rgba(170, 170, 170, 1);
 }
+
 .active {
-  color: #195ED7 !important;
+  color: #FF4153 !important;
 }
+
 .txt-10 {
-  color:#101010;
+  color: #101010;
+}
+
+.xian {
+  width: 1rpx;
+  height: 61rpx;
+  background: #eee;
+  margin: 0 31rpx 0 26rpx;
+}
+
+.hyimg {
+  width: 162rpx;
+  height: 149rpx;
+  margin: 23rpx 26rpx;
+}
+
+.pop {
+  position: absolute;
+  left: 32rpx;
+  bottom: 29rpx;
+}
+
+.bg-f7 {
+  background: #f7f4f8;
+}
+
+.padding-22 {
+  padding: 22rpx 0 22rpx 28rpx;
+  display: flex;  
+}
+
+.flow {
+ flex-flow:column wrap;
+  height: 100vh;
+}
+
+.chaochu2 {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.sj {
+  width: calc(100%/2 - 28rpx);
+  background: #ffffff;
+  margin-right: 21rpx;
+  border-radius: 26rpx;
+  margin-bottom: 26rpx;
+  position: relative;
+}
+.con {
+  padding: 25rpx 26rpx 42rpx 25rpx;
+}
+.tao {
+  padding: 5rpx 13rpx 4rpx 15rpx;
+  background: #46454C;
+  opacity: 0.5;
+  border-radius: 14rpx;
+  color: #ffffff;
+  position: absolute;
+  top: 290rpx;
+  left: 16rpx;
 }

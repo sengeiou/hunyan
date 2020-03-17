@@ -15,7 +15,10 @@ class Content extends AppBase {
     super.onLoad(options);
     this.Base.setMyData({
       city:'',
-      fuwu:''
+      fuwu:'',
+      StatusBar: getApp().globalData.StatusBar,
+      CustomBar: getApp().globalData.CustomBar,
+      Custom: getApp().globalData.Custom,
     })
   }
   onMyShow() {
@@ -26,7 +29,7 @@ class Content extends AppBase {
 
     instapi.indexbanner({}, (indexbanner) => {
       this.Base.setMyData({
-        indexbanner
+        indexbanner, currentimg:indexbanner[0].img
       });
     });
 
@@ -64,9 +67,11 @@ class Content extends AppBase {
     }
     var city = citylist[e.detail.value[0]].name + citylist[e.detail.value[0]].qu[e.detail.value[1]].name
     console.log(city);
+    var city1 = citylist[e.detail.value[0]].name;
+    var cityqu = citylist[e.detail.value[0]].qu[e.detail.value[1]].name
     // return
     this.Base.setMyData({
-      city: city
+      city: city,city1,cityqu
     })
 
   }
@@ -123,20 +128,32 @@ class Content extends AppBase {
   }
   huoqu(){
     var city = this.Base.getMyData().city;
+    var city1 = this.Base.getMyData().city1;
+    var cityqu = this.Base.getMyData().cityqu;
     var fuwu = this.Base.getMyData().fuwu;
     var fuwu_id = this.Base.getMyData().fuwu_id;
     console.log(city,fuwu,'pp')
     var memberinfo=this.Base.getMyData().memberinfo;
     console.log(memberinfo);
     if(city=='' && memberinfo.city==''){
-      city='北京市';
+      city1='北京市';
     }else if(city==''){
       city=memberinfo.city+memberinfo.qu;
+      city1 = memberinfo.city;
+        cityqu = memberinfo.qu;
     }
     console.log(city)
     wx.navigateTo({
-      url: '/pages/hunyan/hunyan?city=' + city + '&fuwu=' + fuwu + '&fuwu_id=' + fuwu_id,
+      url: '/pages/hunyan/hunyan?city=' + city1 + '&cityqu=' + cityqu + '&fuwu=' + fuwu + '&fuwu_id=' + fuwu_id,
     })
+
+  }
+  currntimg(e){
+    console.log(e);
+    var indexbanner = this.Base.getMyData().indexbanner;
+
+    var currentimg = indexbanner[e.detail.current].img;
+    this.Base.setMyData({ currentimg});
 
   }
 }
@@ -150,4 +167,5 @@ body.fuwutkFn = content.fuwutkFn;
 body.yinsifn = content.yinsifn;
 body.huoqu = content.huoqu;
 body.bindMultiPickerColumnChange = content.bindMultiPickerColumnChange;
+body.currntimg = content.currntimg;
 Page(body)
