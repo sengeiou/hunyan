@@ -148,6 +148,14 @@ class Content extends AppBase {
     })
 
   }
+  bannerclick(e){
+    var id = e.currentTarget.id;
+    if (id != 0) {
+      wx.navigateTo({
+        url: '/pages/detail/detail?id=' + id,
+      })
+    }
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -159,4 +167,5 @@ body.fuwutkFn = content.fuwutkFn;
 body.yinsifn = content.yinsifn;
 body.huoqu = content.huoqu;
 body.bindMultiPickerColumnChange = content.bindMultiPickerColumnChange;
+body.bannerclick = content.bannerclick;
 Page(body)

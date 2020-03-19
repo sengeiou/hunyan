@@ -1,7 +1,6 @@
 
 
-<import src="../../wxParse/wxParse.wxml" />
+<view class="padding-28">
+<text>{{fuwuinfo.name}}</text>
 
-  <view class='nostyle padding-28 '>
-    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
-  </view>
+</view>

@@ -36,8 +36,8 @@ Page {
 
 .pof {
   position: fixed;
-  right: 10%;
-  bottom: 20%;
+  right: 8%;
+  bottom: 8%;
   z-index: 10;
 }
 

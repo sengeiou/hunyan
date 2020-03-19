@@ -448,9 +448,21 @@ export class AppBase {
   getPhoneNo(e) {
     var that = this;
     console.log(e);
-    var city = e.currentTarget.dataset.currentadd;
-    var fuwu = e.currentTarget.dataset.currentfuwu;
-    
+    var city1 = e.currentTarget.dataset.currentadd;
+    var cityqu = e.currentTarget.dataset.currentadd2;
+    var fuwu_id = e.currentTarget.dataset.currentfuwu;
+    var memberinfo = this.Base.getMyData().memberinfo;
+    console.log(memberinfo,city1)
+  
+    if (city1 == undefined && memberinfo.city == '') {
+      city1 = '北京市';
+    } else if (city1 == undefined && memberinfo.city != '') {
+      city1 = memberinfo.city;
+      cityqu = memberinfo.qu;
+    }
+    // if (fuwu_id==undefined){
+    //   fuwu_id=1;
+    // }
     var api = new WechatApi();
     var data = this.Base.getMyData();
     console.log(data);
@@ -460,17 +472,22 @@ export class AppBase {
     console.log(e.detail);
     api.decrypteddata(e.detail, (ret) => {
       console.log(ret);
-      that.phonenoCallback(ret.return.phoneNumber, e);
-      memberapi.updatephone({
-        mobile: ret.return.phoneNumber,
-        nickName: ret.return.phoneNumber
-      }, (updatephone)=>{
-        that.checkPermission();
-      })
+      if (ret.return.phoneNumber!=undefined){
+        that.phonenoCallback(ret.return.phoneNumber, e);
+          memberapi.updatephone({
+            mobile: ret.return.phoneNumber,
+            nickName: ret.return.phoneNumber
+          }, (updatephone)=>{
+            that.checkPermission();
+          })
 
-      wx.navigateTo({
-        url: '/pages/hunyan/hunyan?city='+city+'&fuwu='+fuwu,
-      })
+          wx.navigateTo({
+            url: '/pages/hunyan/hunyan?city=' + city1 + '&cityqu=' + cityqu + '&fuwu_id=' + fuwu_id,
+          })
+      }else {
+
+      }
+      
 
     });
   }

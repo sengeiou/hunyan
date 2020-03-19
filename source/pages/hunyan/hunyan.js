@@ -26,6 +26,7 @@ class Content extends AppBase {
       // city:'北京市',
       cityqu: this.Base.options.cityqu,
       fuwu_id: fuwu_id,
+      lianwo:false,
     })
     this.getcity();
   }
@@ -36,7 +37,9 @@ class Content extends AppBase {
     this.getlist();
     this.gettype();
     
-
+    this.Base.setMyData({
+      jiazai: false
+    })
   }
   gettype(){
     var shangjiaapi = new ShangjiaApi();
@@ -46,6 +49,7 @@ class Content extends AppBase {
     var fuwu_id = this.Base.getMyData().fuwu_id;
     var city_id = this.Base.getMyData().city_id;
     shangjiaapi.type({city_id:city_id}, (type) => {
+  
       for (var i = 0; i < type.length; i++) {
         if (type[i].id == fuwu_id) {
           seq = type[i].seq - 1;
@@ -101,7 +105,7 @@ getcity(){
       for(var i=0;i<shangjialist.length;i++){
         var baiqianname = '';
         var index = shangjialist[i].money.indexOf('.');
-        console.log(index);
+        
         shangjialist[i].zhenshu = shangjialist[i].money.slice(0,index+1);
         shangjialist[i].xiaoshu = shangjialist[i].money.slice(index + 1, index+3);
 
@@ -135,7 +139,8 @@ getcity(){
     var fuwu_id = this.Base.getMyData().fuwu_id;
     this.Base.setMyData({
       seq:idx,
-      fuwu_id:id
+      fuwu_id:id,
+      lianwo:false
     })
     this.onMyShow();
   }
@@ -170,11 +175,11 @@ getcity(){
     if (e.detail.value[1] == null) {
       e.detail.value[1] = 0;
     }
-    // var city = citylist[e.detail.value[0]].name + citylist[e.detail.value[0]].qu[e.detail.value[1]].name;
+
     var city = citylist[e.detail.value[0]].name ;
     console.log(city);
     var cityqu = citylist[e.detail.value[0]].qu[e.detail.value[1]].name;
-    // return
+ 
     this.Base.setMyData({
       city: city,
       cityqu: cityqu,
@@ -226,6 +231,17 @@ getcity(){
       })
     }
   }
+  onReachBottom(){
+    this.Base.setMyData({
+      jiazai: true
+    });
+    // this.onMyShow();
+  }
+  aboutus(){
+    wx.navigateTo({
+      url: '/pages/lianxi/lianxi',
+    })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -242,4 +258,6 @@ body.getcity = content.getcity;
 body.gettype = content.gettype;
 body.conFn = content.conFn;
 body.todetail = content.todetail;
+body.onReachBottom = content.onReachBottom;
+body.aboutus = content.aboutus;
 Page(body)

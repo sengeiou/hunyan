@@ -5,7 +5,7 @@
 
 <swiper circular="true" class="indexbanner" autoplay="true" >
   <swiper-item class="indexbanner" wx:for="{{indexbanner}}" wx:key="k">
-    <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
+    <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" id='{{item.shanjia_id}}'></image>
   </swiper-item>
 </swiper>
 
@@ -32,7 +32,7 @@
       <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx"></image>
     </view>
 
-    <view class="margin-top-20 line" style=""></view>
+    <view class="line" style="margin-top:15rpx;"></view>
 
 
   </view>
@@ -62,7 +62,7 @@
   </view>
 
 
-  <button class="btn" data-currentadd="{{city}}" data-currentfuwu="{{fuwu}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNo" wx:if='{{memberinfo.mobile==""}}'>
+  <button class="btn" data-currentadd="{{city1}}" data-currentadd2="{{cityqu}}" data-currentfuwu="{{fuwu_id}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNo" wx:if='{{memberinfo.mobile==""}}'>
     <image src="{{uploadpath}}resource/{{res.denglu}}" style='width:100%;height:100%'></image>
   </button>
   <view class="btn" bindtap="huoqu" wx:if='{{memberinfo.mobile!=""}}'>

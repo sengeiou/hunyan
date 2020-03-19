@@ -1,0 +1,4 @@
+<view  class="flex-row flex-column">
+  <image src="{{uploadpath}}inst/{{instinfo.lianxi}}" style="width:94%;height:100vh;"></image>
+   <view style="height:60rpx;"></view>
+</view>

@@ -2,8 +2,7 @@
 import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
-var WxParse = require('../../wxParse/wxParse');
-import { ApiUtil } from "../../apis/apiutil.js";
+
 class Content extends AppBase {
   constructor() {
     super();
@@ -15,17 +14,10 @@ class Content extends AppBase {
   }
   onMyShow() {
     var that = this;
-    var instapi = new InstApi();
-    instapi.yinsiinfo({}, (yinsiinfo) => {
-      console.log(yinsiinfo)
-      this.Base.setMyData({
-        yinsiinfo
-      })
-    })
   }
   setPageTitle(instinfo) {
     wx.setNavigationBarTitle({
-      title: "隐私条款",
+      title: '联系我们',
     })
   }
 }

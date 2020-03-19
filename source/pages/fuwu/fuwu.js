@@ -16,11 +16,10 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
-    instapi.info({}, (instinfo) => {
-      instinfo.fwtk = ApiUtil.HtmlDecode(instinfo.fwtk);
-
-      WxParse.wxParse('content', 'html', instinfo.fwtk, that, 10);
-      
+    instapi.fuwuinfo({}, (fuwuinfo) => {
+      this.Base.setMyData({
+        fuwuinfo
+      })
     })
 
   }

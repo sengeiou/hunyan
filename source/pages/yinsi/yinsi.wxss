@@ -8,5 +8,5 @@
 }
 
 .padding-28 {
-  padding: 40rpx 80rpx 0; 
+  padding: 40rpx 40rpx; 
 }

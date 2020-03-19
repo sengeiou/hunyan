@@ -32,8 +32,8 @@
   height: 135rpx;
   background: #EEEEEE;
   position: absolute;
-  top: 100rpx;
-  left: 32rpx;
+  top: 95rpx;
+  left: 33rpx;
 }
 .line {
   width:617rpx;
@@ -47,5 +47,5 @@
 }
 .con {
   margin-left:26rpx;
-  margin-top:26rpx;
+  margin-top:29rpx;
 }

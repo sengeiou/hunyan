@@ -41,7 +41,7 @@
     <view class="f-30 txt-black txt-bold">场地信息</view>
   </view>
   <view class="line2"></view>
-  <view wx:for='{{detail.chandi}}'>
+  <view wx:for='{{detail.chandi}}' wx:key='k'>
     <image src="{{uploadpath}}shanjia/{{item.img}}" style="width:625rpx;"></image>
     <view style="height:33rpx"></view>
   </view>
