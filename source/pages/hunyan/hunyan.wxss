@@ -31,7 +31,7 @@ Page {
   position: absolute;
   top: 367rpx;
   left: 28rpx;
-  box-shadow: 1rpx 1rpx 0rpx #231815;
+  box-shadow: 2rpx 2rpx 10rpx #909090;
 }
 
 .inp {
@@ -46,15 +46,18 @@ Page {
   padding: 0rpx 40rpx;
   /* background: #F4F4F4; */
 }
+view {
+  overflow: hidden;
+}
 
 .pob {
   width: 100vw;
-  height: 100rpx;
+  height: 150rpx;
   background: #fff;
   position: fixed;
   bottom: 0;
   z-index: 10;
-  box-shadow: 12rpx 0 0 2 rgba(170, 170, 170, 1);
+  box-shadow: 2rpx 2rpx 10rpx #909090;
 }
 
 .active {

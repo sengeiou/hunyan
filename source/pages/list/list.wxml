@@ -3,7 +3,7 @@
 <view class="bg-white" wx:if='{{show==false}}'>
 
     <view style="height:56rpx;"></view>
-  <view wx:for='{{shangjialist}}' wx:key='k'>
+  <view wx:for='{{shangjialist}}' wx:key='k' bindtap="todetail" id='{{item.id}}'>
     <view class="flex-row flex-center" style="padding:0 30rpx 0 34rpx;">
     
       <image src="{{uploadpath}}shanjia/{{item.photo}}" class="icon-100"></image>
@@ -21,7 +21,7 @@
 
 <view class="flex-row flex-wrap" style="padding:30rpx 30rpx 0;" wx:if='{{show==true}}'>
 
-  <view wx:for='{{shangjialist}}' wx:key='k' class="lie">
+  <view wx:for='{{shangjialist}}' wx:key='k' class="lie" bindtap="todetail" id='{{item.id}}'>
     
       <image src="{{uploadpath}}shanjia/{{item.photo}}" class="imgs"></image>
       

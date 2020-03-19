@@ -1,0 +1,60 @@
+/* pages/detail/detail.wxss */
+
+Page {
+  background: #f5f2f5;
+}
+view {
+  overflow: hidden;
+}
+
+.fixed {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  z-index: 99999;
+}
+
+.titles {
+  width: 694rpx;
+  height: 174rpx;
+  padding: 39rpx 37rpx 0;
+  border-radius: 26rpx;
+  background: #fff;
+  position: absolute;
+  top: 509rpx;
+  left: 28rpx;
+}
+
+.padd {
+  padding-left: 2rpx;
+  padding-top: 44rpx;
+}
+
+.youhui {
+  width: 694rpx;
+  padding: 34rpx 40rpx;
+  margin-left: 28rpx;
+  border-radius: 26rpx;
+}
+
+.line {
+  width: 100vw;
+  height: 1rpx;
+  margin: 35rpx 0 42rpx;
+}
+.line2 {
+  width: 100vw;
+  height: 1rpx;
+  margin: 35rpx 0 39rpx;
+}
+
+.chandi {
+  width: 694rpx;
+  border-radius: 26rpx;
+  margin-left: 28rpx;
+  padding: 0 34rpx 30rpx;
+}
+view {
+  overflow: hidden;
+}

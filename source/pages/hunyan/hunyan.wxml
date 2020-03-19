@@ -7,7 +7,7 @@
 
 <swiper circular="true" class="indexbanner" autoplay="true">
   <swiper-item class="indexbanner" wx:for="{{lunbo}}" wx:key="k">
-    <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
+    <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="todetail" id='{{item.shanjia_id}}'></image>
   </swiper-item>
 </swiper>
 
@@ -27,9 +27,9 @@
 
   <view class="inp flex-row flex-center">
     <view class="xian"></view>
-    <input class="f-26" bindconfirm="sendmsg" confirm-hold="true" placeholder="请输入关键字" placeholder-style="color:#A4A4A4;"></input>
+    <input class="f-26" bindconfirm="sendmsg" confirm-hold="true" bindinput="conFn" placeholder="请输入关键字" placeholder-style="color:#A4A4A4;"></input>
     <view class="flex-1"></view>
-    <image src="{{uploadpath}}resource/{{res.search}}" style="width:37rpx;height:37rpx;margin-right:55rpx;"></image>
+    <image src="{{uploadpath}}resource/{{res.search}}" bindtap="sendmsg" style="width:37rpx;height:37rpx;margin-right:55rpx;"></image>
   </view>
 
 </view>
@@ -47,9 +47,9 @@
 <view style="height:10rpx;"></view>
 
 <swiper circular="true" class="indexbanner2" autoplay="true">
-  <swiper-item class="indexbanner" wx:for="{{duanlunbo}}" wx:key="k" style='position:relative;'>
+  <swiper-item class="indexbanner" wx:for="{{duanlunbo}}" wx:key="k" style='position:relative;' bindtap="todetail" id='{{item.shanjia_id}}'>
 
-    <image style="width:100%;height:100%;" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
+    <image style="width:100%;height:100%;" src="{{uploadpath}}indexbanner/{{item.img}}" ></image>
     <view class="pop">
       <view class="h5 txt-white">{{item.shan_zhuti}}</view>
       <view style="height:16rpx;"></view>
@@ -59,15 +59,19 @@
 </swiper>
 
 <view style="height:42rpx;"></view>
-
-<view class=" padding-22 bg-f7 {{shangjialist.length>2?'flow':'flex-wrap'}}">
-  <view wx:for='{{shangjialist}}' wx:key='k' class="sj" style="">
+<view class=" bg-f7">
+<view class=" padding-22 {{shangjialist.length>2?'flow':'flex-wrap'}}">
+  <view wx:for='{{shangjialist}}' wx:key='k' class="sj" style="" bindtap="todetail" id='{{item.id}}'>
     <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:336rpx;height:333rpx;"></image>
     <view class="tao h7">{{item.baiqianname}} | {{item.taocan}}</view>
     <view class="con">
       <view class="h5 txt-black chaochu2">{{item.biaoyu}}</view>
       <view style="height:23rpx;"></view>
-      <view class="h4-5" style="color:#FF4153;">￥{{item.money}}</view>
+      <view class="flex-row flex-bottom" >
+        <view class="h6" style="color:#FF4153;">￥ </view>
+        <view class="f-32" style="color:#FF4153;">{{item.zhenshu}}</view>
+        <view class="h6" style="color:#FF4153;"> {{item.xiaoshu}}</view>
+      </view>
       <view style="height:28rpx;"></view>
       <view class="flex-row flex-center">
         <image src='{{uploadpath}}shanjia/{{item.logo}}' style="width:33rpx;height:33rpx;"></image>
@@ -77,8 +81,9 @@
 
   </view>
 </view>
+<view style="height:150rpx;"></view>
+</view>
 
-<view style="height:100rpx;"></view>
 
 <view class="flex-row flex-center text-center pob">
   <view class="flex-1" bindtap="qiehuan" id='{{item.id}}' data-currentidx="{{idx}}" wx:for='{{type}}' wx:key='k' wx:for-index='idx'>

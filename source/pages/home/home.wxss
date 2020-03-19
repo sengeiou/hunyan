@@ -21,11 +21,25 @@
   width: 694rpx;
   height: 558rpx;
   border-radius: 26rpx;
-  box-shadow: 1rpx 1rpx 0rpx  #231815; 
+  box-shadow: 2rpx 2rpx 10rpx #909090;
   position: fixed;
   top: 410rpx;
   left: 28rpx;
   background: #ffffff;
+}
+.shu {
+  width: 1rpx;
+  height: 135rpx;
+  background: #EEEEEE;
+  position: absolute;
+  top: 100rpx;
+  left: 32rpx;
+}
+.line {
+  width:617rpx;
+  height:1rpx;
+  background:#EEEEEE;
+  margin-left: 21rpx;
 }
 .pp {
   width: 642rpx;
@@ -33,5 +47,5 @@
 }
 .con {
   margin-left:26rpx;
-  margin-top:29rpx;
+  margin-top:26rpx;
 }

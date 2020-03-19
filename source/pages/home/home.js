@@ -148,14 +148,6 @@ class Content extends AppBase {
     })
 
   }
-  currntimg(e){
-    console.log(e);
-    var indexbanner = this.Base.getMyData().indexbanner;
-
-    var currentimg = indexbanner[e.detail.current].img;
-    this.Base.setMyData({ currentimg});
-
-  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -167,5 +159,4 @@ body.fuwutkFn = content.fuwutkFn;
 body.yinsifn = content.yinsifn;
 body.huoqu = content.huoqu;
 body.bindMultiPickerColumnChange = content.bindMultiPickerColumnChange;
-body.currntimg = content.currntimg;
 Page(body)

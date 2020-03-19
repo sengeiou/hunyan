@@ -1,16 +1,9 @@
-<!-- <view class='cu-custom'>
-  <view class="cu-bar fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-      <text class='cuIcon-back' style="color:#ffffff"></text>
-    </navigator>
-    <view class='content' style='top:{{StatusBar}}px;color:#000000'>{{instinfo.name}}</view>
-  </view>
-</view> -->
+<view class="cu-bar fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
 
-<view class="cu-bar fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">{{instinfo.name}}</view>
+  {{instinfo.name}}</view>
 
 
-<swiper circular="true" class="indexbanner" autoplay="true" bindchange='currntimg'>
+<swiper circular="true" class="indexbanner" autoplay="true" >
   <swiper-item class="indexbanner" wx:for="{{indexbanner}}" wx:key="k">
     <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" data-path='{{item.path}}'></image>
   </swiper-item>
@@ -18,6 +11,9 @@
 
 
 <view class="enr">
+
+
+  <view class="shu"></view>
 
   <view class="pp">
     <view class="flex-row flex-center">
@@ -36,13 +32,13 @@
       <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx"></image>
     </view>
 
-    <view class="margin-top-20" style="height:1rpx;background:#EEEEEE;"></view>
+    <view class="margin-top-20 line" style=""></view>
 
 
   </view>
 
   <view style="margin: auto; width: 642rpx;">
-    <view style="height:36rpx;"></view>
+    <view style="height:26rpx;"></view>
     <view class="flex-row flex-center">
 
       <image src="{{uploadpath}}resource/{{res.yuan}}" style="width:14rpx;height:14rpx;"></image>
@@ -60,13 +56,15 @@
       <image src="{{uploadpath}}resource/{{res.arrowright}}" style="width:13rpx;height:21rpx"></image>
     </view>
 
-    <view class="margin-top-20" style="height:1rpx;background:#EEEEEE;"></view>
+    <view class="margin-top-20 line" style=""></view>
 
 
   </view>
 
 
-  <button class="btn" data-currentadd="{{city}}" data-currentfuwu="{{fuwu}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNo" wx:if='{{memberinfo.mobile==""}}'> <image src="{{uploadpath}}resource/{{res.denglu}}" style='width:100%;height:100%'></image></button>
+  <button class="btn" data-currentadd="{{city}}" data-currentfuwu="{{fuwu}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNo" wx:if='{{memberinfo.mobile==""}}'>
+    <image src="{{uploadpath}}resource/{{res.denglu}}" style='width:100%;height:100%'></image>
+  </button>
   <view class="btn" bindtap="huoqu" wx:if='{{memberinfo.mobile!=""}}'>
     <image src="{{uploadpath}}resource/{{res.denglu}}" style='width:100%;height:100%'></image>
   </view>
@@ -82,6 +80,6 @@
   <view class="h6" style="color:#5D5D5D;">提交需求即视为同意喜宴天下</view>
   <view class="h6" style="color:#1B7FC1;" bindtap="fuwutkFn">《服务条款》</view>
   <view class="h6" style="color:#5D5D5D;">和</view>
-  <view class="h6" bindtap="yinsifn " style="color:#1B7FC1;" >《隐私条款》</view>
+  <view class="h6" bindtap="yinsifn" style="color:#1B7FC1;">《隐私条款》</view>
   <view class="flex-1"></view>
 </view>
