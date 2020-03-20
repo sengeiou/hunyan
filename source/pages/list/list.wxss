@@ -8,6 +8,9 @@ Page {
   padding-left: 36rpx;
   margin-top: 36rpx;
 }
+view {
+  overflow: hidden;
+}
 
 .chaochu2 {
   text-overflow: -o-ellipsis-lastline;
@@ -17,7 +20,7 @@ Page {
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
-  color:#8A8A8A;
+  /* color:#8A8A8A; */
   /* margin-top: 20rpx;
   padding: 0 10rpx; */
 }
@@ -60,4 +63,37 @@ Page {
   width: 274rpx;
   height: 286rpx;
   margin-bottom: 10rpx;
+}
+.padding-22 {
+  padding: 22rpx 0 22rpx 28rpx;
+  display: flex;  
+}
+
+.flow {
+ flex-flow:column wrap;
+  height: 100vh;
+}
+.bg-f7 {
+  background: #f7f4f8;
+}
+.sj {
+  width: calc(100%/2 - 28rpx);
+  background: #ffffff;
+  margin-right: 21rpx;
+  border-radius: 26rpx;
+  margin-bottom: 26rpx;
+  position: relative;
+}
+.con {
+  padding: 25rpx 26rpx 42rpx 25rpx;
+}
+.tao {
+  padding: 5rpx 13rpx 4rpx 15rpx;
+  background: #46454C;
+  opacity: 0.5;
+  border-radius: 14rpx;
+  color: #ffffff;
+  position: absolute;
+  top: 290rpx;
+  left: 16rpx;
 }

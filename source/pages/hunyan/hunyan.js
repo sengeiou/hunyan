@@ -27,6 +27,7 @@ class Content extends AppBase {
       cityqu: this.Base.options.cityqu,
       fuwu_id: fuwu_id,
       lianwo:false,
+      jiazai: false,
     })
     this.getcity();
   }
@@ -34,17 +35,16 @@ class Content extends AppBase {
     var that = this;
    
     this.getbiaoqian();
-    this.getlist();
+    // this.getlist();
     this.gettype();
     
-    this.Base.setMyData({
-      jiazai: false
-    })
   }
   gettype(){
     var shangjiaapi = new ShangjiaApi();
     var lunbo = [];
     var duanlunbo = [];
+    var shangjialist=[];
+    var tempshanjia=[];
     var seq = 0;
     var fuwu_id = this.Base.getMyData().fuwu_id;
     var city_id = this.Base.getMyData().city_id;
@@ -52,13 +52,21 @@ class Content extends AppBase {
   
       for (var i = 0; i < type.length; i++) {
         if (type[i].id == fuwu_id) {
+
+          for(var k=0;k<type[i].shanjia.length;k++){
+            var index = type[i].shanjia[k].money.indexOf('.');
+
+            type[i].shanjia[k].zhenshu = type[i].shanjia[k].money.slice(0, index + 1);
+            type[i].shanjia[k].xiaoshu = type[i].shanjia[k].money.slice(index + 1, index + 3);
+          }
           seq = type[i].seq - 1;
           lunbo = type[i].dinbu;
           duanlunbo = type[i].zhonbu;
+          shangjialist = type[i].shanjia;
         }
       }
       this.Base.setMyData({
-        type, lunbo, duanlunbo, seq
+        type, lunbo, duanlunbo, seq, shangjialist, jiazai: false
       })
     })
   }
@@ -233,9 +241,10 @@ getcity(){
   }
   onReachBottom(){
     this.Base.setMyData({
-      jiazai: true
+      jiazai: true,
     });
-    // this.onMyShow();
+    
+    this.gettype();
   }
   aboutus(){
     wx.navigateTo({

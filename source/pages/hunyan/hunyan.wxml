@@ -86,7 +86,7 @@
     <view class="flex-row flex-column" wx:if='{{jiazai}}'>
       <image src='{{uploadpath}}resource/{{res.jiazai}}' style="width:39rpx;height:39rpx;"></image>
     </view>
-    <view style="height:150rpx;"></view>
+    <view style="height:200rpx;"></view>
   </view>
 </view>
 

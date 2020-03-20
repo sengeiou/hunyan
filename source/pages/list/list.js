@@ -10,7 +10,7 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=5;
+    // options.biao_id=1;
     // options.content='123';
 
     super.onLoad(options);
@@ -24,18 +24,16 @@ class Content extends AppBase {
     var api = new ShangjiaApi;
     var arr =[];
     var  biao_id = this.Base.getMyData().biao_id;
-    api.shangjialist({}, (shangjialist) => {
+    api.biaodetail({ id: biao_id }, (biaodetail)=>{
+      for (var k = 0; k < biaodetail.shanjia.length; k++) {
+        var index = biaodetail.shanjia[k].money.indexOf('.');
 
-      for(var i=0;i<shangjialist.length;i++){
-        for(var j=0;j<shangjialist[i].biaoqian.length;j++){
-          if (shangjialist[i].biaoqian[j].id == biao_id){
-            that.Base.setPageTitle(shangjialist[i].biaoqian[j]);
-            arr.push(shangjialist[i]);
-          }
-        }
+        biaodetail.shanjia[k].zhenshu = biaodetail.shanjia[k].money.slice(0, index + 1);
+        biaodetail.shanjia[k].xiaoshu = biaodetail.shanjia[k].money.slice(index + 1, index + 3);
       }
-     
-      this.Base.setMyData({ shangjialist:arr })
+      var shangjialist = biaodetail.shanjia;
+      this.Base.setPageTitle(biaodetail);
+      this.Base.setMyData({ biaodetail, shangjialist})
     })
   }
   qiehuan(){
