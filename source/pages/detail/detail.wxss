@@ -41,12 +41,12 @@ view {
 .line {
   width: 100vw;
   height: 1rpx;
-  margin: 35rpx 0 42rpx;
+  margin: 0rpx 0 42rpx;
 }
 .line2 {
   width: 100vw;
   height: 1rpx;
-  margin: 35rpx 0 39rpx;
+  margin: 0rpx 0 39rpx;
 }
 
 .chandi {

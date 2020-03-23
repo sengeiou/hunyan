@@ -93,12 +93,14 @@ view {
 
 .padding-22 {
   padding: 22rpx 0 22rpx 28rpx;
-  display: flex;  
+  column-count: 2;
+  -webkit-column-count: 2;
 }
 
 .flow {
- flex-flow:column wrap;
-  height: 100vh;
+   -webkit-column-break-inside: avoid;
+    break-inside: avoid;
+
 }
 
 .chaochu2 {
@@ -112,7 +114,7 @@ view {
 }
 
 .sj {
-  width: calc(100%/2 - 28rpx);
+  /* width: calc(100%/2 - 28rpx); */
   background: #ffffff;
   margin-right: 21rpx;
   border-radius: 26rpx;
@@ -129,6 +131,6 @@ view {
   border-radius: 14rpx;
   color: #ffffff;
   position: absolute;
-  top: 290rpx;
+  /* top: 290rpx; */
   left: 16rpx;
 }

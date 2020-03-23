@@ -56,6 +56,7 @@ class Content extends AppBase {
   
   yuyue(){
     var yuyuelist = this.Base.getMyData().yuyuelist;
+    var instinfo = this.Base.getMyData().instinfo;
     var detail = this.Base.getMyData().detail;
     if (detail.sendmsg=='A'){
       var citymanager_id = detail.citymanager[0].id;
@@ -65,10 +66,10 @@ class Content extends AppBase {
     }
    
     var shangjiaapi = new ShangjiaApi();
-    if (10 - yuyuelist.length>0){
+    if (instinfo.cishu - yuyuelist.length>0){
       wx.showModal({
         title: '预约',
-        content: '今天剩余预约次数为：' + (10 - yuyuelist.length) + '次',
+        content: '今天剩余预约次数为：' + (instinfo.cishu - yuyuelist.length) + '次',
         cancelText: '取消',
         confirmText: '预约',
         success: (res) => {

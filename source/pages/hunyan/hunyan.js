@@ -48,16 +48,14 @@ class Content extends AppBase {
     var seq = 0;
     var fuwu_id = this.Base.getMyData().fuwu_id;
     var city_id = this.Base.getMyData().city_id;
-    shangjiaapi.type({city_id:city_id}, (type) => {
+    var cityqu_id = this.Base.getMyData().cityqu_id;
+    shangjiaapi.type({ city_id: city_id, cityqu_id: cityqu_id}, (type) => {
   
       for (var i = 0; i < type.length; i++) {
         if (type[i].id == fuwu_id) {
 
           for(var k=0;k<type[i].shanjia.length;k++){
-            var index = type[i].shanjia[k].money.indexOf('.');
-
-            type[i].shanjia[k].zhenshu = type[i].shanjia[k].money.slice(0, index + 1);
-            type[i].shanjia[k].xiaoshu = type[i].shanjia[k].money.slice(index + 1, index + 3);
+            type[i].shanjia[k].topnum = (type[i].shanjia[k].taocan.length + type[i].shanjia[k].biao.length) > 14 ? 290-((type[i].shanjia[k].taocan.length + type[i].shanjia[k].biao.length)/14)*18:290
           }
           seq = type[i].seq - 1;
           lunbo = type[i].dinbu;
@@ -73,6 +71,8 @@ class Content extends AppBase {
 getcity(){
   var cityapi = new CityApi();
   var city = this.Base.getMyData().city;
+  var cityqu = this.Base.getMyData().cityqu;
+  var cityqu_id=0;
   cityapi.citylist({}, (citylist) => {
     var multiArray = [[], []];
     var customIndex = [0, 0];
@@ -81,13 +81,18 @@ getcity(){
       if (citylist[i].name==city){
         var city_id = citylist[i].id;
       }
+      for(var k=0;k<citylist[i].qu.length;k++){
+        if (citylist[i].qu[k].name == cityqu  ){
+          var cityqu_id = citylist[i].qu[k].id;
+        }
+      }
     }
     for (var j = 0; j < citylist[customIndex[0]].qu.length; j++) {
       multiArray[1].push(citylist[customIndex[0]].qu[j]);
     }
 
 
-    this.Base.setMyData({ citylist, multiArray, customIndex, city_id })
+    this.Base.setMyData({ citylist, multiArray, customIndex, city_id, cityqu_id})
   })
 }
   getbiaoqian(){
@@ -101,44 +106,6 @@ getcity(){
     });
   }
 
-  getlist(){
-
-    var shangjiaapi = new ShangjiaApi();
-    var that = this;
-    var arr = [];
-    var fuwu_id = this.Base.getMyData().fuwu_id;
-    var city_id = this.Base.getMyData().city_id;
-    shangjiaapi.shangjialist({ city_id: city_id}, (shangjialist) => {
-      
-      for(var i=0;i<shangjialist.length;i++){
-        var baiqianname = '';
-        var index = shangjialist[i].money.indexOf('.');
-        
-        shangjialist[i].zhenshu = shangjialist[i].money.slice(0,index+1);
-        shangjialist[i].xiaoshu = shangjialist[i].money.slice(index + 1, index+3);
-
-        // shangjialist[i].typename = shangjialist[i].types[0];
-        for(var j=0;j<shangjialist[i].types.length;j++){
-          if (shangjialist[i].types[j].id == fuwu_id ){
-            arr.push(shangjialist[i]);
-          }
-        }
-        for(var k=0;k<shangjialist[i].biaoqian.length;k++){
-         
-          if(baiqianname!=''){
-            // baiqianname +='/'+ shangjialist[i].biaoqian[k].name;
-          }else {
-            baiqianname += shangjialist[i].biaoqian[0].name;
-          }
-        }
-        shangjialist[i].baiqianname = baiqianname;
-      }
-
-      this.Base.setMyData({
-        shangjialist: arr
-      });
-    });
-  }
   qiehuan(e){
     console.log(e);
     var idx = e.currentTarget.dataset.currentidx;
@@ -191,7 +158,8 @@ getcity(){
     this.Base.setMyData({
       city: city,
       cityqu: cityqu,
-      city_id: citylist[e.detail.value[0]].id
+      city_id: citylist[e.detail.value[0]].id,
+      cityqu_id: citylist[e.detail.value[0]].qu[e.detail.value[1]].id
     })
     this.onMyShow();
 
@@ -257,7 +225,6 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.getbiaoqian = content.getbiaoqian;
-body.getlist = content.getlist;
 body.qiehuan = content.qiehuan;
 body.sendmsg = content.sendmsg;
 body.bindMultiPickerColumnChange = content.bindMultiPickerColumnChange;

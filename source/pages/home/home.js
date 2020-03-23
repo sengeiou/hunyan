@@ -35,6 +35,11 @@ class Content extends AppBase {
 
     var shangjiaapi = new ShangjiaApi();
     shangjiaapi.type({}, (type)=>{
+      type.push({
+        id:0,
+        seq:5,
+        name:'关于我们'
+      })
       this.Base.setMyData({
         type
       })
@@ -132,21 +137,32 @@ class Content extends AppBase {
     var cityqu = this.Base.getMyData().cityqu;
     var fuwu = this.Base.getMyData().fuwu;
     var fuwu_id = this.Base.getMyData().fuwu_id;
-    console.log(city,fuwu,'pp')
-    var memberinfo=this.Base.getMyData().memberinfo;
-    console.log(memberinfo);
-    if(city=='' && memberinfo.city==''){
-      city1='北京市';
-    }else if(city==''){
-      city=memberinfo.city+memberinfo.qu;
-      city1 = memberinfo.city;
-        cityqu = memberinfo.qu;
-    }
-    console.log(city)
-    wx.navigateTo({
-      url: '/pages/hunyan/hunyan?city=' + city1 + '&cityqu=' + cityqu + '&fuwu=' + fuwu + '&fuwu_id=' + fuwu_id,
-    })
 
+
+    if(fuwu_id==0){
+      wx.navigateTo({
+        url: '/pages/lianxi/lianxi',
+      })
+      
+    }else {
+      console.log(city, fuwu, 'pp')
+      var memberinfo = this.Base.getMyData().memberinfo;
+      console.log(memberinfo);
+      if (city == '' && memberinfo.city == '') {
+        city1 = '北京市';
+      } else if (city == '') {
+        city = memberinfo.city + memberinfo.qu;
+        city1 = memberinfo.city;
+        cityqu = memberinfo.qu;
+      }
+      console.log(city)
+      wx.navigateTo({
+        url: '/pages/hunyan/hunyan?city=' + city1 + '&cityqu=' + cityqu + '&fuwu=' + fuwu + '&fuwu_id=' + fuwu_id,
+      })
+
+    }
+
+    
   }
   bannerclick(e){
     var id = e.currentTarget.id;

@@ -29,7 +29,10 @@
     <view class="f-30 txt-black txt-bold">优惠信息</view>
   </view>
   <view class="line"></view>
-  <view class="f-26" style="color:#2D2C2C;">{{detail.youhui}}</view>
+  <view>
+  <text  class="f-26" style="color:#2D2C2C;">{{detail.youhui}}</text>
+  
+  </view>
 </view>
 
 <!-- 场地信息 -->
