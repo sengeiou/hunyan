@@ -3,6 +3,7 @@ import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
 import { ShangjiaApi } from "../../apis/shangjia.api.js";
+import { AliyunApi } from "../../apis/aliyun.api.js";
 var WxParse = require('../../wxParse/wxParse');
 import { ApiUtil } from "../../apis/apiutil.js";
 
@@ -12,12 +13,14 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    // options.id=2;
+    // options.id=5;
     super.onLoad(options);
     this.Base.setMyData({
       StatusBar: getApp().globalData.StatusBar,
       CustomBar: getApp().globalData.CustomBar,
       Custom: getApp().globalData.Custom,
+      tian:false,
+      focus:false
     })
   }
   onMyShow() {
@@ -60,12 +63,23 @@ class Content extends AppBase {
     var detail = this.Base.getMyData().detail;
     if (detail.sendmsg=='A'){
       var citymanager_id = detail.citymanager[0].id;
+      var citymanager_phone = detail.citymanager[0].mobile;
     } else if (detail.sendmsg == 'B') {
       var i = (Math.random() * (detail.citymanager.length-1)).toFixed(0);
       var citymanager_id = detail.citymanager[i].id;
+      var citymanager_phone = detail.citymanager[0].mobile;
     }
-   
+    var that = this;
+    var name = this.Base.getMyData().name;
+    if (name=="" || name==undefined){
+      wx.showToast({
+        title: '请输入您的姓名！',
+        icon:'none'
+      })
+      return
+    }
     var shangjiaapi = new ShangjiaApi();
+    var aliyunapi = new AliyunApi();
     if (instinfo.cishu - yuyuelist.length>0){
       wx.showModal({
         title: '预约',
@@ -75,26 +89,39 @@ class Content extends AppBase {
         success: (res) => {
           console.log(res);
           if (res.confirm) {
-            shangjiaapi.yuyue({
-              // member_id: this.Base.getMyData().memberinfo.id,
-              shanjia_id: this.Base.options.id,
-              citymanager_id: citymanager_id
-            }, (yuyue) => {
-              console.log(yuyue)
-              if (yuyue.code == '0') {
-                wx.showToast({
-                  title: '发送成功',
+            aliyunapi.sendsms({
+              phone: citymanager_phone,
+              name: name,
+              shanghu: detail.name,
+              memphone: that.Base.getMyData().memberinfo.mobile
+            }, (sendsms)=>{
+              shangjiaapi.yuyue({
+                // member_id: this.Base.getMyData().memberinfo.id,
+                shanjia_id: this.Base.options.id,
+                citymanager_id: citymanager_id
+              }, (yuyue) => {
+                console.log(yuyue)
+                if (yuyue.code == '0') {
+                  
+                  wx.showToast({
+                    title: '发送成功',
+                  })
+                  that.getyuyue();
+                  return
+                } else {
+                  wx.showToast({
+                    title: '发送失败',
+                    icon: 'none'
+                  })
+                  return
+                }
+                that.Base.setMyData({
+                  tian: false,
+                  focus:false
                 })
-                this.getyuyue();
-                return
-              } else {
-                wx.showToast({
-                  title: '发送失败',
-                  icon: 'none'
-                })
-                return
-              }
+              })
             })
+           
           }
         }
       })
@@ -106,9 +133,24 @@ class Content extends AppBase {
       return 
     }
   
-    
-   
+  }
+  quedin(){
+    this.Base.setMyData({
+      tian: true,
+      focus:true
+    })
   } 
+  quxiao(){
+    this.Base.setMyData({
+      tian:false,
+      focus:false
+    })
+  }
+  nameFn(e){
+    this.Base.setMyData({
+      name:e.detail.value
+    })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -116,4 +158,7 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.yuyue = content.yuyue;
 body.getyuyue = content.getyuyue;
+body.quedin = content.quedin;
+body.quxiao = content.quxiao;
+body.nameFn = content.nameFn;
 Page(body)

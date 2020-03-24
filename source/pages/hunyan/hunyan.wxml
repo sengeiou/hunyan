@@ -60,9 +60,9 @@
 
   <view style="height:42rpx;"></view>
   <view class=" bg-f7">
-    <view class=" padding-22  " style="width:100%;">
+    <view class=" padding-22  " style="width:96%;">
       <view wx:for='{{shangjialist}}' wx:key='k' class="sj flow" style="" bindtap="todetail" id='{{item.id}}'>
-        <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:336rpx;height:333rpx;"></image>
+        <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:100%;height:333rpx;"></image>
         <view class="tao h7" style="top:{{item.topnum}}rpx">{{item.biao}} | {{item.taocan}}</view>
         <view class="con">
           <view class="h5 txt-black chaochu2">{{item.zhuti}}</view>

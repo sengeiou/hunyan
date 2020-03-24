@@ -138,22 +138,30 @@ class Content extends AppBase {
     var fuwu = this.Base.getMyData().fuwu;
     var fuwu_id = this.Base.getMyData().fuwu_id;
 
-
     if(fuwu_id==0){
       wx.navigateTo({
         url: '/pages/lianxi/lianxi',
       })
       
     }else {
-      console.log(city, fuwu, 'pp')
       var memberinfo = this.Base.getMyData().memberinfo;
       console.log(memberinfo);
       if (city == '' && memberinfo.city == '') {
         city1 = '北京市';
       } else if (city == '') {
-        city = memberinfo.city + memberinfo.qu;
-        city1 = memberinfo.city;
-        cityqu = memberinfo.qu;
+        
+        if (this.panduan(memberinfo.city)){
+    
+            city = memberinfo.city + memberinfo.qu;
+            city1 = memberinfo.city;
+            cityqu = memberinfo.qu;
+          }else {
+            wx.showToast({
+              title: '此地区暂未开放',
+              icon: 'none'
+            })
+            return
+          }
       }
       console.log(city)
       wx.navigateTo({
@@ -163,6 +171,15 @@ class Content extends AppBase {
     }
 
     
+  }
+  panduan(city){
+    var citylist = this.Base.getMyData().citylist;
+    for (var i = 0; i < citylist.length; i++) {
+      if (citylist[i].name == city) {
+        return true
+      }
+    }
+    return false
   }
   bannerclick(e){
     var id = e.currentTarget.id;
@@ -184,4 +201,5 @@ body.yinsifn = content.yinsifn;
 body.huoqu = content.huoqu;
 body.bindMultiPickerColumnChange = content.bindMultiPickerColumnChange;
 body.bannerclick = content.bannerclick;
+body.panduan = content.panduan;
 Page(body)

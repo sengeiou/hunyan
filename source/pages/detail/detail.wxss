@@ -60,3 +60,42 @@ view {
 view {
   overflow: hidden;
 }
+.mask{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: #000000;
+  opacity: 0.5;
+}
+.shuru{
+  width: 80%;
+  height: 300rpx;
+  position: fixed;
+  top: 50%;
+  left: 10%;
+  z-index: 20;
+  background: #ffffff;
+  padding: 20rpx;
+  border-radius: 50rpx;
+}
+.inp {
+  border: 1rpx solid #cccccc;
+  padding-left: 10rpx;
+  height: 50rpx;
+}
+.btns {
+  width: 200rpx;
+  height: 50rpx;
+  text-align: center;
+  border:   1rpx solid #cccccc;
+  border-radius: 20rpx;
+}
+.bg-red {
+  background: #FE4055;
+  color: #ffffff;
+  border-color: #FE4055;
+  margin-left: 20rpx;
+}

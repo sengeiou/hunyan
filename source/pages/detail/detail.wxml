@@ -24,12 +24,12 @@
 <view style="height:120rpx;"></view>
 
 <view class="bg-white youhui">
-  <view class="flex-row flex-center">
+  <!-- <view class="flex-row flex-center"> -->
     <view class="f-30 txt-black txt-bold padding34">{{detail.zhuti}}</view>
-    <view class="flex-1"></view>
-    <view class="f-32" style="color:#FF4153;">
+    <!-- <view class="flex-1"></view> -->
+    <view class="f-32 margin-top-10" style="color:#FF4153;">
       <text class="h6" style="color:#FF4153;">￥</text>{{detail.money}}</view>
-  </view>
+  <!-- </view> -->
 
   <view class="line"></view>
   <text class="f-26" style="color:#2D2C2C;">{{detail.jianjie}}</text>
@@ -37,7 +37,7 @@
 
 
 <!-- 优惠信息 -->
-<view style="height:120rpx;"></view>
+<view style="height:26rpx;"></view>
 
 <view class="bg-white youhui">
   <view class="flex-row flex-center padding34">
@@ -78,7 +78,22 @@
 
 <view class="flex-row flex-column">
 
-  <image src="{{uploadpath}}resource/{{res.yuyue}}" style="width:564rpx;height:123rpx;" bindtap="yuyue"></image>
+  <image src="{{uploadpath}}resource/{{res.yuyue}}" style="width:564rpx;height:123rpx;" bindtap="quedin"></image>
 </view>
 
 <view style="height:100rpx;"></view>
+
+<view class="mask" wx:if='{{tian==true}}' bindtap="quxiao"></view>
+<view class="shuru flex-row flex-column" wx:if='{{tian==true}}'>
+  <view>请输入您的名字：</view>
+  <view style="height:50rpx;"></view>
+  <input type="text" class="inp" bindinput="nameFn" focus="{{focus}}"></input>
+  <view style="height:50rpx;"></view>
+  <view class="flex-row flex-center">
+    <view class="flex-1"></view>
+    <view class="btns" bindtap="quxiao">取消</view>
+    <view class="flex-1"></view>
+    <view class="btns bg-red" bindtap="yuyue">确定</view>
+    <view class="flex-1"></view>
+  </view>
+</view>

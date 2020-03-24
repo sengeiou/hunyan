@@ -115,6 +115,7 @@ view {
 
 .sj {
   /* width: calc(100%/2 - 28rpx); */
+  width: 336rpx;
   background: #ffffff;
   margin-right: 21rpx;
   border-radius: 26rpx;
@@ -133,4 +134,5 @@ view {
   position: absolute;
   /* top: 290rpx; */
   left: 16rpx;
+  margin-right:16rpx;
 }

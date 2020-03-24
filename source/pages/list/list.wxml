@@ -35,17 +35,17 @@
 
 
   <view class=" bg-f7"  wx:if='{{show==true}}'>
-    <view class=" padding-22 ">
+    <view class=" padding-22 " style="width:96%;">
       <view wx:for='{{shangjialist}}' wx:key='k' class="sj flow" style="" bindtap="todetail" id='{{item.id}}'>
-        <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:336rpx;height:333rpx;"></image>
+        <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:100%;height:333rpx;"></image>
         <view class="tao h7" style="top:{{item.topnum}}rpx">{{item.biao}} | {{item.taocan}}</view>
         <view class="con">
           <view class="h5 txt-black chaochu2">{{item.zhuti}}</view>
           <view style="height:23rpx;"></view>
           <view class="flex-row flex-bottom">
             <view class="h6" style="color:#FF4153;">￥ </view>
-            <view class="f-32" style="color:#FF4153;">{{item.zhenshu}}</view>
-            <view class="h6" style="color:#FF4153;"> {{item.xiaoshu}}</view>
+            <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
+            <!-- <view class="h6" style="color:#FF4153;"> {{item.xiaoshu}}</view> -->
           </view>
           <view style="height:28rpx;"></view>
           <view class="flex-row flex-center">

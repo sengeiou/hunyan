@@ -26,7 +26,7 @@ class Content extends AppBase {
     var  biao_id = this.Base.getMyData().biao_id;
     api.biaodetail({ id: biao_id }, (biaodetail)=>{
       for (var k = 0; k < biaodetail.shanjia.length; k++) {
-        biaodetail.shanjia[k].topnum = (biaodetail.shanjia[k].taocan.length + biaodetail.shanjia[k].biao.length) > 14 ? 290 - ((biaodetail.shanjia[k].taocan.length + biaodetail.shanjia[k].biao.length) / 14) * 18 : 290
+        biaodetail.shanjia[k].topnum = (biaodetail.shanjia[k].taocan.length + biaodetail.shanjia[k].biao.length) > 10 ? 290 - ((biaodetail.shanjia[k].taocan.length + biaodetail.shanjia[k].biao.length) / 10) * 18 : 290
       }
       var shangjialist = biaodetail.shanjia;
       this.Base.setPageTitle(biaodetail);
