@@ -85,7 +85,7 @@ class Content extends AppBase {
                 wx.showToast({
                   title: '发送成功',
                 })
-                this.onMyShow();
+                this.getyuyue();
                 return
               } else {
                 wx.showToast({

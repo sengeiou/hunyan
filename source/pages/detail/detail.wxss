@@ -40,20 +40,22 @@ view {
 
 .line {
   width: 100vw;
-  height: 1rpx;
-  margin: 0rpx 0 42rpx;
+  height: 2rpx;
+  margin: 21rpx 0 21rpx -40rpx;
+  background: #EEEEEE;
 }
 .line2 {
   width: 100vw;
   height: 1rpx;
-  margin: 0rpx 0 39rpx;
+  margin: 34rpx 0 38rpx -40rpx;
+  background: #EEEEEE;
 }
 
 .chandi {
   width: 694rpx;
   border-radius: 26rpx;
   margin-left: 28rpx;
-  padding: 0 34rpx 30rpx;
+  padding: 36rpx 34rpx 30rpx;
 }
 view {
   overflow: hidden;

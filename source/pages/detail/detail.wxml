@@ -20,18 +20,34 @@
 </view>
 
 
-<!-- 优惠信息 -->
+<!-- 商家信息 -->
 <view style="height:120rpx;"></view>
 
 <view class="bg-white youhui">
   <view class="flex-row flex-center">
+    <view class="f-30 txt-black txt-bold padding34">{{detail.zhuti}}</view>
+    <view class="flex-1"></view>
+    <view class="f-32" style="color:#FF4153;">
+      <text class="h6" style="color:#FF4153;">￥</text>{{detail.money}}</view>
+  </view>
+
+  <view class="line"></view>
+  <text class="f-26" style="color:#2D2C2C;">{{detail.jianjie}}</text>
+</view>
+
+
+<!-- 优惠信息 -->
+<view style="height:120rpx;"></view>
+
+<view class="bg-white youhui">
+  <view class="flex-row flex-center padding34">
     <image src="{{uploadpath}}resource/{{res.youhui}}" style="width:35rpx;height:35rpx;margin-right:15rpx;"></image>
     <view class="f-30 txt-black txt-bold">优惠信息</view>
   </view>
   <view class="line"></view>
   <view>
-  <text  class="f-26" style="color:#2D2C2C;">{{detail.youhui}}</text>
-  
+    <text class="f-26" style="color:#2D2C2C;">{{detail.youhui}}</text>
+
   </view>
 </view>
 
@@ -39,9 +55,9 @@
 
 <view style="height:26rpx;"></view>
 <view class="bg-white chandi">
-  <view class="flex-row flex-center padd">
+  <view class="flex-row flex-center padding34">
     <image src="{{uploadpath}}resource/{{res.chandi}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
-    <view class="f-30 txt-black txt-bold">场地信息</view>
+    <view class="f-30 txt-black txt-bold ">场地信息</view>
   </view>
   <view class="line2"></view>
   <!-- <view wx:for='{{detail.chandi}}' wx:key='k'>
@@ -49,7 +65,7 @@
     <view style="height:33rpx"></view>
   </view> -->
 
-<import src="../../wxParse/wxParse.wxml" />
+  <import src="../../wxParse/wxParse.wxml" />
 
   <view class='nostyle padding-28 '>
     <template is="wxParse" data="{{wxParseData:content.nodes}}" />
