@@ -25,10 +25,10 @@
 
 <view class="bg-white youhui">
   <!-- <view class="flex-row flex-center"> -->
-    <view class="f-30 txt-black txt-bold padding34">{{detail.zhuti}}</view>
+    <view class="f-30 txt-black txt-bold padding34">商家简介</view>
     <!-- <view class="flex-1"></view> -->
-    <view class="f-32 margin-top-10" style="color:#FF4153;">
-      <text class="h6" style="color:#FF4153;">￥</text>{{detail.money}}</view>
+    <!-- <view class="f-32 margin-top-10" style="color:#FF4153;"> -->
+      <!-- <text class="h6" style="color:#FF4153;">￥</text>{{detail.money}}</view> -->
   <!-- </view> -->
 
   <view class="line"></view>

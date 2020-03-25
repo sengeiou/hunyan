@@ -70,7 +70,7 @@ class Content extends AppBase {
       for (var i = 0; i < type.length; i++) {
         if (type[i].id == fuwu_id) {
 
-          for (var k = 0; k < 4 && k < type[i].shanjia.length; k++) {
+          for (var k = 0; k < type[i].shanjia.length; k++) {
             type[i].shanjia[k].topnum = (type[i].shanjia[k].taocan.length + type[i].shanjia[k].biao.length) > 10 ? 290 - ((type[i].shanjia[k].taocan.length + type[i].shanjia[k].biao.length) / 10) * 18 : 290;
             shangjialist.push(type[i].shanjia[k]);
           }
@@ -228,8 +228,13 @@ class Content extends AppBase {
   biaodetail(e) {
     console.log(e);
     var id = e.currentTarget.id;
+    var cityqu_id=this.Base.getMyData().cityqu_id;
+    var city_id=this.Base.getMyData().city_id;
+    if (cityqu_id==undefined){
+      cityqu_id=-1
+    }
     wx.navigateTo({
-      url: '/pages/list/list?biao_id=' + id,
+      url: '/pages/list/list?biao_id=' + id + '&cityqu_id=' + cityqu_id + '&city_id=' + city_id,
     })
   }
   todetail(e) {
@@ -253,45 +258,8 @@ class Content extends AppBase {
     if (cityqu_id==undefined){
       cityqu_id=-1;
     }
-    var cc = 0;
-    shangjiaapi.type({
-      city_id: city_id,
-      cityqu_id: cityqu_id
-    }, (type) => {
-
-      for (var i = 0; i < type.length; i++) {
-        if (type[i].id == fuwu_id) {
-
-          for (var k = shangjialist.length; k < type[i].shanjia.length; k++) {
-            type[i].shanjia[k].topnum = (type[i].shanjia[k].taocan.length + type[i].shanjia[k].biao.length) > 10 ? 290 - ((type[i].shanjia[k].taocan.length + type[i].shanjia[k].biao.length) / 10) * 18 : 290;
-            cc++;
-            shangjialist.push(type[i].shanjia[k])
-            if (cc >= 7) {
-              break;
-            }
-          }
-        }
-      }
-      if (cc == 0) {
-        // wx.showToast({
-        //   title: '已经没有了',
-        //   icon: 'none'
-        // })
-        this.Base.setMyData({
-          jiazai: false
-        })
-      } else {
-        setTimeout(() => {
-          console.log("llll");
-          this.Base.setMyData({
-            shangjialist,
-            jiazai: false
-          });
-          // wx.hideLoading()
-        }, 1);
-      }
-    })
-    // this.gettype();
+   
+    this.gettype();
   }
   aboutus() {
     wx.navigateTo({

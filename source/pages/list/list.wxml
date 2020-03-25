@@ -19,22 +19,23 @@
 
 </view> 
 
-<!-- <view class="flex-row flex-wrap" style="padding:30rpx 30rpx 0;" wx:if='{{show==true}}'>
+<view class="flex-row flex-wrap" style="padding:30rpx 30rpx 0;" wx:if='{{show==true}}'>
 
   <view wx:for='{{shangjialist}}' wx:key='k' class="lie" bindtap="todetail" id='{{item.id}}'>
     
       <image src="{{uploadpath}}shanjia/{{item.photo}}" class="imgs"></image>
       
-     <view class="h4-5 txt-black text-left padding-left-25">{{item.name}}</view>
+     <view class="h5 txt-black text-left padding-left-25">{{item.name}}</view>
+     <view style="height:10rpx;"></view>
       <view class="h6 chaochu4" style="">{{item.jianjie}}</view>
 
       <view style="height:20rpx;"></view>
   </view>
 
-</view> -->
+</view>
 
 
-  <view class=" bg-f7"  wx:if='{{show==true}}'>
+  <!-- <view class=" bg-f7"  wx:if='{{show==true}}'>
     <view class=" padding-22 " style="width:96%;">
       <view wx:for='{{shangjialist}}' wx:key='k' class="sj flow" style="" bindtap="todetail" id='{{item.id}}'>
         <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:100%;height:333rpx;"></image>
@@ -45,7 +46,6 @@
           <view class="flex-row flex-bottom">
             <view class="h6" style="color:#FF4153;">￥ </view>
             <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
-            <!-- <view class="h6" style="color:#FF4153;"> {{item.xiaoshu}}</view> -->
           </view>
           <view style="height:28rpx;"></view>
           <view class="flex-row flex-center">
@@ -56,7 +56,7 @@
 
       </view>
     </view>
-    </view>
+    </view> -->
 
 
 <view class="pof" bindtap="qiehuan">

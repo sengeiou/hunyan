@@ -8,6 +8,7 @@
   left: 40%;
   color: #ffffff;
   z-index: 99999;
+  line-height: 94rpx;
 }
 
 .btn {

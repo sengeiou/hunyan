@@ -12,6 +12,12 @@
   margin-right: 14rpx;
   color: #A9A9A9;
 }
+.xian {
+  width: 1rpx;
+  height: 61rpx;
+  background: #cccccc;
+  margin: 0 31rpx 0 26rpx;
+}
 .bb {
   width: 100vw;
   height: 98rpx;

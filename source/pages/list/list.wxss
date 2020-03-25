@@ -33,7 +33,7 @@ view {
   line-clamp: 4;
   -webkit-box-orient: vertical;
   color:#8A8A8A;
-  margin-top: 20rpx;
+  /* margin-top: 20rpx; */
   padding: 0 10rpx;
 }
 
@@ -45,7 +45,7 @@ view {
 }
 
 .lie {
-  height: 536rpx;
+  /* height: 536rpx; */
   width: 320rpx;
   border-radius: 20rpx;
   background-color: rgba(255, 255, 255, 1);
