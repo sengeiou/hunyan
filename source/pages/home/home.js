@@ -38,7 +38,7 @@ class Content extends AppBase {
       type.push({
         id:0,
         seq:5,
-        name:'关于我们'
+        name:'联系我们'
       })
       this.Base.setMyData({
         type
@@ -51,7 +51,6 @@ class Content extends AppBase {
       var customIndex=[0,0];
       for(var i=0;i<citylist.length;i++){
         multiArray[0].push(citylist[i]);
-       
       }
       for (var j = 0; j < citylist[customIndex[0]].qu.length; j++) {
         multiArray[1].push(citylist[customIndex[0]].qu[j]);
@@ -70,16 +69,22 @@ class Content extends AppBase {
     if (e.detail.value[1]==null){
       e.detail.value[1]=0;
     }
-    var city = citylist[e.detail.value[0]].name + citylist[e.detail.value[0]].qu[e.detail.value[1]].name
-    console.log(city);
+
+    if (e.detail.value[0] == null) {
+      e.detail.value[0] = 0;
+    }
+    // var city = citylist[e.detail.value[0]].name + citylist[e.detail.value[0]].qu[e.detail.value[1]].name
+    // console.log(city);
     var city1 = citylist[e.detail.value[0]].name;
     var cityqu = citylist[e.detail.value[0]].qu[e.detail.value[1]].name
+    var city=city1+cityqu;
     // return
     this.Base.setMyData({
-      city: city,city1,cityqu
+      city,city1,cityqu
     })
 
   }
+ 
   bindMultiPickerColumnChange(e){
     console.log(e,'kkk');
     var customIndex = this.Base.getMyData().customIndex;
@@ -121,6 +126,16 @@ class Content extends AppBase {
       fuwu_id: fuwu_id
     })
   }
+  cityFn(e) {
+    var citylist = this.Base.getMyData().citylist;
+    var cur = e.detail.value;
+    var name = citylist[cur].name;
+    var city_id = citylist[cur].id;
+    this.Base.setMyData({
+      city:name,
+      city_id
+    })
+  }
   fuwutkFn(){
     wx.navigateTo({
       url: '/pages/fuwu/fuwu',
@@ -150,11 +165,11 @@ class Content extends AppBase {
         city1 = '北京市';
       } else if (city == '') {
         
-        if (this.panduan(memberinfo.city)){
+        if (this.panduan(memberinfo.city, memberinfo.qu)){
     
             city = memberinfo.city + memberinfo.qu;
             city1 = memberinfo.city;
-            cityqu = memberinfo.qu;
+            // cityqu = memberinfo.qu;
           }else {
             wx.showToast({
               title: '此地区暂未开放',
@@ -162,32 +177,39 @@ class Content extends AppBase {
             })
             return
           }
+      }else {
+        city1=city;
       }
+
       console.log(city)
       wx.navigateTo({
-        url: '/pages/hunyan/hunyan?city=' + city1 + '&cityqu=' + cityqu + '&fuwu=' + fuwu + '&fuwu_id=' + fuwu_id,
+        url: '/pages/hunyan/hunyan?city=' + city1 + '&fuwu=' + fuwu + '&fuwu_id=' + fuwu_id,
       })
 
     }
 
     
   }
-  panduan(city){
+  panduan(city,qu){
     var citylist = this.Base.getMyData().citylist;
     for (var i = 0; i < citylist.length; i++) {
-      if (citylist[i].name == city) {
-        return true
+      for(var j=0;j<citylist[i].qu.length;j++){
+        if (citylist[i].name == city && citylist[i].qu[j].name == qu) {
+          return true
+        }
       }
+      
     }
     return false
   }
   bannerclick(e){
     var id = e.currentTarget.id;
-    if (id != 0) {
+    var lujing = e.currentTarget.dataset.cur;
+    // if (id != 0) {
       wx.navigateTo({
-        url: '/pages/detail/detail?id=' + id,
+        url: lujing+'?id=' + id,
       })
-    }
+    // }
   }
 }
 var content = new Content();
@@ -202,4 +224,5 @@ body.huoqu = content.huoqu;
 body.bindMultiPickerColumnChange = content.bindMultiPickerColumnChange;
 body.bannerclick = content.bannerclick;
 body.panduan = content.panduan;
+body.cityFn = content.cityFn;
 Page(body)

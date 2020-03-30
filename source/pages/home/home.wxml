@@ -5,7 +5,7 @@
 
 <swiper circular="true" class="indexbanner" autoplay="true" >
   <swiper-item class="indexbanner" wx:for="{{indexbanner}}" wx:key="k">
-    <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" id='{{item.shanjia_id}}'></image>
+    <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="bannerclick" id='{{item.shanjia_id}}' data-cur="{{item.lujing}}"></image>
   </swiper-item>
 </swiper>
 
@@ -24,9 +24,12 @@
 
 
     <view class=" con flex-row flex-center" style="">
-      <picker range='{{multiArray}}' mode='multiSelector' range-key="name" bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
+      <!-- <picker range='{{multiArray}}' mode='multiSelector' range-key="name" bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
         <input c placeholder="您要在哪里举行宴会" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{city ||memberinfo.address}}" disabled="{{true}}" class="f-26" style="color:#000000;width:600rpx;"></input>
         <view wx:if='{{city==""}}'>{{city}}</view>
+      </picker> -->
+      <picker bindchange='cityFn' range='{{citylist}}' range-key='name'>
+        <input c placeholder="您要在哪里举行宴会" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{city ||memberinfo.address}}" disabled="{{true}}" class="f-26" style="color:#000000;width:600rpx;"></input>
       </picker>
       <view class="flex-1"></view>
       <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx"></image>
@@ -50,7 +53,6 @@
     <view class="flex-row flex-center" style="margin-left:26rpx;margin-top:29rpx;">
       <picker bindchange='fuwuFn' range='{{type}}' range-key='name'>
         <input placeholder="您需要提供什么服务" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{fuwu}}" disabled="{{true}}" class="f-26" style="color:#000000;width:600rpx;"></input>
-        <view wx:if='{{fuwu==""}}'>{{fuwu}}</view>
       </picker>
       <view class="flex-1"></view>
       <image src="{{uploadpath}}resource/{{res.arrowright}}" style="width:13rpx;height:21rpx"></image>

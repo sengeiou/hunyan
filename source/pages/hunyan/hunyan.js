@@ -45,7 +45,6 @@ class Content extends AppBase {
     var that = this;
 
     this.getbiaoqian();
-    // this.getlist();
     this.gettype();
 
   }
@@ -54,30 +53,22 @@ class Content extends AppBase {
     var lunbo = [];
     var duanlunbo = [];
     var shangjialist = [];
-    var tempshanjia = [];
     var seq = 0;
     var fuwu_id = this.Base.getMyData().fuwu_id;
     var city_id = this.Base.getMyData().city_id;
-    var cityqu_id = this.Base.getMyData().cityqu_id;
-    if (cityqu_id == undefined) {
-      cityqu_id = -1;
-    }
     shangjiaapi.type({
       city_id: city_id,
-      cityqu_id: cityqu_id
     }, (type) => {
-
+    
       for (var i = 0; i < type.length; i++) {
         if (type[i].id == fuwu_id) {
 
           for (var k = 0; k < type[i].shanjia.length; k++) {
-            type[i].shanjia[k].topnum = (type[i].shanjia[k].taocan.length + type[i].shanjia[k].biao.length) > 10 ? 290 - ((type[i].shanjia[k].taocan.length + type[i].shanjia[k].biao.length) / 10) * 18 : 290;
             shangjialist.push(type[i].shanjia[k]);
           }
           seq = type[i].seq - 1;
           lunbo = type[i].dinbu;
           duanlunbo = type[i].zhonbu;
-          // shangjialist = type[i].shanjia;
         }
       }
       this.Base.setMyData({
@@ -90,11 +81,11 @@ class Content extends AppBase {
       })
     })
   }
+  
   getcity() {
     var cityapi = new CityApi();
     var city = this.Base.getMyData().city;
     var cityqu = this.Base.getMyData().cityqu;
-    var cityqu_id = 0;
     cityapi.citylist({}, (citylist) => {
       var multiArray = [
         [],
@@ -106,11 +97,7 @@ class Content extends AppBase {
         if (citylist[i].name == city) {
           var city_id = citylist[i].id;
         }
-        for (var k = 0; k < citylist[i].qu.length; k++) {
-          if (citylist[i].qu[k].name == cityqu) {
-            var cityqu_id = citylist[i].qu[k].id;
-          }
-        }
+       
       }
       for (var j = 0; j < citylist[customIndex[0]].qu.length; j++) {
         multiArray[1].push(citylist[customIndex[0]].qu[j]);
@@ -122,7 +109,6 @@ class Content extends AppBase {
         multiArray,
         customIndex,
         city_id,
-        cityqu_id
       })
     })
   }
@@ -143,7 +129,6 @@ class Content extends AppBase {
     console.log(e);
     var idx = e.currentTarget.dataset.currentidx;
     var id = e.currentTarget.id;
-    // this.Base.options.fuwu_id=id;
     var fuwu_id = this.Base.getMyData().fuwu_id;
     this.Base.setMyData({
       seq: idx,
@@ -182,6 +167,9 @@ class Content extends AppBase {
     var citylist = this.Base.getMyData().citylist;
     if (e.detail.value[1] == null) {
       e.detail.value[1] = 0;
+    }
+    if (e.detail.value[0] == null) {
+      e.detail.value[0] = 0;
     }
 
     var city = citylist[e.detail.value[0]].name;
@@ -228,13 +216,11 @@ class Content extends AppBase {
   biaodetail(e) {
     console.log(e);
     var id = e.currentTarget.id;
-    var cityqu_id=this.Base.getMyData().cityqu_id;
+    var biaoname = e.currentTarget.dataset.cuname;
     var city_id=this.Base.getMyData().city_id;
-    if (cityqu_id==undefined){
-      cityqu_id=-1
-    }
+  
     wx.navigateTo({
-      url: '/pages/list/list?biao_id=' + id + '&cityqu_id=' + cityqu_id + '&city_id=' + city_id,
+      url: '/pages/list/list?biao_id=' + id  + '&city_id=' + city_id+"&biaoname="+biaoname,
     })
   }
   todetail(e) {
@@ -252,12 +238,8 @@ class Content extends AppBase {
     });
     var shangjiaapi = new ShangjiaApi();
     var city_id = this.Base.getMyData().city_id;
-    var cityqu_id = this.Base.getMyData().cityqu_id;
     var fuwu_id = this.Base.getMyData().fuwu_id;
     var shangjialist = this.Base.getMyData().shangjialist;
-    if (cityqu_id==undefined){
-      cityqu_id=-1;
-    }
    
     this.gettype();
   }
@@ -265,6 +247,17 @@ class Content extends AppBase {
     wx.navigateTo({
       url: '/pages/lianxi/lianxi',
     })
+  }
+  cityFn(e){
+    var citylist = this.Base.getMyData().citylist;
+    var cur = e.detail.value;
+    var name = citylist[cur].name;
+    var city_id = citylist[cur].id;
+    this.Base.setMyData({
+      city: name,
+      city_id
+    })
+    this.onMyShow();
   }
 }
 var content = new Content();
@@ -283,4 +276,5 @@ body.conFn = content.conFn;
 body.todetail = content.todetail;
 body.onReachBottom = content.onReachBottom;
 body.aboutus = content.aboutus;
+body.cityFn = content.cityFn;
 Page(body)

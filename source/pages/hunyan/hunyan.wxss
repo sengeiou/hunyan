@@ -10,7 +10,7 @@ Page {
 }
 
 .fixed {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   color: #fff;
@@ -91,7 +91,7 @@ view {
   background: #f7f4f8;
 }
 
-.padding-22 {
+.nei {
   padding: 22rpx 0 22rpx 28rpx;
   column-count: 2;
   -webkit-column-count: 2;

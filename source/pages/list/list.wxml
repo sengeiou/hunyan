@@ -27,7 +27,7 @@
       
      <view class="h5 txt-black text-left padding-left-25">{{item.name}}</view>
      <view style="height:10rpx;"></view>
-      <view class="h6 chaochu4" style="">{{item.jianjie}}</view>
+      <view class="h6 chaochu4 text-left" style="">{{item.jianjie}}</view>
 
       <view style="height:20rpx;"></view>
   </view>

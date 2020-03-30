@@ -17,24 +17,25 @@ class Content extends AppBase {
    this.Base.setMyData({
      show:false,
      biao_id:this.Base.options.biao_id,
-     cityqu_id: this.Base.options.cityqu_id,
-     city_id: this.Base.options.city_id
+     city_id: this.Base.options.city_id,
+     biaoname:this.Base.options.biaoname
    })
+    this.Base.setPageTitle(this.Base.options.biaoname);
   }
   onMyShow() {
     var that = this;
     var api = new ShangjiaApi;
     var arr =[];
     var biao_id = this.Base.getMyData().biao_id;
-    var cityqu_id = this.Base.getMyData().cityqu_id;
     var city_id = this.Base.getMyData().city_id;
-    api.biaodetail({ id: biao_id, city_id, cityqu_id }, (biaodetail)=>{
-      for (var k = 0; k < biaodetail.shanjia.length; k++) {
-        biaodetail.shanjia[k].topnum = (biaodetail.shanjia[k].taocan.length + biaodetail.shanjia[k].biao.length) > 10 ? 290 - ((biaodetail.shanjia[k].taocan.length + biaodetail.shanjia[k].biao.length) / 10) * 18 : 290
-      }
-      var shangjialist = biaodetail.shanjia;
-      this.Base.setPageTitle(biaodetail);
-      this.Base.setMyData({ biaodetail, shangjialist})
+    api.shangjialist({ biaoqian_id: biao_id, city_id}, (shangjialist)=>{
+      
+      this.Base.setMyData({ shangjialist })
+    })
+  }
+  setPageTitle(instinfo) {
+    wx.setNavigationBarTitle({
+      title: instinfo,
     })
   }
   qiehuan(){

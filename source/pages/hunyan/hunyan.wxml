@@ -1,10 +1,9 @@
-<view class="flex-row flex-center fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;width:100vw;">
+<view class="flex-row flex-center fixed" style="height:{{CustomBar}}px;padding-top:{{StatusBar/2}}px;width:100vw;">
   <image src="{{uploadpath}}resource/{{res.fanhui}}" bindtap="backPage" style="height:50rpx;width:50rpx;"></image>
   <view style="width:36%;"></view>
   <view class='content ' style='top:{{StatusBar}}px;color:#ffffff'>{{instinfo.name}}</view>
-  <!-- <view class="flex-1"></view> -->
 </view>
-<view wx:if='{{lianwo==false}}'>
+<view >
   <swiper circular="true" class="indexbanner" autoplay="true">
     <swiper-item class="indexbanner" wx:for="{{lunbo}}" wx:key="k">
       <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="todetail" id='{{item.shanjia_id}}'></image>
@@ -19,9 +18,12 @@
     <image src="{{uploadpath}}resource/{{res.didian}}" style="width:20rpx;height:25rpx;margin-right:10rpx;"></image>
     <view>
 
-      <picker range='{{multiArray}}' mode='multiSelector' range-key="name" bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
+      <!-- <picker range='{{multiArray}}' mode='multiSelector' range-key="name" bindcolumnchange='bindMultiPickerColumnChange' bindchange="bindRegionChange">
         <view class="f-26" style="color:#000000;">{{city}}</view>
         <view class="f-26" style="color:#000000;" wx:if='{{cityqu!="undefined"}}'>{{cityqu}}</view>
+      </picker> -->
+      <picker bindchange='cityFn' range='{{citylist}}' range-key='name'>
+        <view class="f-26" style="color:#000000;">{{city}}</view>
       </picker>
     </view>
 
@@ -38,7 +40,7 @@
 
   <view class="flex-row flex-wrap bq">
 
-    <view wx:for='{{biaoqian}}' wx:key='k' bindtap="biaodetail" id='{{item.id}}' class="flex-row flex-column">
+    <view wx:for='{{biaoqian}}' wx:key='k' bindtap="biaodetail" id='{{item.id}}' data-cuname="{{item.name}}" class="flex-row flex-column">
       <image src="{{uploadpath}}biaoqian/{{item.photo}}" class="hyimg"></image>
       <!-- <view class="h5" style="color:#000000;">{{item.name}}</view> -->
     </view>
@@ -60,17 +62,16 @@
 
   <view style="height:42rpx;"></view>
   <view class=" bg-f7">
-    <view class=" padding-22  " style="width:96%;">
+    <view class=" nei  " style="width:96%;">
       <view wx:for='{{shangjialist}}' wx:key='k' class="sj flow" style="" bindtap="todetail" id='{{item.id}}'>
         <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:100%;height:333rpx;"></image>
-        <view class="tao h7" style="top:{{item.topnum}}rpx">{{item.biao}} | {{item.taocan}}</view>
+        <view class="tao h7 chaochu2" style="top:256rpx">{{item.biao}} | {{item.taocan}}</view>
         <view class="con">
           <view class="h5 txt-black chaochu2">{{item.zhuti}}</view>
           <view style="height:23rpx;"></view>
           <view class="flex-row flex-bottom">
             <view class="h6" style="color:#FF4153;">￥ </view>
             <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
-            <!-- <view class="h6" style="color:#FF4153;"> {{item.xiaoshu}}</view> -->
           </view>
           <view style="height:28rpx;"></view>
           <view class="flex-row flex-center">
@@ -86,7 +87,7 @@
     <view class="flex-row flex-column" wx:if='{{jiazai}}'>
       <image src='{{uploadpath}}resource/{{res.jiazai}}' style="width:39rpx;height:39rpx;"></image>
     </view>
-    <view style="height:200rpx;"></view>
+    <view style="height:150rpx;"></view>
   </view>
 </view>
 
@@ -95,13 +96,11 @@
   <view style="height:20rpx;"></view>
   <view class="flex-row flex-center text-center ">
     <view class="flex-1" bindtap="qiehuan" id='{{item.id}}' data-currentidx="{{idx}}" wx:for='{{type}}' wx:key='k' wx:for-index='idx'>
-      <image src="{{uploadpath}}type/{{item.icon}}" wx:if='{{seq!=idx}}' style="width:39rpx;height:33rpx"></image>
-      <image src="{{uploadpath}}type/{{item.icon2}}" wx:if='{{seq==idx}}' style="width:39rpx;height:33rpx"></image>
+      <image src="{{uploadpath}}type/{{seq!=idx?item.icon:item.icon2}}" style="width:39rpx;height:33rpx"></image>
       <view class="flex-1 f-26 txt-black {{seq==idx?'active':''}}">{{item.name}}</view>
     </view>
     <view class="flex-1" bindtap="aboutus">
-      <image src="{{uploadpath}}resource/{{res.lianxi}}"  wx:if='{{lianwo==false}}'  style="width:33rpx;height:37rpx"></image>
-      <image src="{{uploadpath}}resource/{{res.lianxi2}}" wx:if='{{lianwo==true}}' style="width:33rpx;height:37rpx"></image>
+      <image src="{{uploadpath}}resource/{{lianwo==false?res.lianxi:res.lianxi2}}"   style="width:33rpx;height:37rpx"></image>
       <view class="flex-1 f-26 txt-black {{lianwo==true?'active':''}}">联系我们</view>
     </view>
   </view>
