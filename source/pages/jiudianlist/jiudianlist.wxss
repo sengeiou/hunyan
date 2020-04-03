@@ -1,0 +1,109 @@
+/* pages/jiudianlist/jiudianlist.wxss */
+
+Page {
+  background: #f5f2f5;
+}
+
+view {
+  overflow: hidden;
+}
+
+.fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: #fff;
+  z-index: 20;
+}
+
+.enr {
+  width: 694rpx;
+  border-radius: 26rpx;
+  box-shadow: 2rpx 2rpx 10rpx #909090;
+  position: absolute;
+  top: 20%;
+  left: 28rpx;
+  background: #fff;
+  padding: 50rpx auto;
+}
+
+.shu {
+  width: 1rpx;
+  height: 263rpx;
+  background: #eee;
+  position: absolute;
+  top: 10%;
+  left: 33rpx;
+}
+
+.line {
+  width: 617rpx;
+  height: 2rpx;
+  background: #eee;
+  margin-left: 21rpx;
+}
+
+.pp {
+  width: 642rpx;
+  margin: 30rpx auto 0;
+}
+
+.con {
+  margin-left: 26rpx;
+  margin-top: 29rpx;
+}
+
+.zhixuan {
+  width: 75%;
+  height: 70rpx;
+  background: #ff4153;
+  text-align: center;
+  line-height: 70rpx;
+  border-radius: 50rpx;
+  color: #fff;
+  margin: 20rpx 0;
+}
+
+.xian {
+  width: 50rpx;
+  height: 6rpx;
+  background: #ff4153;
+  margin-left: 47%;
+  margin-top: 5rpx;
+}
+
+.mask {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  opacity: 0.5;
+  position: fixed;
+  left: 0;
+}
+
+.shq {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  /* padding: 10px; */
+}
+.queding {
+  width: 300rpx;
+  height: 60rpx;
+  background: #ff4153;
+  border-radius: 50rpx;
+  color: #ffffff;
+  text-align: center;
+  line-height: 60rpx;
+  margin: 20rpx 0;
+}
+.bord-t {
+  border: 2rpx solid #ffffff;
+}
+.bg-zt {
+ border-color: #ff4153;
+ color: #ff4153;
+ background: #ffffff;
+}

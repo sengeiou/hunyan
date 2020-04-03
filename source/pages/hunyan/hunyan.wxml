@@ -40,7 +40,7 @@
 
   <view class="flex-row flex-wrap bq">
 
-    <view wx:for='{{biaoqian}}' wx:key='k' bindtap="biaodetail" id='{{item.id}}' data-cuname="{{item.name}}" class="flex-row flex-column">
+    <view wx:for='{{biaoqian}}' wx:key='k' bindtap="biaodetail" id='{{item.id}}' data-cuname="{{item.name}}" data-lujing='{{item.lujing}}' class="flex-row flex-column">
       <image src="{{uploadpath}}biaoqian/{{item.photo}}" class="hyimg"></image>
       <!-- <view class="h5" style="color:#000000;">{{item.name}}</view> -->
     </view>
@@ -51,7 +51,7 @@
   <swiper circular="true" class="indexbanner2" autoplay="true">
     <swiper-item class="indexbanner" wx:for="{{duanlunbo}}" wx:key="k" style='position:relative;' bindtap="todetail" id='{{item.shanjia_id}}'>
 
-      <image style="width:100%;height:100%;" src="{{uploadpath}}indexbanner/{{item.img}}"></image>
+      <image style="width:100%;" src="{{uploadpath}}indexbanner/{{item.img}}"></image>
       <view class="pop padding-right-10">
         <view class="h5 txt-white">{{item.zhuti}}</view>
         <view style="height:16rpx;"></view>

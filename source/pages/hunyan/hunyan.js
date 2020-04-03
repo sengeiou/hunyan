@@ -141,7 +141,7 @@ class Content extends AppBase {
     console.log(e);
     var content = e.detail.value;
     var content2 = this.Base.getMyData().content2;
-    if ((content != '' && content != undefined) || content2 != undefined) {
+    if ((content != undefined && content.trim() !="" ) || content2 != undefined) {
       if (content2 != undefined) {
         content = content2;
       }
@@ -149,10 +149,7 @@ class Content extends AppBase {
         url: '/pages/search/search?content=' + content,
       })
     } else {
-      wx.showToast({
-        title: '请输入搜索内容',
-        icon: 'none'
-      })
+      this.toast('请输入搜索内容');
       return
     }
   }
@@ -217,10 +214,12 @@ class Content extends AppBase {
     console.log(e);
     var id = e.currentTarget.id;
     var biaoname = e.currentTarget.dataset.cuname;
+    var lujing = e.currentTarget.dataset.lujing;
+    var city = this.Base.getMyData().city;
     var city_id=this.Base.getMyData().city_id;
   
     wx.navigateTo({
-      url: '/pages/list/list?biao_id=' + id  + '&city_id=' + city_id+"&biaoname="+biaoname,
+      url: lujing + '?biao_id=' + id + '&city_id=' + city_id + "&biaoname=" + biaoname + "&city=" + city,
     })
   }
   todetail(e) {

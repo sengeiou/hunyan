@@ -171,10 +171,8 @@ class Content extends AppBase {
             city1 = memberinfo.city;
             // cityqu = memberinfo.qu;
           }else {
-            wx.showToast({
-              title: '此地区暂未开放',
-              icon: 'none'
-            })
+           
+          this.toast('此地区暂未开放');
             return
           }
       }else {

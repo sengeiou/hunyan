@@ -19,9 +19,10 @@ Page {
 
 .indexbanner2 {
   width: 694rpx;
-  height: 240rpx;
+  /* height: 240rpx; */
   margin-left: 28rpx;
 }
+
 
 .ser {
   height: 120rpx;

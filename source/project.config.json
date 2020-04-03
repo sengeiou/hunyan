@@ -77,9 +77,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "pages/detail/detail",
 					"pathName": "pages/detail/detail",
+					"query": "id=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/jiudianlist/jiudianlist",
+					"pathName": "pages/jiudianlist/jiudianlist",
+					"query": "",
 					"scene": null
 				}
 			]

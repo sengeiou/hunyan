@@ -1,15 +1,15 @@
 /*******使用方法，下面两句复制到page的js文件的头部
 
 import { ApiConfig } from '../../apis/apiconfig';
-import { InstApi } from '../../apis/city.api';
+import { InstApi } from '../../apis/shanjia.api';
 
-var cityApi=new CityApi();
+var shanjiaApi=new ShanjiaApi();
 *******/
 import { ApiConfig } from 'apiconfig';
-export class CityApi{
+export class ShanjiaApi{
 
 
-    citylist(json, callback, showLoading = true) {
+    xingjilist(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -18,7 +18,7 @@ export class CityApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'city/citylist',
+            url: ApiConfig.GetApiUrl() + 'shanjia/xingjilist',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -41,7 +41,7 @@ export class CityApi{
         })
     }
 
-    qulist(json, callback, showLoading = true) {
+    yusuanlist(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -50,7 +50,7 @@ export class CityApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'city/qulist',
+            url: ApiConfig.GetApiUrl() + 'shanjia/yusuanlist',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -73,7 +73,7 @@ export class CityApi{
         })
     }
 
-    cityman(json, callback, showLoading = true) {
+    zhuoshulist(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -82,7 +82,7 @@ export class CityApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'city/cityman',
+            url: ApiConfig.GetApiUrl() + 'shanjia/zhuoshulist',
             data: json,
             method: 'POST',
             dataType: 'json',

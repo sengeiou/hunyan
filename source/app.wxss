@@ -144,6 +144,9 @@ view,navigator,input,text,textarea{
 .txt-red{
   color:#E51C23;
 } 
+.txt-zt{
+  color:#FF4153;
+} 
 .txt-green{
   color:darkgreen;
 }
@@ -515,5 +518,8 @@ button[disabled][type=primary] {
 }
 .maintab-item{
   height: 100%;
+}
+.bor-b {
+  border-bottom: 2rpx solid #cccccc;
 }
 

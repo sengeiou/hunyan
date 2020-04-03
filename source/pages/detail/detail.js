@@ -13,14 +13,19 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    // options.id=5;
+    // options.id=10;
     super.onLoad(options);
     this.Base.setMyData({
       StatusBar: getApp().globalData.StatusBar,
       CustomBar: getApp().globalData.CustomBar,
       Custom: getApp().globalData.Custom,
       tian:false,
-      focus:false
+      focus:false,
+      scrollTop:0,
+      daohang:'sj',
+      zaiimg:false,
+      rili:false,
+      huadong:false
     })
   }
   onMyShow() {
@@ -37,8 +42,11 @@ class Content extends AppBase {
   getyuyue(){
     var date = new Date();
     console.log(date.getTime());
-    var today = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate() + ' ' + '00:00:00';
-    var todayw = date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' '+'23:59:59';
+    var year = date.getFullYear();
+    var mon = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+    var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    var today = year + '/' + mon + '/' + day + ' ' + '00:00:00';
+    var todayw = year + '/' + mon + '/' + day+' '+'23:59:59';
     console.log(today, 'today', todayw);
     var shangjiaapi = new ShangjiaApi();
     var arr =[];
@@ -68,14 +76,14 @@ class Content extends AppBase {
       var i = (Math.random() * (detail.citymanager.length-1)).toFixed(0);
       var citymanager_id = detail.citymanager[i].id;
       var citymanager_phone = detail.citymanager[0].mobile;
+    }else {
+      this.toast('当前商品不能预约，还没选择相应的城市管理员！');
+      return
     }
     var that = this;
     var name = this.Base.getMyData().name;
-    if (name=="" || name==undefined){
-      wx.showToast({
-        title: '请输入您的姓名！',
-        icon:'none'
-      })
+    if (name == undefined || name.trim() !=""  ){
+      this.toast('请输入您的姓名！');
       return
     }
     var shangjiaapi = new ShangjiaApi();
@@ -109,10 +117,7 @@ class Content extends AppBase {
                   that.getyuyue();
                   return
                 } else {
-                  wx.showToast({
-                    title: '发送失败',
-                    icon: 'none'
-                  })
+                  that.toast('发送失败');
                   return
                 }
                 that.Base.setMyData({
@@ -126,10 +131,7 @@ class Content extends AppBase {
         }
       })
     }else {
-      wx.showToast({
-        title: '今天的预约次数已经用完了！请明天再预约',
-        icon:'none'
-      })
+      this.toast('今天的预约次数已经用完了！请明天再预约');
       return 
     }
   
@@ -143,13 +145,97 @@ class Content extends AppBase {
   quxiao(){
     this.Base.setMyData({
       tian:false,
-      focus:false
+      focus:false,
+      zaiimg:false
     })
   }
   nameFn(e){
     this.Base.setMyData({
       name:e.detail.value
     })
+  }
+  onPageScroll(e){
+    console.log(e);
+    if (e.scrollTop<270){
+      var huadong=false;
+    }else {
+      var huadong=true;
+    }
+    this.Base.setMyData({
+      scrollTop: e.scrollTop,
+      huadong
+    })
+    
+  }
+  daoscroll(e){
+    console.log(e)
+    var cur = e.currentTarget.id;
+    this.Base.setMyData({
+      daohang:cur,
+      huadong:true
+    })
+    var query = wx.createSelectorQuery().in(this);
+    var that = this;
+    console.log(query);
+    query.select("#" + cur).boundingClientRect();
+    query.selectViewport().scrollOffset();
+    query.exec((res) => {
+      console.log('res',res)
+      for (var i = 0; i < res.length; i++) {
+        if (res[i] != null) {
+          if (cur == res[i].id) {
+            wx.pageScrollTo({
+              scrollTop: res[i].height-120,
+              duration: 300,
+            })
+          }
+        }
+
+      }
+    })
+   
+  }
+
+  daoscroll1(e) {
+    console.log(e)
+    var cur = e.currentTarget.id;
+    this.Base.setMyData({
+      daohang: cur,
+      huadong:true
+    })
+    var query = wx.createSelectorQuery().in(this);
+    var that = this;
+    console.log(query);
+    query.select("#cddd").boundingClientRect();
+    query.selectViewport().scrollOffset();
+    query.exec((res) => {
+      console.log('res', res)
+      for (var i = 0; i < res.length; i++) {
+        if (res[i] != null) {
+          if ("cddd" == res[i].id) {
+            wx.pageScrollTo({
+              scrollTop: res[i].height-120,
+              duration: 300,
+            })
+          }
+        }
+
+      }
+    })
+
+  }
+  ziaxian(e){
+    var cur = e.currentTarget.id;
+    if(cur=='zx'){
+      this.Base.setMyData({
+        zaiimg: true
+      })
+    }else{
+      this.Base.setMyData({
+        rili: true
+      })
+    }
+   
   }
 }
 var content = new Content();
@@ -161,4 +247,8 @@ body.getyuyue = content.getyuyue;
 body.quedin = content.quedin;
 body.quxiao = content.quxiao;
 body.nameFn = content.nameFn;
+body.onPageScroll = content.onPageScroll;
+body.daoscroll = content.daoscroll;
+body.ziaxian = content.ziaxian;
+body.daoscroll1 = content.daoscroll1;
 Page(body)

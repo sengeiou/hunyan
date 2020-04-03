@@ -1,29 +1,45 @@
-<view class="flex-row flex-center fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;width:100vw;">
-  <image src="{{uploadpath}}resource/{{res.fanhui}}" bindtap="backPage" style="height:50rpx;width:50rpx;"></image>
+
+<view class="flex-row flex-center fixed {{scrollTop>270?'bg-white ':''}} " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;width:100vw;">
+  <image src="{{uploadpath}}resource/{{scrollTop>270?res.fanhui2:res.fanhui}}" bindtap="backPage" style="height:50rpx;width:50rpx;"></image>
   <view style="width:36%;"></view>
-  <view class='content ' style='top:{{StatusBar}}px;color:#ffffff'>详情</view>
+  <view class="content {{scrollTop>270?'txt-black':'txt-white'}}" style='top:{{StatusBar}}px;'>详情</view>
 
 </view>
-
+<view id="cddd">
+<view id='yh'>
+<view id='sj'>
 <view>
-  <image src="{{uploadpath}}shanjia/{{detail.photo}}" style="width:100vw;height:585rpx;"></image>
+  <image src="{{uploadpath}}shanjia/{{detail.img}}" style="width:100vw;height:585rpx;"></image>
 </view>
 
 
 <view class="titles">
   <view class="f-36 txt-black txt-bold">{{detail.name}}</view>
+  <view class="flex-row flex-center margin-top-20">
+      <view class="f-26 margin-right-15">{{detail.xingji_id_name}}</view>
+      <view class="f-26 ">￥{{detail.money}}</view>
+  </view>
 
-  <view class="flex-row flex-center margin-top-30">
+  <view class="flex-row flex-center margin-top-20">
+    <view class="f-26" style='color:#2D2C2C;'>{{detail.address}}</view>
+    <view class="flex-1"></view>
     <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx;"></image>
-    <view class="f-26" style='color:#2D2C2C;margin-left:12rpx;'>{{detail.address}}</view>
   </view>
 </view>
 
+<view style="height:150rpx;"></view>
 
+<view style='height:20rpx;'></view>
+<view class="flex-row flex-center text-center {{huadong==true?'top bg-gray':''}}" style='top:{{StatusBar*2}}px;'>
+    <view class="f-x {{daohang=='sj'?'active h4-5 txt-bold':''}} margin-left-40" bindtap="daoscroll" id='sj'>商家简介</view>
+    <view class="f-x {{daohang=='yh'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='yh'>优惠</view>
+    <view class="f-x {{daohang=='cd'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll1" id='cd'>场地</view>
+</view>
+<view style='height:20rpx;'></view>
 <!-- 商家信息 -->
-<view style="height:120rpx;"></view>
+</view>
 
-<view class="bg-white youhui">
+<view class="bg-white youhui" >
   <!-- <view class="flex-row flex-center"> -->
     <view class="f-30 txt-black txt-bold padding34">商家简介</view>
     <!-- <view class="flex-1"></view> -->
@@ -34,12 +50,12 @@
   <view class="line"></view>
   <text class="f-26" style="color:#2D2C2C;">{{detail.jianjie}}</text>
 </view>
-
+</view>
 
 <!-- 优惠信息 -->
 <view style="height:26rpx;"></view>
 
-<view class="bg-white youhui">
+<view class="bg-white youhui" >
   <view class="flex-row flex-center padding34">
     <image src="{{uploadpath}}resource/{{res.youhui}}" style="width:35rpx;height:35rpx;margin-right:15rpx;"></image>
     <view class="f-30 txt-black txt-bold">优惠信息</view>
@@ -52,9 +68,9 @@
 </view>
 
 <!-- 场地信息 -->
-
+</view>
 <view style="height:26rpx;"></view>
-<view class="bg-white chandi">
+<view class="bg-white chandi" id='cd'>
   <view class="flex-row flex-center padding34">
     <image src="{{uploadpath}}resource/{{res.chandi}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
     <view class="f-30 txt-black txt-bold ">场地信息</view>
@@ -76,14 +92,24 @@
 
 <view style="height:85rpx;"></view>
 
-<view class="flex-row flex-column">
-
-  <image src="{{uploadpath}}resource/{{res.yuyue}}" style="width:564rpx;height:123rpx;" bindtap="quedin"></image>
+<view class="flex-row flex-center pof">
+  <view style="height:40rpx;"></view>
+  <view class="flex-1"></view>
+  <view class="zaixin bg-zx" bindtap="ziaxian" id='zx'>在线咨询</view>
+  <view class="flex-1"></view>
+  <view class="zaixin bg-cx" bindtap="ziaxian" id='cx'>查询档期</view>
+  <view class="flex-1"></view>
 </view>
 
 <view style="height:100rpx;"></view>
 
-<view class="mask" wx:if='{{tian==true}}' bindtap="quxiao"></view>
+<view wx:if='{{zaiimg==true}}' class="zixunimg">
+  <image src="{{uploadpath}}resource/{{res.zixun}}" style='width:100%; height:100%;'></image>
+</view> 
+
+
+
+<view class="mask" wx:if='{{tian==true || zaiimg==true}}' bindtap="quxiao"></view>
 <view class="shuru flex-row flex-column" wx:if='{{tian==true}}'>
   <view>请输入您的名字：</view>
   <view style="height:50rpx;"></view>

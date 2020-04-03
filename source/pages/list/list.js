@@ -20,7 +20,7 @@ class Content extends AppBase {
      city_id: this.Base.options.city_id,
      biaoname:this.Base.options.biaoname
    })
-    this.Base.setPageTitle(this.Base.options.biaoname);
+   
   }
   onMyShow() {
     var that = this;
@@ -32,16 +32,14 @@ class Content extends AppBase {
       
       this.Base.setMyData({ shangjialist })
     })
-  }
-  setPageTitle(instinfo) {
     wx.setNavigationBarTitle({
-      title: instinfo,
+      title: this.Base.options.biaoname,
     })
   }
+  
   qiehuan(){
     var show = this.Base.getMyData().show;
-    show=!show;
-    this.Base.setMyData({ show})
+    this.Base.setMyData({ show: !show})
   }
   todetail(e){
     var id = e.currentTarget.id;

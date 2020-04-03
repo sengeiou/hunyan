@@ -116,6 +116,7 @@ export class AppBase {
       download: base.download,
       checkPermission: base.checkPermission,
       getUserInfo: base.getUserInfo,
+      toast: base.toast,
 
 
     }
