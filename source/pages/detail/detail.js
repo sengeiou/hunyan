@@ -7,6 +7,9 @@ import { AliyunApi } from "../../apis/aliyun.api.js";
 var WxParse = require('../../wxParse/wxParse');
 import { ApiUtil } from "../../apis/apiutil.js";
 
+// import { tapDayItem } from "../../components/calendar/index.js";
+
+
 class Content extends AppBase {
   constructor() {
     super();
@@ -66,6 +69,9 @@ class Content extends AppBase {
   }
   
   yuyue(){
+    // var rili = whenSingleSelect();
+    console.log(AppBase.rili,'rili');
+    return
     var yuyuelist = this.Base.getMyData().yuyuelist;
     var instinfo = this.Base.getMyData().instinfo;
     var detail = this.Base.getMyData().detail;
@@ -144,7 +150,7 @@ class Content extends AppBase {
   } 
   quxiao(){
     this.Base.setMyData({
-      tian:false,
+      rili:false,
       focus:false,
       zaiimg:false
     })
@@ -237,6 +243,9 @@ class Content extends AppBase {
     }
    
   }
+  tapDayItem(e){
+    console.log(e)
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -251,4 +260,5 @@ body.onPageScroll = content.onPageScroll;
 body.daoscroll = content.daoscroll;
 body.ziaxian = content.ziaxian;
 body.daoscroll1 = content.daoscroll1;
+body.tapDayItem = content.tapDayItem;
 Page(body)

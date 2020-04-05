@@ -26,6 +26,7 @@ export class AppBase {
   unicode = "hunyan";
   needauth = false;
   pagetitle = null;
+  static rili="";
   app = null;
   options = null;
   data = {

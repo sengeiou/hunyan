@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "canvas-ring": "/components/canvas-ring/canvas-ring"
+    "canvas-ring": "/components/canvas-ring/canvas-ring",
+    "calendar": "/components/calendar/index"
   },
   "navigationBarTextStyle": "black",
   "navigationStyle": "custom"
