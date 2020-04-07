@@ -84,10 +84,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "pages/jiudianlist/jiudianlist",
 					"pathName": "pages/jiudianlist/jiudianlist",
-					"query": "",
+					"query": "biao_id=1&city_id=1&biaoname=123",
 					"scene": null
 				}
 			]

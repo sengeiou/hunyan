@@ -28,7 +28,8 @@ class Content extends AppBase {
       daohang:'sj',
       zaiimg:false,
       rili:false,
-      huadong:false
+      huadong:false,
+      scrtop:200
     })
   }
   onMyShow() {
@@ -36,8 +37,10 @@ class Content extends AppBase {
     var shangjiaapi = new ShangjiaApi();
     shangjiaapi.shangjiadetail({id:this.Base.options.id},(detail)=>{
       detail.chandi = ApiUtil.HtmlDecode(detail.chandi);
+      detail.caidan = ApiUtil.HtmlDecode(detail.caidan);
 
       WxParse.wxParse('content', 'html', detail.chandi, that, 10);
+      WxParse.wxParse('content2', 'html', detail.caidan, that, 10);
       this.Base.setMyData({ detail})
     })
     this.getyuyue();
@@ -69,9 +72,15 @@ class Content extends AppBase {
   }
   
   yuyue(){
-    // var rili = whenSingleSelect();
-    console.log(AppBase.rili,'rili');
-    return
+    
+  
+    var rilis = AppBase.rili;
+    var riqi = rilis.year + '/' + rilis.month + '/' + rilis.day
+    console.log(riqi, 'rili', riqi);
+    if(rilis.year==undefined){
+      this.toast('请选择查询日期');
+      return
+    }
     var yuyuelist = this.Base.getMyData().yuyuelist;
     var instinfo = this.Base.getMyData().instinfo;
     var detail = this.Base.getMyData().detail;
@@ -88,58 +97,70 @@ class Content extends AppBase {
     }
     var that = this;
     var name = this.Base.getMyData().name;
-    if (name == undefined || name.trim() !=""  ){
+    if (name == undefined || name.trim() ==""  ){
       this.toast('请输入您的姓名！');
+      return
+    }
+    var mobile = this.Base.getMyData().mobile;
+    if (mobile == undefined || mobile.trim() == "") {
+      this.toast('请输入您的电话！');
       return
     }
     var shangjiaapi = new ShangjiaApi();
     var aliyunapi = new AliyunApi();
     if (instinfo.cishu - yuyuelist.length>0){
-      wx.showModal({
-        title: '预约',
-        content: '今天剩余预约次数为：' + (instinfo.cishu - yuyuelist.length) + '次',
-        cancelText: '取消',
-        confirmText: '预约',
-        success: (res) => {
-          console.log(res);
-          if (res.confirm) {
+      // wx.showModal({
+      //   title: '预约',
+      //   content: '今天剩余预约次数为：' + (instinfo.cishu - yuyuelist.length) + '次',
+      //   cancelText: '取消',
+      //   confirmText: '预约',
+      //   success: (res) => {
+          // console.log(res);
+          // if (res.confirm) {
             aliyunapi.sendsms({
               phone: citymanager_phone,
               name: name,
               shanghu: detail.name,
-              memphone: that.Base.getMyData().memberinfo.mobile
+              memphone: mobile
             }, (sendsms)=>{
               shangjiaapi.yuyue({
                 // member_id: this.Base.getMyData().memberinfo.id,
                 shanjia_id: this.Base.options.id,
-                citymanager_id: citymanager_id
+                citymanager_id: citymanager_id,
+                yuyueshijian:riqi,
+                name: name,
+                mobile: mobile
               }, (yuyue) => {
                 console.log(yuyue)
                 if (yuyue.code == '0') {
-                  
                   wx.showToast({
-                    title: '发送成功',
+                    title: '发布成功',
                   })
                   that.getyuyue();
+                  that.Base.setMyData({
+                    focus: false,
+                    rili: false
+                  })
                   return
                 } else {
-                  that.toast('发送失败');
+                  that.toast('发布失败');
+                  that.Base.setMyData({
+                    focus: false,
+                    rili: false
+                  })
                   return
                 }
-                that.Base.setMyData({
-                  tian: false,
-                  focus:false
-                })
+                
               })
             })
            
           }
-        }
-      })
-    }else {
-      this.toast('今天的预约次数已经用完了！请明天再预约');
-      return 
-    }
+        // }
+      // })
+    // }else {
+    //   this.toast('今天的预约次数已经用完了！请明天再预约');
+      // return 
+    // }
   
   }
   quedin(){
@@ -160,9 +181,15 @@ class Content extends AppBase {
       name:e.detail.value
     })
   }
+  mobileFn(e){
+    this.Base.setMyData({
+      mobile: e.detail.value
+    })
+  }
   onPageScroll(e){
     console.log(e);
-    if (e.scrollTop<270){
+    // var scrtop = this.Base.getMyData().scrtop;
+    if (e.scrollTop < 240){
       var huadong=false;
     }else {
       var huadong=true;
@@ -180,6 +207,7 @@ class Content extends AppBase {
       daohang:cur,
       huadong:true
     })
+  
     var CustomBar = this.Base.getMyData().CustomBar;
     var StatusBar = this.Base.getMyData().StatusBar;
     console.log("CustomBar", CustomBar);
@@ -196,7 +224,7 @@ class Content extends AppBase {
           if (cur == res[i].id) {
             console.log("CustomBar StatusBar", res[i].height);
             wx.pageScrollTo({
-              scrollTop: res[i].height - CustomBar - StatusBar,
+              scrollTop: res[i].height - 130,
               duration: 300,
             })
           }
@@ -225,7 +253,7 @@ class Content extends AppBase {
         if (res[i] != null) {
           if ("cddd" == res[i].id) {
             wx.pageScrollTo({
-              scrollTop: res[i].height-120,
+              scrollTop: res[i].height-130,
               duration: 300,
             })
           }
@@ -266,4 +294,5 @@ body.daoscroll = content.daoscroll;
 body.ziaxian = content.ziaxian;
 body.daoscroll1 = content.daoscroll1;
 body.tapDayItem = content.tapDayItem;
+body.mobileFn = content.mobileFn;
 Page(body)

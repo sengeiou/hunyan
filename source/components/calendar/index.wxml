@@ -3,13 +3,13 @@
     <!-- 头部操作栏 -->
     <view wx:if="{{!calendarConfig.hideHeadOnWeekMode}}" class="handle {{calendarConfig.theme}}_handle-color fs28 b lr ac pc">
       <view class="prev fs36" wx:if="{{calendarConfig.showHandlerOnWeekMode || !calendar.weekMode}}">
-        <text class="prev-handle iconfont icon-doubleleft" bindtap="chooseDate" data-type="prev_year"></text>
+        <!-- <text class="prev-handle iconfont icon-doubleleft" bindtap="chooseDate" data-type="prev_year"></text> -->
         <text class="prev-handle iconfont icon-left" bindtap="chooseDate" data-type="prev_month"></text>
       </view>
       <view class="flex date-in-handle b lr cc" bindtap="doubleClickToToday">{{calendar.curYear || "--"}} 年 {{calendar.curMonth || "--"}} 月</view>
       <view class="next fs36" wx:if="{{calendarConfig.showHandlerOnWeekMode || !calendar.weekMode}}">
         <text class="next-handle iconfont icon-right" bindtap="chooseDate" data-type="next_month"></text>
-        <text class="next-handle iconfont icon-doubleright" bindtap="chooseDate" data-type="next_year"></text>
+        <!-- <text class="next-handle iconfont icon-doubleright" bindtap="chooseDate" data-type="next_year"></text> -->
       </view>
     </view>
     <!-- 星期栏 -->
@@ -28,7 +28,7 @@
           wx:for="{{calendar.empytGrids}}"
           wx:key="index"
           data-idx="{{index}}">
-            <view class="date">
+            <view class="date pass">
               {{item.day}}
               <view
                 wx:if="{{calendarConfig.showLunar && item.lunar}}"
@@ -47,11 +47,11 @@
           class="grid {{calendarConfig.theme}}_normal-date b ac pc">
             <view
               class="date-wrap b cc {{(item.week === 0 || item.week === 6) ? calendarConfig.theme + '_weekend-color' : ''}}">
-              <view class="date b ac pc {{item.class ? item.class  : ''}} {{calendarConfig.chooseAreaMode ? 'date-area-mode' : ''}} {{calendar.todoLabelCircle && item.showTodoLabel && !item.choosed ? calendarConfig.theme + '_todo-circle todo-circle' : '' }} {{item.isToday==undefined ? calendarConfig.theme + '_today' : ''}} {{item.choosed ? calendarConfig.theme + '_choosed' : ''}} {{item.disable ? calendarConfig.theme + '_date-disable' : ''}}">
-                {{calendarConfig.markToday && item.isToday ? calendarConfig.markToday : item.day}}
+              <view class="date b ac pc {{item.class ? item.class  : ''}} {{calendarConfig.chooseAreaMode ? 'date-area-mode' : ''}} {{calendar.todoLabelCircle && item.showTodoLabel && !item.choosed ? calendarConfig.theme + '_todo-circle todo-circle' : '' }} {{item.isToday!=false ? calendarConfig.theme + '_today' : ''}} {{item.choosed ? calendarConfig.theme + '_choosed' : ''}} {{item.disable ? calendarConfig.theme + '_date-disable' : ''}}">
+                {{calendarConfig.markToday && item.isToday!=false ? calendarConfig.markToday : item.day}}
                 <view
                   wx:if="{{(calendarConfig.showLunar && item.lunar && !item.showTodoLabel) || (item.showTodoLabel && calendar.todoLabelPos !== 'bottom')}}"
-                  class="date-desc {{calendarConfig.theme}}_date-desc date-desc-bottom {{(item.choosed || item.isToday) ? 'date-desc-bottom-always' : ''}} {{item.disable ? calendarConfig.theme + '_date-desc-disable' : ''}}">
+                  class="date-desc {{calendarConfig.theme}}_date-desc date-desc-bottom {{(item.choosed || item.isToday!=false) ? 'date-desc-bottom-always' : ''}} {{item.disable ? calendarConfig.theme + '_date-desc-disable' : ''}}">
                   {{item.lunar.Term || item.lunar.IDayCn}}
                 </view>
                 <view
@@ -69,7 +69,7 @@
           wx:for="{{calendar.lastEmptyGrids}}"
           wx:key="index"
           data-idx="{{index}}">
-            <view class="date">
+            <view class="date pass">
               {{item.day}}
               <view
                 wx:if="{{calendarConfig.showLunar && item.lunar}}"

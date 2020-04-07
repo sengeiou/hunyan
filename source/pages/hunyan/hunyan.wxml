@@ -31,7 +31,7 @@
       <view class="xian"></view>
       <input class="f-26" bindconfirm="sendmsg" confirm-hold="true" bindinput="conFn" placeholder="请输入关键字" placeholder-style="color:#A4A4A4;"></input>
       <view class="flex-1"></view>
-      <image src="{{uploadpath}}resource/{{res.search}}" bindtap="sendmsg" style="width:37rpx;height:37rpx;margin-right:55rpx;"></image>
+      <image src="{{uploadpath}}resource/{{res.search}}" bindtap="sendmsg" style="width:37rpx;height:37rpx;"></image>
     </view>
 
   </view>
@@ -75,7 +75,7 @@
           </view>
           <view style="height:28rpx;"></view>
           <view class="flex-row flex-center">
-            <image src='{{uploadpath}}shanjia/{{item.logo}}' style="width:33rpx;height:33rpx;"></image>
+            <image src='{{uploadpath}}shanjia/{{item.logo}}' style="width:33rpx;height:33rpx;border-radius:50%;border:2rpx solid #cccccc;"></image>
             <view class="f-26" style="color:#4F4F4F;margin-left:10rpx;">{{item.name}}</view>
           </view>
         </view>

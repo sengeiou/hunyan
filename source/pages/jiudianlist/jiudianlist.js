@@ -198,12 +198,25 @@ class Content extends AppBase {
     }
     
     console.log(e)
-    // var navh = this.Base.getMyData().StatusBar;
-    // var he = e.currentTarget.offsetTop - navh * 2 - navh / 2;
-    // console.log(he)
-    // wx.pageScrollTo({
-    //   scrollTop: he
-    // })
+    var query = wx.createSelectorQuery().in(this);
+    var that = this;
+    console.log(query);
+    query.select("#sx").boundingClientRect();
+    query.selectViewport().scrollOffset();
+    query.exec((res) => {
+      console.log('res', res)
+      for (var i = 0; i < res.length; i++) {
+        if (res[i] != null) {
+          if ("sx" == res[i].id) {
+            wx.pageScrollTo({
+              scrollTop: res[i].height - 130,
+              duration: 300,
+            })
+          }
+        }
+
+      }
+    })
   }
   xuanqu(e) {
     var idx = e.currentTarget.id;
@@ -221,29 +234,29 @@ class Content extends AppBase {
     var zhuoshu_id = this.Base.getMyData().zhuoshu_id;
     var xingji_id = this.Base.getMyData().xingji_id;
     var api = new ShangjiaApi();
-    if (cityqu_id == '' || qulist[idx].shanquan.length == 0 ) {
-      api.shangjialist({
-        biaoqian_id: biao_id,
-        city_id: city_id,
-        cityqu_id: cityqu_id,
-        price_id:price_id,
-        xingji_id: xingji_id,
-        zhuoshu_id: zhuoshu_id
-      }, (shangjialist) => {
+    // if (cityqu_id == '' || qulist[idx].shanquan.length == 0 ) {
+    //   api.shangjialist({
+    //     biaoqian_id: biao_id,
+    //     city_id: city_id,
+    //     cityqu_id: cityqu_id,
+    //     price_id:price_id,
+    //     xingji_id: xingji_id,
+    //     zhuoshu_id: zhuoshu_id
+    //   }, (shangjialist) => {
 
-        this.Base.setMyData({
-          shangjialist,
-          chuxian: '',
-          seq: idx
-        })
-      })
-    }else {
+    //     this.Base.setMyData({
+    //       shangjialist,
+    //       chuxian: '',
+    //       seq: idx
+    //     })
+    //   })
+    // }else {
       this.Base.setMyData({
         seq: idx,
-        quan:-1,
-        cityqu_id: qulist[idx].id
+        // quan:-1,
+        cityqu_id: cityqu_id
       })
-    }
+    // }
   }
   xuanshanqu(e){
    var seq = this.Base.getMyData().seq;

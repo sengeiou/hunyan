@@ -107,3 +107,14 @@ view {
  color: #ff4153;
  background: #ffffff;
 }
+.padding-1020 {
+  padding: 20rpx 20rpx;
+}
+.spo {
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  z-index: 9999;
+  background: #ffffff;
+  padding-bottom: 25rpx;
+}

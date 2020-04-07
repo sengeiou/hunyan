@@ -29,7 +29,7 @@
         <view wx:if='{{city==""}}'>{{city}}</view>
       </picker> -->
       <picker bindchange='cityFn' range='{{citylist}}' range-key='name'>
-        <input c placeholder="您要在哪里举行宴会" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{city ||memberinfo.address}}" disabled="{{true}}" class="f-26" style="color:#000000;width:600rpx;"></input>
+        <input c placeholder="您要在哪里举行宴会" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{city ||memberinfo.city}}" disabled="{{true}}" class="f-26" style="color:#000000;width:600rpx;"></input>
       </picker>
       <view class="flex-1"></view>
       <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx"></image>

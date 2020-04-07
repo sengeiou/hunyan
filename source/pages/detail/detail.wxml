@@ -1,76 +1,80 @@
-
-<view class="flex-row flex-center fixed {{scrollTop>270?'bg-white ':''}} " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;width:100vw;">
-  <image src="{{uploadpath}}resource/{{scrollTop>270?res.fanhui2:res.fanhui}}" bindtap="backPage" style="height:50rpx;width:50rpx;"></image>
+<view class="flex-row flex-center fixed {{scrollTop>scrtop?'bg-white ':''}} " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;width:100vw;">
+  <image src="{{uploadpath}}resource/{{scrollTop>scrtop?res.fanhui2:res.fanhui}}" bindtap="backPage" style="height:50rpx;width:50rpx;"></image>
   <view style="width:36%;"></view>
-  <view class="content {{scrollTop>270?'txt-black':'txt-white'}}" style='top:{{StatusBar}}px;'>详情</view>
+  <view class="content {{scrollTop>scrtop?'txt-black':'txt-white'}}" style='top:{{StatusBar}}px;'>详情</view>
 
 </view>
-
+<view id='cd2'>
 <view id="cddd">
-<view id='yh'>
-<view id='sj'>
-<view>
-  <image src="{{uploadpath}}shanjia/{{detail.img}}" style="width:100vw;height:585rpx;"></image>
-</view>
+  <view id='yh'>
+    <view id='sj'>
+      <view>
+        <image src="{{uploadpath}}shanjia/{{detail.img}}" style="width:100vw;height:585rpx;"></image>
+      </view>
 
 
-<view class="titles">
-  <view class="f-36 txt-black txt-bold">{{detail.name}}</view>
-  <view class="flex-row flex-center margin-top-20">
-      <view class="f-26 margin-right-15">{{detail.xingji_id_name}}</view>
-      <view class="f-26 ">￥{{detail.money}}</view>
-  </view>
+      <view class="titles">
+        <view class="f-36 txt-black txt-bold">{{detail.name}}</view>
+        <view class="flex-row flex-center margin-top-20">
+          <view class="f-26 margin-right-15">{{detail.xingji_id_name}}</view>
+          <view class="f-26 ">￥{{detail.money}}</view>
+        </view>
 
-  <view class="flex-row flex-center margin-top-20">
-    <view class="f-26" style='color:#2D2C2C;'>{{detail.address}}</view>
-    <view class="flex-1"></view>
-    <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx;"></image>
-  </view>
-</view>
+        <view class="flex-row flex-center margin-top-20">
+          <view class="f-26" style='color:#2D2C2C;'>{{detail.address}}</view>
+          <view class="flex-1"></view>
+          <!-- <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx;"></image> -->
+        </view>
+      </view>
 
-<view style="height:150rpx;"></view>
+      <view style="height:150rpx;"></view>
 
-<view style='height:20rpx;'></view>
-<view class="flex-row flex-center text-center {{huadong==true?'top bg-gray':''}}" style='top:{{CustomBar}}px;height:45px'>
-    <view class="f-x {{daohang=='sj'?'active h4-5 txt-bold':''}} margin-left-40" bindtap="daoscroll" id='sj'>商家简介</view>
-    <view class="f-x {{daohang=='yh'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='yh'>优惠</view>
-    <view class="f-x {{daohang=='cd'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll1" id='cd'>场地</view>
-</view>
-<view style='height:20rpx;'></view>
-<!-- 商家信息 -->
-</view>
+      <view style='height:20rpx;'></view>
+      <view class="flex-row flex-center text-center {{huadong==true?'top bg-gray':''}}" style='top:{{CustomBar}}px;height:45px'>
+        <view class="f-x {{daohang=='sj'?'active h4-5 txt-bold':''}} margin-left-40" bindtap="daoscroll" id='sj'>商家简介</view>
+        <view class="f-x {{daohang=='yh'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='yh'>优惠</view>
+        <view class="f-x {{daohang=='cd'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll1" id='cd'>场地</view>
+        <view class="f-x {{daohang=='cd2'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='cd2'>菜单</view>
+      </view>
+      <view style='height:20rpx;'></view>
+      <!-- 商家信息 -->
+    </view>
 
-<view class="bg-white youhui" >
-  <!-- <view class="flex-row flex-center"> -->
-    <view class="f-30 txt-black txt-bold padding34">商家简介</view>
-    <!-- <view class="flex-1"></view> -->
-    <!-- <view class="f-32 margin-top-10" style="color:#FF4153;"> -->
+    <view class="bg-white youhui">
+      <!-- <view class="flex-row flex-center"> -->
+      <view class="f-30 txt-black txt-bold padding34">商家简介</view>
+      <!-- <view class="flex-1"></view> -->
+      <!-- <view class="f-32 margin-top-10" style="color:#FF4153;"> -->
       <!-- <text class="h6" style="color:#FF4153;">￥</text>{{detail.money}}</view> -->
-  <!-- </view> -->
+      <!-- </view> -->
 
-  <view class="line"></view>
-  <text class="f-26" style="color:#2D2C2C;">{{detail.jianjie}}</text>
-</view>
-</view>
+      <view class="line"></view>
+      <view>
+        <text class="f-26" style="color:#2D2C2C;">{{detail.jianjie}}</text>
+      </view>
 
-<!-- 优惠信息 -->
-<view style="height:26rpx;"></view>
+    </view>
 
-<view class="bg-white youhui" >
-  <view class="flex-row flex-center padding34">
-    <image src="{{uploadpath}}resource/{{res.youhui}}" style="width:35rpx;height:35rpx;margin-right:15rpx;"></image>
-    <view class="f-30 txt-black txt-bold">优惠信息</view>
+
+    <!-- 优惠信息 -->
+    <view style="height:26rpx;"></view>
   </view>
-  <view class="line"></view>
-  <view>
-    <text class="f-26" style="color:#2D2C2C;">{{detail.youhui}}</text>
+  <view class="bg-white youhui">
+    <view class="flex-row flex-center padding34">
+      <image src="{{uploadpath}}resource/{{res.youhui}}" style="width:35rpx;height:35rpx;margin-right:15rpx;"></image>
+      <view class="f-30 txt-black txt-bold">优惠信息</view>
+    </view>
+    <view class="line"></view>
+    <view>
+      <text class="f-26" style="color:#2D2C2C;">{{detail.youhui}}</text>
 
+    </view>
   </view>
-</view>
 
-<!-- 场地信息 -->
+  <!-- 场地信息 -->
+
+  <view style="height:26rpx;"></view>
 </view>
-<view style="height:26rpx;"></view>
 <view class="bg-white chandi" id='cd'>
   <view class="flex-row flex-center padding34">
     <image src="{{uploadpath}}resource/{{res.chandi}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
@@ -89,7 +93,28 @@
   </view>
 
 </view>
+<!-- 菜单 -->
+  <view style="height:26rpx;"></view>
+</view>
 
+<view class="bg-white chandi" id='cd'>
+  <view class="flex-row flex-center padding34">
+    <!-- <image src="{{uploadpath}}resource/{{res.chandi}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image> -->
+    <view class="f-30 txt-black txt-bold ">菜单</view>
+  </view>
+  <view class="line2"></view>
+  <!-- <view wx:for='{{detail.chandi}}' wx:key='k'>
+    <image src="{{uploadpath}}shanjia/{{item.img}}" style="width:625rpx;"></image>
+    <view style="height:33rpx"></view>
+  </view> -->
+
+  <import src="../../wxParse/wxParse.wxml" />
+
+  <view class='nostyle padding-28 '>
+    <template is="wxParse" data="{{wxParseData:content2.nodes}}" />
+  </view>
+
+</view>
 
 <view style="height:85rpx;"></view>
 
@@ -106,23 +131,24 @@
 
 <view wx:if='{{zaiimg==true}}' class="zixunimg">
   <image src="{{uploadpath}}resource/{{res.zixun}}" style='width:100%; height:100%;'></image>
-</view> 
+</view>
 <view class="mask" wx:if='{{rili==true || zaiimg==true}}' bindtap="quxiao"></view>
 <view wx:if='{{rili==true}}' class="rili">
-<calendar  calendarConfig="{{calendarConfig}}"></calendar>
-
-
-<view class="shuru flex-row flex-column" >
-  <view>请输入您的名字：</view>
-  <view style="height:50rpx;"></view>
-  <input type="text" class="inp" bindinput="nameFn" focus="{{focus}}"></input>
-  <view style="height:50rpx;"></view>
-  <view class="flex-row flex-center">
-    <view class="flex-1"></view>
-    <view class="btns" bindtap="quxiao">取消</view>
-    <view class="flex-1"></view>
-    <view class="btns bg-red" bindtap="yuyue">确定</view>
-    <view class="flex-1"></view>
+  <calendar calendarConfig="{{calendarConfig}}"></calendar>
+  <view style="height:10rpx" class="bg-gray"></view>
+  <view class="shuru flex-row flex-column">
+    <view class="flex-row flex-center">名字：
+      <input type="text" class="inp" bindinput="nameFn" focus="{{focus}}" maxlength="10"></input>
+    </view>
+    <view style="height:50rpx;"></view>
+    <view class="flex-row flex-center">电话：
+      <input type="text" class="inp" bindinput="mobileFn" maxlength="11"></input>
+    </view>
+    <view style="height:50rpx;"></view>
+    <view class="flex-row flex-center">
+      <view class="flex-1"></view>
+      <view class="btns bg-red" bindtap="yuyue">立即查询</view>
+      <view class="flex-1"></view>
+    </view>
   </view>
-</view>
 </view>

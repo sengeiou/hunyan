@@ -79,7 +79,7 @@ view {
 .hyimg {
   width: 162rpx;
   height: 149rpx;
-  margin: 23rpx 26rpx;
+  margin: 23rpx 26rpx 23rpx 33rpx;
 }
 
 .pop {
