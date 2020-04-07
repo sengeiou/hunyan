@@ -5,6 +5,7 @@
   <view class="content {{scrollTop>270?'txt-black':'txt-white'}}" style='top:{{StatusBar}}px;'>详情</view>
 
 </view>
+
 <view id="cddd">
 <view id='yh'>
 <view id='sj'>
@@ -106,11 +107,12 @@
 <view wx:if='{{zaiimg==true}}' class="zixunimg">
   <image src="{{uploadpath}}resource/{{res.zixun}}" style='width:100%; height:100%;'></image>
 </view> 
+<view class="mask" wx:if='{{rili==true || zaiimg==true}}' bindtap="quxiao"></view>
+<view wx:if='{{rili==true}}' class="rili">
+<calendar  calendarConfig="{{calendarConfig}}"></calendar>
 
 
-
-<view class="mask" wx:if='{{tian==true || zaiimg==true}}' bindtap="quxiao"></view>
-<view class="shuru flex-row flex-column" wx:if='{{tian==true}}'>
+<view class="shuru flex-row flex-column" >
   <view>请输入您的名字：</view>
   <view style="height:50rpx;"></view>
   <input type="text" class="inp" bindinput="nameFn" focus="{{focus}}"></input>
@@ -122,4 +124,5 @@
     <view class="btns bg-red" bindtap="yuyue">确定</view>
     <view class="flex-1"></view>
   </view>
+</view>
 </view>
