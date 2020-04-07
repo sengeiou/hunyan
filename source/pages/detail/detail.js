@@ -174,6 +174,10 @@ class Content extends AppBase {
       daohang:cur,
       huadong:true
     })
+    var CustomBar = this.Base.getMyData().CustomBar;
+    var StatusBar = this.Base.getMyData().StatusBar;
+    console.log("CustomBar", CustomBar);
+    console.log("CustomBar StatusBar", StatusBar);
     var query = wx.createSelectorQuery().in(this);
     var that = this;
     console.log(query);
@@ -184,8 +188,9 @@ class Content extends AppBase {
       for (var i = 0; i < res.length; i++) {
         if (res[i] != null) {
           if (cur == res[i].id) {
+            console.log("CustomBar StatusBar", res[i].height);
             wx.pageScrollTo({
-              scrollTop: res[i].height-120,
+              scrollTop: res[i].height - CustomBar - StatusBar,
               duration: 300,
             })
           }
