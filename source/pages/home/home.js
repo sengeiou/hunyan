@@ -2,7 +2,7 @@
 import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
-import { ShangjiaApi } from "../../apis/shangjia.api.js";
+import { ShangjiaApi } from "../../apis/shangjia.api";
 import { CityApi } from "../../apis/city.api.js";
 
 class Content extends AppBase {
@@ -135,6 +135,7 @@ class Content extends AppBase {
       city:name,
       city_id
     })
+    this.getshanjia();
   }
   fuwutkFn(){
     wx.navigateTo({
@@ -146,13 +147,21 @@ class Content extends AppBase {
       url: '/pages/yinsi/yinsi',
     })
   }
+  getshanjia(){
+    var city_id = this.Base.getMyData().city_id;
+    var api = new ShangjiaApi();
+    api.shangjialist({city_id:city_id}, (shangjialist) => {
+     
+      this.Base.setMyData({ shangjialist })
+    })
+  }
   huoqu(){
     var city = this.Base.getMyData().city;
     var city1 = this.Base.getMyData().city1;
     var cityqu = this.Base.getMyData().cityqu;
     var fuwu = this.Base.getMyData().fuwu;
     var fuwu_id = this.Base.getMyData().fuwu_id;
-
+    var shangjialist = this.Base.getMyData().shangjialist;
     if(fuwu_id==0){
       wx.navigateTo({
         url: '/pages/lianxi/lianxi',
@@ -166,16 +175,20 @@ class Content extends AppBase {
       } else if (city == '') {
         
         if (this.panduan(memberinfo.city, memberinfo.qu)){
-    
+        
             city = memberinfo.city + memberinfo.qu;
             city1 = memberinfo.city;
-            // cityqu = memberinfo.qu;
+         
           }else {
            
           this.toast('此地区暂未开放');
             return
           }
       }else {
+        if (shangjialist.length==0){
+          this.toast('此地区暂未开放');
+          return
+        }
         city1=city;
       }
 
@@ -189,13 +202,18 @@ class Content extends AppBase {
     
   }
   panduan(city,qu){
+    var api = new ShangjiaApi();
     var citylist = this.Base.getMyData().citylist;
     for (var i = 0; i < citylist.length; i++) {
-      for(var j=0;j<citylist[i].qu.length;j++){
-        if (citylist[i].name == city && citylist[i].qu[j].name == qu) {
-          return true
+        if (citylist[i].name == city ) {
+          api.shangjialist({ city_id: citylist[i].id }, (shangjialist) => {
+
+            if (shangjialist.length > 0) {
+              return true
+            }
+          })
+         
         }
-      }
       
     }
     return false
@@ -223,4 +241,5 @@ body.bindMultiPickerColumnChange = content.bindMultiPickerColumnChange;
 body.bannerclick = content.bannerclick;
 body.panduan = content.panduan;
 body.cityFn = content.cityFn;
+body.getshanjia = content.getshanjia;
 Page(body)

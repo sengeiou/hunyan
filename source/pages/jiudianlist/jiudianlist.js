@@ -36,22 +36,7 @@ class Content extends AppBase {
       biao_id: this.Base.options.biao_id,
       city_id: this.Base.options.city_id,
       biaoname: this.Base.options.biaoname,
-      cityqu: '',
-      date: '',
-      prices: '',
-      zhuo: '',
-      chuxian: '',
-      seq: -1,
-      quan: -1,
-      jiage:-1,
-      xinji:-1,
-      zhshu: -1,
-      cityqu_id:'',
-      shangquan_id:'',
-      price_id:'',
-      xingji_id:'',
-      zhuoshu_id:'',
-      city: this.Base.options.city
+      city: this.Base.options.city,
     })
 
   }
@@ -61,6 +46,12 @@ class Content extends AppBase {
     var arr = [];
     var biao_id = this.Base.getMyData().biao_id;
     var city_id = this.Base.getMyData().city_id;
+    var date = new Date();
+    var year = date.getFullYear();
+    var mon = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+    var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    var starttime = year + '/' + mon+'/'+day;
+    console.log(starttime,'sttt')
     api.shangjialist({
       biaoqian_id: biao_id,
       city_id
@@ -68,7 +59,22 @@ class Content extends AppBase {
 
       this.Base.setMyData({
         shangjialist,
-       
+        starttime,
+        cityqu: '',
+        date: '',
+        prices: '',
+        zhuo: '',
+        chuxian: '',
+        seq: -1,
+        quan: -1,
+        jiage: -1,
+        xinji: -1,
+        zhush: -1,
+        cityqu_id: '',
+        shangquan_id: '',
+        price_id: '',
+        xingji_id: '',
+        zhuoshu_id: '',
       })
     })
     api.biaodetail({
@@ -95,8 +101,9 @@ class Content extends AppBase {
   }
   getcityman(){
     var cityapi = new CityApi();
+    var city_id = this.Base.getMyData().city_id;
     cityapi.cityman({
-      city_id: this.Base.options.city_id
+      city_id: city_id
     }, (cityman) => {
       this.Base.setMyData({
         cityman
@@ -105,8 +112,9 @@ class Content extends AppBase {
   }
   quyu() {
     var cityapi = new CityApi();
+    var city_id = this.Base.getMyData().city_id;
     cityapi.qulist({
-      city_id: this.Base.options.city_id
+      city_id: city_id
     }, (qulist) => {
       this.Base.setMyData({
         qulist
@@ -156,8 +164,9 @@ class Content extends AppBase {
     var qu_id = qulist[cur].id;
     this.Base.setMyData({
       cityqu: name,
-      qu_id: qu_id
+      cityqu_id: qu_id
     })
+    this.save();
   }
   priceFn(e) {
     var yusuanlist = this.Base.getMyData().yusuanlist;
@@ -234,29 +243,10 @@ class Content extends AppBase {
     var zhuoshu_id = this.Base.getMyData().zhuoshu_id;
     var xingji_id = this.Base.getMyData().xingji_id;
     var api = new ShangjiaApi();
-    // if (cityqu_id == '' || qulist[idx].shanquan.length == 0 ) {
-    //   api.shangjialist({
-    //     biaoqian_id: biao_id,
-    //     city_id: city_id,
-    //     cityqu_id: cityqu_id,
-    //     price_id:price_id,
-    //     xingji_id: xingji_id,
-    //     zhuoshu_id: zhuoshu_id
-    //   }, (shangjialist) => {
-
-    //     this.Base.setMyData({
-    //       shangjialist,
-    //       chuxian: '',
-    //       seq: idx
-    //     })
-    //   })
-    // }else {
       this.Base.setMyData({
         seq: idx,
-        // quan:-1,
         cityqu_id: cityqu_id
       })
-    // }
   }
   xuanshanqu(e){
    var seq = this.Base.getMyData().seq;

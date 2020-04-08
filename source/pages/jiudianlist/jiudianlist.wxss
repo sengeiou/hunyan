@@ -118,3 +118,6 @@ view {
   background: #ffffff;
   padding-bottom: 25rpx;
 }
+.padding-510 {
+  padding: 10rpx 20rpx;
+}

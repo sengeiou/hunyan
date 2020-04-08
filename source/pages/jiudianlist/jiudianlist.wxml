@@ -41,7 +41,7 @@
 
       <image src="{{uploadpath}}resource/{{res.yuan}}" style="width:14rpx;height:14rpx;"></image>
       <view class="flex-row flex-center" style="margin-left:26rpx;margin-top:29rpx;">
-        <picker mode='date' value="{{date}}" bindchange="bindDateChange">
+        <picker mode='date' value="{{date}}" start='{{starttime}}' bindchange="bindDateChange">
           <input wx:if='{{biao_id==1}}' placeholder="请选择婚期" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{date}}" disabled="{{true}}" class="f-26" style="color:#000000;"></input>
           <input wx:if='{{biao_id!=1}}' placeholder="请选择宴会日期" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{date}}" disabled="{{true}}" class="f-26" style="color:#000000;"></input>
         </picker>
@@ -125,7 +125,8 @@
       </view>
     </view>
   </view>
-  <view wx:for='{{shangjialist}}' wx:key='key' class="padding-20" style='border-radius:90rpx;' bindtap="todetail" id='{{item.id}}'>
+  <view style="height:10rpx"></view>
+  <view wx:for='{{shangjialist}}' wx:key='key' class="padding-510" style='border-radius:80rpx;' bindtap="todetail" id='{{item.id}}'>
 
     <view class="flex-row flex-center bg-white padding-20" wx:if='{{item.photo!="" && item.photo2=="" && item.photo3==""}}'>
       <view>
@@ -133,7 +134,7 @@
       </view>
       <view class="margin-left-20">
         <view class="flex-row flex-center">
-          <image src='{{uploadpath}}shanjia/{{item.logo}}' style="width:33rpx;height:33rpx;"></image>
+          <image src='{{uploadpath}}shanjia/{{item.logo}}' class="radius-50" style="width:33rpx;height:33rpx;border:2rpx solid #cccccc;"></image>
           <view class="txt-black txt-bold" style="margin-left:10rpx;">{{item.name}}</view>
         </view>
         <view class="f-26 margin-top-5">{{item.cityqu_id_name}} {{item.shangquan_id_name}}</view>
@@ -154,7 +155,7 @@
 
       <view class="margin-top-20">
         <view class="flex-row flex-center">
-          <image src='{{uploadpath}}shanjia/{{item.logo}}' style="width:33rpx;height:33rpx;"></image>
+          <image src='{{uploadpath}}shanjia/{{item.logo}}' class="radius-50" style="width:33rpx;height:33rpx;border:2rpx solid #cccccc;"></image>
           <view class="txt-black txt-bold" style="margin-left:10rpx;">{{item.name}}</view>
         </view>
         <view class="f-26 margin-top-5 flex-row flex-center">

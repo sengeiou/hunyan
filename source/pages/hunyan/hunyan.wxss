@@ -120,7 +120,7 @@ view {
   background: #ffffff;
   margin-right: 21rpx;
   border-radius: 26rpx;
-  margin-bottom: 26rpx;
+  /* margin-bottom: 26rpx; */
   position: relative;
 }
 .con {

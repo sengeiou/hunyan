@@ -3,7 +3,7 @@
   <view style="width:36%;"></view>
   <view class='content ' style='top:{{StatusBar}}px;color:#ffffff'>{{instinfo.name}}</view>
 </view>
-<view >
+<view>
   <swiper circular="true" class="indexbanner" autoplay="true">
     <swiper-item class="indexbanner" wx:for="{{lunbo}}" wx:key="k">
       <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="todetail" id='{{item.shanjia_id}}'></image>
@@ -62,25 +62,28 @@
 
   <view style="height:42rpx;"></view>
   <view class=" bg-f7">
-    <view class=" nei  " style="width:96%;">
-      <view wx:for='{{shangjialist}}' wx:key='k' class="sj flow" style="" bindtap="todetail" id='{{item.id}}'>
-        <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:100%;height:333rpx;"></image>
-        <view class="tao h7 chaochu2" style="top:256rpx">{{item.biao}} | {{item.taocan}}</view>
-        <view class="con">
-          <view class="h5 txt-black chaochu2">{{item.zhuti}}</view>
-          <view style="height:23rpx;"></view>
-          <view class="flex-row flex-bottom">
-            <view class="h6" style="color:#FF4153;">￥ </view>
-            <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
-          </view>
-          <view style="height:28rpx;"></view>
-          <view class="flex-row flex-center">
-            <image src='{{uploadpath}}shanjia/{{item.logo}}' style="width:33rpx;height:33rpx;border-radius:50%;border:2rpx solid #cccccc;"></image>
-            <view class="f-26" style="color:#4F4F4F;margin-left:10rpx;">{{item.name}}</view>
+    <view class="nei ">
+      <view wx:for='{{shangjialist}}' wx:key='k' bindtap="todetail" id='{{item.id}}'>
+        <view class="sj flow ">
+          <image src="{{uploadpath}}shanjia/{{item.photo}}" style="width:100%;height:333rpx;"></image>
+          <view class="tao h7 chaochu2" style="top:256rpx">{{item.biao}} | {{item.taocan}}</view>
+          <view class="con">
+            <view class="h5 txt-black chaochu2">{{item.zhuti}}</view>
+            <view style="height:23rpx;"></view>
+            <view class="flex-row flex-bottom">
+              <view class="h6" style="color:#FF4153;">￥ </view>
+              <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
+            </view>
+            <view style="height:28rpx;"></view>
+            <view class="flex-row flex-center">
+              <image src='{{uploadpath}}shanjia/{{item.logo}}' style="width:33rpx;height:33rpx;border-radius:50%;border:2rpx solid #cccccc;"></image>
+              <view class="f-26" style="color:#4F4F4F;margin-left:10rpx;">{{item.name}}</view>
+            </view>
           </view>
         </view>
-
+        <view style="height:26rpx"></view>
       </view>
+
     </view>
 
 
@@ -100,7 +103,7 @@
       <view class="flex-1 f-26 txt-black {{seq==idx?'active':''}}">{{item.name}}</view>
     </view>
     <view class="flex-1" bindtap="aboutus">
-      <image src="{{uploadpath}}resource/{{lianwo==false?res.lianxi:res.lianxi2}}"   style="width:33rpx;height:37rpx"></image>
+      <image src="{{uploadpath}}resource/{{lianwo==false?res.lianxi:res.lianxi2}}" style="width:33rpx;height:37rpx"></image>
       <view class="flex-1 f-26 txt-black {{lianwo==true?'active':''}}">联系我们</view>
     </view>
   </view>

@@ -84,7 +84,7 @@ view {
 .inp {
   border: 1rpx solid #cccccc;
   padding-left: 10rpx;
-  height: 50rpx;
+  height: 65rpx;
   border-radius: 30rpx;
 }
 .btns {

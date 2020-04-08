@@ -52,6 +52,12 @@ class Content extends AppBase {
     })
     this.onMyShow();
   }
+  todetail(e) {
+    var id = e.currentTarget.id;
+    wx.navigateTo({
+      url: '/pages/detail/detail?id=' + id,
+    })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -59,4 +65,5 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.sendmsg = content.sendmsg;
 body.cancel = content.cancel;
+body.todetail = content.todetail;
 Page(body)
