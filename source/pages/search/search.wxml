@@ -1,7 +1,7 @@
 <view class="flex-row flex-center bb bg-white">
   <view class="flex-1"></view>
   <view class="inp flex-row flex-center">
-  <view style="width:40rpx;"></view>
+    <view style="width:40rpx;"></view>
     <image src="{{uploadpath}}resource/{{res.search}}" bindtap="sendmsg" style="width:37rpx;height:37rpx;"></image>
     <view class="xian"></view>
     <input class="f-26" value="{{content}}" bindconfirm="sendmsg" confirm-hold="true" focus="{{focus}}" placeholder="请输入关键字" placeholder-style="color:#A9A9A9;"></input>
@@ -10,14 +10,15 @@
   <view class="flex-1"></view>
 </view>
 
-<view>
+<view class="{{shangjialist.length==0?'bg-white':'bg-f5'}}">
   <view class="re h6 txt-black">搜索结果</view>
   <view style="height:30rpx;"></view>
 
   <view wx:for='{{shangjialist}}' wx:key='k' class="padding-1020" style='border-radius:80rpx;' bindtap="todetail" id='{{item.id}}'>
+  <image wx:if='{{item.youxuan_value=="Y"}}' src="{{uploadpath}}resource/{{res.youxuansj}}" class="pos"></image>
     <view class="flex-row flex-center bg-white padding-20" wx:if='{{item.photo!="" && item.photo2=="" && item.photo3==""}}'>
       <view>
-        <image src="{{uploadpath}}shanjia/{{item.photo}}" class="icon-100" style="border-radius:20rpx;"></image>
+        <image src="{{uploadpath}}shanjia/{{item.photo}}" class="icon-220" style="border-radius:20rpx;"></image>
       </view>
       <view class="margin-left-20">
         <view class="flex-row flex-center">
@@ -25,7 +26,14 @@
           <view class="txt-black" style="margin-left:10rpx;">{{item.name}}</view>
         </view>
         <view class="f-26 margin-top-5">{{item.cityqu_id_name}} {{item.shangquan_id_name}}</view>
-        <view class="f-26 margin-top-5">{{item.xingji_id_name}}</view>
+          <view class="flex-row flex-center  margin-top-5">
+          <view wx:if='{{item.pinfen!=""}}' class="h6 margin-right-10">{{item.pinfen}}</view>
+          <view class="f-26"> {{item.xingji_id_name}}</view>
+        </view>
+        <view class="h6 margin-top-5 flex-row flex-center" wx:if='{{item.liebiao!=""}}'>
+          <view class="h6" style="color:#DA647E;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
+          <view class="flex-1"></view>
+        </view>
         <view class="flex-row flex-bottom margin-top-5">
           <view class="h6" style="color:#FF4153;">￥ </view>
           <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
@@ -48,7 +56,12 @@
         <view class="f-26 margin-top-5 flex-row flex-center">
           <view class="f-26">{{item.cityqu_id_name}}</view>
           <view class="f-26 margin-left-10 margin-right-10">{{item.shangquan_id_name}}</view>
+           <view wx:if='{{item.pinfen!=""}}' class="h6 margin-right-10">{{item.pinfen}}</view>
           <view class="f-26">{{item.xingji_id_name}}</view>
+        </view>
+        <view class="h6 margin-top-5 flex-row flex-center" wx:if='{{item.liebiao!=""}}'>
+          <view class="h6" style="color:#DA647E;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
+          <view class="flex-1"></view>
         </view>
         <view class="flex-row flex-bottom margin-top-5">
           <view class="h6" style="color:#FF4153;">￥ </view>
@@ -59,8 +72,8 @@
 
   </view>
 
-<view wx:if='{{shangjialist.length==0}}' class="flex-row flex-column">
-  <image src="{{uploadpath}}resource/{{res.zanwu}}" style="width:70%;height:23vh;"></image>
-  <view class="margin-top">没有找到？换个试试吧！</view>
-</view>
+  <view wx:if='{{shangjialist.length==0}}' class="flex-row flex-column">
+    <image src="{{uploadpath}}resource/{{res.zanwu}}" style="width:70%;height:23vh;"></image>
+    <view class="margin-top">没有找到？换个试试吧！</view>
+  </view>
 </view>

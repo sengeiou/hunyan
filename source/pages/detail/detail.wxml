@@ -1,99 +1,104 @@
 <view class="flex-row flex-center fixed {{scrollTop>scrtop?'bg-white ':''}} " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;width:100vw;">
-  <image src="{{uploadpath}}resource/{{scrollTop>scrtop?res.fanhui2:res.fanhui}}" bindtap="backPage" style="height:50rpx;width:50rpx;"></image>
+  <image src="{{uploadpath}}resource/{{scrollTop>scrtop?res.fanhui2:res.fanhui}}" wx:if='{{isshare!="1"}}' bindtap="backPage" style="height:50rpx;width:50rpx;"></image>
+  <image src="{{uploadpath}}resource/{{scrollTop>scrtop?res.fanhui2:res.fanhui}}" wx:if='{{isshare=="1"}}' bindtap="backhome" style="height:50rpx;width:50rpx;"></image>
   <view style="width:36%;"></view>
   <view class="content {{scrollTop>scrtop?'txt-black':'txt-white'}}" style='top:{{StatusBar}}px;'>详情</view>
 
 </view>
 <view id='cd2'>
-<view id="cddd">
-  <view id='yh'>
-    <view id='sj'>
-      <view>
-        <image src="{{uploadpath}}shanjia/{{detail.img}}" style="width:100vw;height:585rpx;"></image>
-      </view>
-
-
-      <view class="titles">
-        <view class="f-36 txt-black txt-bold">{{detail.name}}</view>
-        <view class="flex-row flex-center margin-top-20">
-          <view class="f-26 margin-right-15">{{detail.xingji_id_name}}</view>
-          <view class="f-26 ">￥{{detail.money}}</view>
+  <view id="cddd">
+    <view id='yh'>
+      <view id='sj'>
+        <view>
+          <image src="{{uploadpath}}shanjia/{{detail.img}}" style="width:100vw;height:580rpx;"></image>
         </view>
 
-        <view class="flex-row flex-center margin-top-20">
-          <view class="f-26" style='color:#2D2C2C;'>{{detail.address}}</view>
-          <view class="flex-1"></view>
-          <!-- <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx;"></image> -->
+
+        <view class="titles">
+          <view class="f-36 txt-black txt-bold">{{detail.name}}</view>
+          <view class="flex-row flex-center margin-top-20">
+            <view wx:if='{{detail.pinfen!=""}}' class="h6 margin-right-10">{{detail.pinfen}}</view>
+            <view class="f-26 margin-right-15">{{detail.xingji_id_name}}</view>
+            <view class="f-26 ">￥{{detail.money}}</view>
+          </view>
+          <view class="h6 margin-top-5 flex-row flex-center" wx:if='{{detail.liebiao!=""}}'>
+            <view class="h6" style="color:#DA647E;background:#FEEBF4;padding: 5rpx 10rpx;">{{detail.liebiao}}</view>
+            <view class="flex-1"></view>
+          </view>
+          <view class="flex-row flex-center margin-top-20">
+            <view class="f-26" style='color:#2D2C2C;'>{{detail.address}}</view>
+            <view class="flex-1"></view>
+            <!-- <image src="{{uploadpath}}resource/{{res.didian}}" style="width:19rpx;height:25rpx;"></image> -->
+          </view>
         </view>
+
+        <view style="height:150rpx;"></view>
+
+        <view style='height:20rpx;'></view>
+        <view class="flex-row flex-center text-center {{huadong==true?'top bg-gray':''}}" style='top:{{CustomBar}}px;height:45px'>
+          <view class="f-x {{daohang=='sj'?'active h4-5 txt-bold':''}} margin-left-40" bindtap="daoscroll" id='sj'>商家简介</view>
+          <view class="f-x {{daohang=='yh'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='yh'>优惠</view>
+          <view class="f-x {{daohang=='cd'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll1" id='cd'>场地</view>
+          <view class="f-x {{daohang=='cd2'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='cd2'>菜单</view>
+        </view>
+        <view style='height:20rpx;'></view>
+        <!-- 商家信息 -->
       </view>
 
-      <view style="height:150rpx;"></view>
+      <view class="bg-white youhui">
+        <!-- <view class="flex-row flex-center"> -->
+        <view class="f-30 txt-black txt-bold padding34">商家简介</view>
+        <!-- <view class="flex-1"></view> -->
+        <!-- <view class="f-32 margin-top-10" style="color:#FF4153;"> -->
+        <!-- <text class="h6" style="color:#FF4153;">￥</text>{{detail.money}}</view> -->
+        <!-- </view> -->
 
-      <view style='height:20rpx;'></view>
-      <view class="flex-row flex-center text-center {{huadong==true?'top bg-gray':''}}" style='top:{{CustomBar}}px;height:45px'>
-        <view class="f-x {{daohang=='sj'?'active h4-5 txt-bold':''}} margin-left-40" bindtap="daoscroll" id='sj'>商家简介</view>
-        <view class="f-x {{daohang=='yh'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='yh'>优惠</view>
-        <view class="f-x {{daohang=='cd'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll1" id='cd'>场地</view>
-        <view class="f-x {{daohang=='cd2'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='cd2'>菜单</view>
+        <view class="line"></view>
+        <view>
+          <text class="f-26" style="color:#2D2C2C;">{{detail.jianjie}}</text>
+        </view>
+
       </view>
-      <view style='height:20rpx;'></view>
-      <!-- 商家信息 -->
+
+
+      <!-- 优惠信息 -->
+      <view style="height:26rpx;"></view>
     </view>
-
     <view class="bg-white youhui">
-      <!-- <view class="flex-row flex-center"> -->
-      <view class="f-30 txt-black txt-bold padding34">商家简介</view>
-      <!-- <view class="flex-1"></view> -->
-      <!-- <view class="f-32 margin-top-10" style="color:#FF4153;"> -->
-      <!-- <text class="h6" style="color:#FF4153;">￥</text>{{detail.money}}</view> -->
-      <!-- </view> -->
-
+      <view class="flex-row flex-center padding34">
+        <image src="{{uploadpath}}resource/{{res.youhui}}" style="width:35rpx;height:35rpx;margin-right:15rpx;"></image>
+        <view class="f-30 txt-black txt-bold">优惠信息</view>
+      </view>
       <view class="line"></view>
       <view>
-        <text class="f-26" style="color:#2D2C2C;">{{detail.jianjie}}</text>
-      </view>
+        <text class="f-26" style="color:#2D2C2C;">{{detail.youhui}}</text>
 
+      </view>
     </view>
 
+    <!-- 场地信息 -->
 
-    <!-- 优惠信息 -->
     <view style="height:26rpx;"></view>
   </view>
-  <view class="bg-white youhui">
+  <view class="bg-white chandi" id='cd'>
     <view class="flex-row flex-center padding34">
-      <image src="{{uploadpath}}resource/{{res.youhui}}" style="width:35rpx;height:35rpx;margin-right:15rpx;"></image>
-      <view class="f-30 txt-black txt-bold">优惠信息</view>
+      <image src="{{uploadpath}}resource/{{res.chandi}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
+      <view class="f-30 txt-black txt-bold ">场地信息</view>
     </view>
-    <view class="line"></view>
-    <view>
-      <text class="f-26" style="color:#2D2C2C;">{{detail.youhui}}</text>
-
-    </view>
-  </view>
-
-  <!-- 场地信息 -->
-
-  <view style="height:26rpx;"></view>
-</view>
-<view class="bg-white chandi" id='cd'>
-  <view class="flex-row flex-center padding34">
-    <image src="{{uploadpath}}resource/{{res.chandi}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
-    <view class="f-30 txt-black txt-bold ">场地信息</view>
-  </view>
-  <view class="line2"></view>
-  <!-- <view wx:for='{{detail.chandi}}' wx:key='k'>
+    <view class="line2"></view>
+    <!-- <view wx:for='{{detail.chandi}}' wx:key='k'>
     <image src="{{uploadpath}}shanjia/{{item.img}}" style="width:625rpx;"></image>
     <view style="height:33rpx"></view>
   </view> -->
 
-  <import src="../../wxParse/wxParse.wxml" />
+    <import src="../../wxParse/wxParse.wxml" />
 
-  <view class='nostyle padding-28 '>
-    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+    <view class='nostyle padding-28 '>
+      <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+    </view>
+
   </view>
-
-</view>
-<!-- 菜单 -->
+  <!-- 菜单 -->
   <view style="height:26rpx;"></view>
 </view>
 

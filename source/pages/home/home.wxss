@@ -1,6 +1,6 @@
 .indexbanner {
   width: 100vw;
-  height: 506rpx;
+  height: 500rpx;
   z-index: 10;
 }
 .fixed {

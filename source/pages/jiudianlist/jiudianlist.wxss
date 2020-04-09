@@ -121,3 +121,13 @@ view {
 .padding-510 {
   padding: 10rpx 20rpx;
 }
+.pos {
+  width: 230rpx;
+  height: 210rpx;
+  position: absolute;
+  right: -14rpx;
+}
+.icon-220 {
+  width: 220rpx;
+  height: 220rpx;
+}

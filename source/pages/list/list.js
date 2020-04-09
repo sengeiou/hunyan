@@ -47,6 +47,14 @@ class Content extends AppBase {
       url: '/pages/detail/detail?id='+id,
     })
   }
+  onShareAppMessage() {
+    console.log(this.Base.getMyData().city)
+    return {
+      title: '',
+      desc: '',
+      path: '/pages/list/list?biao_id=' + this.Base.getMyData().biao_id + '&city_id=' + this.Base.getMyData().city_id + "&biaoname=" + this.Base.getMyData().biaoname + "&city=" + this.Base.getMyData().city,
+    }
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -55,4 +63,5 @@ body.onMyShow = content.onMyShow;
 body.sendmsg = content.sendmsg;
 body.qiehuan = content.qiehuan;
 body.todetail = content.todetail;
+body.onShareAppMessage = content.onShareAppMessage;
 Page(body)

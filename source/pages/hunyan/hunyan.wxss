@@ -18,7 +18,7 @@ Page {
 }
 
 .indexbanner2 {
-  width: 694rpx;
+  width: 700rpx;
   /* height: 240rpx; */
   margin-left: 28rpx;
 }
@@ -96,6 +96,8 @@ view {
   padding: 22rpx 0 22rpx 28rpx;
   column-count: 2;
   -webkit-column-count: 2;
+  column-gap:0;
+  -webkit-column-gap:0;
 }
 
 .flow {
@@ -118,7 +120,7 @@ view {
   /* width: calc(100%/2 - 28rpx); */
   width: 336rpx;
   background: #ffffff;
-  margin-right: 21rpx;
+  /* margin-right: 21rpx; */
   border-radius: 26rpx;
   /* margin-bottom: 26rpx; */
   position: relative;

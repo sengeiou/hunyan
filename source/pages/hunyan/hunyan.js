@@ -27,6 +27,7 @@ class Content extends AppBase {
     if (fuwu_id == "undefined") {
       fuwu_id = 1;
     }
+    
     super.onLoad(options);
     this.Base.setMyData({
       StatusBar: getApp().globalData.StatusBar,
@@ -38,6 +39,7 @@ class Content extends AppBase {
       fuwu_id: fuwu_id,
       lianwo: false,
       jiazai: false,
+      isshare:this.Base.options.isshare
     })
     this.getcity();
   }
@@ -219,14 +221,14 @@ class Content extends AppBase {
     var city_id=this.Base.getMyData().city_id;
   
     wx.navigateTo({
-      url: lujing + '?biao_id=' + id + '&city_id=' + city_id + "&biaoname=" + biaoname + "&city=" + city,
+      url: lujing + '?biao_id=' + id + '&city_id=' + city_id + "&biaoname=" + biaoname + "&city=" + city + '&isshare=0',
     })
   }
   todetail(e) {
     var id = e.currentTarget.id;
     if (id != 0) {
       wx.navigateTo({
-        url: '/pages/detail/detail?id=' + id,
+        url: '/pages/detail/detail?id=' + id + '&isshare=0',
       })
     }
   }
@@ -258,6 +260,14 @@ class Content extends AppBase {
     })
     this.onMyShow();
   }
+  onShareAppMessage() {
+    console.log(this.Base.getMyData().city)
+    return {
+      title: '',
+      desc: '',
+      path: '/pages/hunyan/hunyan?city=' + this.Base.getMyData().city + '&fuwu_id=' + this.Base.getMyData().fuwu_id +'&isshare=1',
+    }
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -276,4 +286,5 @@ body.todetail = content.todetail;
 body.onReachBottom = content.onReachBottom;
 body.aboutus = content.aboutus;
 body.cityFn = content.cityFn;
+body.onShareAppMessage = content.onShareAppMessage;
 Page(body)

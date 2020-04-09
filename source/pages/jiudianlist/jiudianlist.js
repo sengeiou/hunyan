@@ -37,6 +37,8 @@ class Content extends AppBase {
       city_id: this.Base.options.city_id,
       biaoname: this.Base.options.biaoname,
       city: this.Base.options.city,
+      chuxian: '',
+      isshare:this.Base.options.isshare
     })
 
   }
@@ -64,7 +66,6 @@ class Content extends AppBase {
         date: '',
         prices: '',
         zhuo: '',
-        chuxian: '',
         seq: -1,
         quan: -1,
         jiage: -1,
@@ -411,6 +412,19 @@ class Content extends AppBase {
       url: '/pages/detail/detail?id='+id,
     })
   }
+  onShareAppMessage() {
+    console.log(this.Base.getMyData().city)
+    return {
+      title: '',
+      desc: '',
+      path: '/pages/jiudianlist/jiudianlist?biao_id=' + this.Base.getMyData().biao_id + '&city_id=' + this.Base.getMyData().city_id + "&biaoname=" + this.Base.getMyData().biaoname + "&city=" + this.Base.getMyData().city+'&isshare=1',
+    }
+  }
+  backhome(){
+    wx.navigateTo({
+      url: '/pages/home/home',
+    })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -440,4 +454,6 @@ body.getcityman = content.getcityman;
 body.getcity = content.getcity;
 body.chenshiFn = content.chenshiFn;
 body.todetail = content.todetail;
+body.onShareAppMessage = content.onShareAppMessage;
+body.backhome = content.backhome;
 Page(body)

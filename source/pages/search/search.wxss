@@ -2,6 +2,9 @@
 /* Page {
   background: #f5f2f5;
 } */
+.bg-f5 {
+  background: #f5f2f5;
+}
 .inp {
   width: 592rpx;
   height: 70rpx;
@@ -40,4 +43,14 @@
 }
 .padding-1020 {
   padding: 10rpx 20rpx;
+}
+.icon-220 {
+  width: 220rpx;
+  height: 220rpx;
+}
+.pos {
+  width: 230rpx;
+  height: 210rpx;
+  position: absolute;
+  right: -14rpx;
 }

@@ -15,6 +15,9 @@ import {
   MemberApi
 } from "apis/member.api";
 import {
+  CityApi
+} from "apis/city.api";
+import {
   WechatApi
 } from "apis/wechat.api";
 
@@ -118,7 +121,7 @@ export class AppBase {
       checkPermission: base.checkPermission,
       getUserInfo: base.getUserInfo,
       toast: base.toast,
-
+      backhome: base.backhome
 
     }
   }
@@ -392,6 +395,13 @@ export class AppBase {
         info.city = address.address_component.city;
         info.qu = address.address_component.district;
         info.address = address.address;
+        var cityapi = new CityApi();
+        cityapi.citylist({ name: address.address_component.city}, (citylist) => {
+          if (citylist.length>0){
+            info.city_id = citylist[0].id;
+          }
+        })
+
         this.Base.setMyData({
           memberinfo: info
         });
@@ -422,7 +432,7 @@ export class AppBase {
     console.log("onReachBottom");
   }
   onShareAppMessage() {
-
+    
 
   }
 
@@ -1071,6 +1081,11 @@ export class AppBase {
     wx.showToast({
       title: msg,
       icon: "none"
+    })
+  }
+  backhome() {
+    wx.navigateTo({
+      url: '/pages/home/home',
     })
   }
 }

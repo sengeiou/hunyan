@@ -41,7 +41,8 @@ class Content extends AppBase {
       zaiimg: false,
       rili: false,
       huadong: false,
-      scrtop: 200
+      scrtop: 200,
+      isshare: this.Base.options.isshare
     })
   }
   onMyShow() {
@@ -280,6 +281,14 @@ class Content extends AppBase {
   tapDayItem(e) {
     console.log(e)
   }
+  onShareAppMessage() {
+    console.log(this.Base.getMyData().city)
+    return {
+      title: '',
+      desc: '',
+      path: '/pages/detail/detail?id=' + this.Base.options.id + '&isshare=1'
+    }
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -296,4 +305,5 @@ body.ziaxian = content.ziaxian;
 body.daoscroll1 = content.daoscroll1;
 body.tapDayItem = content.tapDayItem;
 body.mobileFn = content.mobileFn;
+body.onShareAppMessage = content.onShareAppMessage;
 Page(body)

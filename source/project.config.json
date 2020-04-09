@@ -87,7 +87,7 @@
 					"id": 4,
 					"name": "pages/jiudianlist/jiudianlist",
 					"pathName": "pages/jiudianlist/jiudianlist",
-					"query": "biao_id=1&city_id=1&biaoname=123",
+					"query": "biao_id=1&city_id=1&biaoname=123&city=北京市",
 					"scene": null
 				}
 			]

@@ -101,3 +101,13 @@ view {
   left: 16rpx;
   margin-right: 16rpx;
 }
+.pos {
+  width: 230rpx;
+  height: 210rpx;
+  position: absolute;
+  right: -14rpx;
+}
+.icon-220 {
+  width: 220rpx;
+  height: 220rpx;
+}
