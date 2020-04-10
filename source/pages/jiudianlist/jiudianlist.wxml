@@ -104,7 +104,7 @@
       <view class="xian"></view>
     </view>
     <!-- 筛选条件 -->
-    <view class="{{chuxian!=''?'spo':''}}" style="top:{{StatusBar*2+3}}px;">
+    <view class="{{chuxian!=''?'spo':''}}" style="top:{{StatusBar*2}}px;">
       <view style="height:20rpx;"></view>
       <view class="flex-row flex-center text-center margin-top-20 " style="z-index:25;">
         <view class="flex-1"></view>

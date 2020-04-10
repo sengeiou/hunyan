@@ -21,8 +21,8 @@ view {
   padding: 39rpx 37rpx 20rpx;
   border-radius: 26rpx;
   background: #fff;
-  position: absolute;
-  top: 509rpx;
+  position: relative;
+  bottom: 90rpx;
   left: 28rpx;
 }
 
@@ -147,4 +147,10 @@ view {
   top: 15%;
   left: 10%;
   z-index: 50;
+}
+.h150 {
+  height: 150rpx;
+}
+.h180 {
+  height: 180rpx;
 }

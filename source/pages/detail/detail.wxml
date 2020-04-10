@@ -32,10 +32,9 @@
           </view>
         </view>
 
-        <view style="height:150rpx;"></view>
 
-        <view style='height:20rpx;'></view>
-        <view class="flex-row flex-center text-center {{huadong==true?'top bg-gray':''}}" style='top:{{CustomBar}}px;height:45px'>
+        <!-- <view style='height:20rpx;'></view> -->
+        <view class="flex-row flex-center text-center {{huadong==true?'top bg-gray':''}}" style='top:{{CustomBar}}px;height:45px;margin-top:{{huadong!=true?"-60rpx":"0rpx"}}'>
           <view class="f-x {{daohang=='sj'?'active h4-5 txt-bold':''}} margin-left-40" bindtap="daoscroll" id='sj'>商家简介</view>
           <view class="f-x {{daohang=='yh'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='yh'>优惠</view>
           <view class="f-x {{daohang=='cd'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll1" id='cd'>场地</view>

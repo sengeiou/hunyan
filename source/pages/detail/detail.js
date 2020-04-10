@@ -70,7 +70,7 @@ class Content extends AppBase {
     var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     var today = year + '/' + mon + '/' + day + ' ' + '00:00:00';
     var todayw = year + '/' + mon + '/' + day + ' ' + '23:59:59';
-    console.log(today, 'today', todayw);
+    // console.log(today, 'today', todayw);
     var shangjiaapi = new ShangjiaApi();
     var arr = [];
     shangjiaapi.yuyuelist({
@@ -78,8 +78,6 @@ class Content extends AppBase {
     }, (yuyuelist) => {
       for (var i = 0; i < yuyuelist.length; i++) {
         yuyuelist[i].shijian = yuyuelist[i].shijian.replace(/-/g, '/');
-        console.log(new Date(yuyuelist[i].shijian).getTime())
-        console.log(new Date(today).getTime(), 'today');
         if (new Date(today).getTime() < new Date(yuyuelist[i].shijian).getTime() && new Date(todayw).getTime() > new Date(yuyuelist[i].shijian).getTime()) {
           arr.push(yuyuelist[i]);
         }
