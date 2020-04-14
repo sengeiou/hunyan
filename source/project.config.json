@@ -70,10 +70,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "pages/list/list",
 					"pathName": "pages/list/list",
-					"query": "",
+					"query": "biao_id=2&city_id=1&biaoname=酒店&city=北京市&isshare=0",
 					"scene": null
 				},
 				{

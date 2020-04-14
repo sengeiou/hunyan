@@ -343,6 +343,9 @@ button[disabled][type=primary] {
 .margin-top-20{
   margin-top:20rpx;
 }
+.margin-top-5{
+  margin-top:10rpx;
+}
 .margin-top-30{
   margin-top:30rpx;
 }
@@ -523,3 +526,8 @@ button[disabled][type=primary] {
   border-bottom: 2rpx solid #cccccc;
 }
 
+.zhidin {
+  position: fixed;
+  right: 10%;
+  bottom: 10%;
+}

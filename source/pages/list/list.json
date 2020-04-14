@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "canvas-ring": "/components/canvas-ring/canvas-ring"
+  },
+  "navigationBarTextStyle": "black",
+  "navigationStyle": "custom"
 }

@@ -1,4 +1,4 @@
-<view class="flex-row flex-center bb bg-white">
+<view class="flex-row flex-center bb bg-white sepo" style="top:0px;">
   <view class="flex-1"></view>
   <view class="inp flex-row flex-center">
     <view style="width:40rpx;"></view>
@@ -9,7 +9,7 @@
   <view class="h5" style="color:#656565;" bindtap="cancel">取消</view>
   <view class="flex-1"></view>
 </view>
-
+<view style="height:{{StatusBar}}px;"></view>
 <view class="{{shangjialist.length==0?'bg-white':'bg-f5'}}">
   <view class="re h6 txt-black">搜索结果</view>
   <view style="height:30rpx;"></view>

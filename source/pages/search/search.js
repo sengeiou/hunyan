@@ -15,6 +15,9 @@ class Content extends AppBase {
    
     super.onLoad(options);
     this.Base.setMyData({
+      StatusBar: getApp().globalData.StatusBar,
+      CustomBar: getApp().globalData.CustomBar,
+      Custom: getApp().globalData.Custom,
       content: this.Base.options.content,
       focus:false
     })

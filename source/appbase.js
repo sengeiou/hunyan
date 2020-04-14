@@ -121,7 +121,8 @@ export class AppBase {
       checkPermission: base.checkPermission,
       getUserInfo: base.getUserInfo,
       toast: base.toast,
-      backhome: base.backhome
+      backhome: base.backhome,
+      zhidin: base.zhidin,
 
     }
   }
@@ -161,6 +162,12 @@ export class AppBase {
   }
   onReady() {
     console.log("onReady");
+  }
+  zhidin() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300,
+    })
   }
   minimm
   onShow() {

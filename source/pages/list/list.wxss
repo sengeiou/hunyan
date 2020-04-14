@@ -3,6 +3,13 @@
 Page {
   background: #f4f4f4;
 }
+.fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: #fff;
+  z-index: 20;
+}
 
 .re {
   padding-left: 36rpx;
@@ -36,6 +43,30 @@ view {
   /* margin-top: 20rpx; */
   padding: 0 10rpx;
 }
+
+.fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: #fff;
+  z-index: 20;
+}
+
+.enr {
+  width: 694rpx;
+  border-radius: 26rpx;
+  box-shadow: 2rpx 2rpx 10rpx #909090;
+  position: absolute;
+  top: 20%;
+  left: 28rpx;
+  background: #fff;
+  padding: 50rpx auto;
+}
+.pp {
+  width: 642rpx;
+  margin: 30rpx auto 0;
+}
+
 
 .pof {
   position: fixed;
@@ -110,4 +141,29 @@ view {
 .icon-220 {
   width: 220rpx;
   height: 220rpx;
+}
+.zhixuan {
+  width: 75%;
+  height: 70rpx;
+  background: #ff4153;
+  text-align: center;
+  line-height: 70rpx;
+  border-radius: 50rpx;
+  color: #fff;
+  margin: 20rpx 0;
+}
+.shu {
+  width: 1rpx;
+  height: 263rpx;
+  background: #eee;
+  position: absolute;
+  top: 10%;
+  left: 33rpx;
+}
+.xian {
+  width: 50rpx;
+  height: 6rpx;
+  background: #ff4153;
+  margin-left: 47%;
+  margin-top: 5rpx;
 }

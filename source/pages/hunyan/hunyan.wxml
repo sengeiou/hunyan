@@ -110,3 +110,7 @@
   </view>
   <view style="height:34rpx"></view>
 </view>
+
+<view class="zhidin" bindtap="zhidin">
+  <image src="{{uploadpath}}resource/{{res.zhiding}}" class="icon-50"></image>
+</view>

@@ -54,3 +54,8 @@
   position: absolute;
   right: -14rpx;
 }
+.sepo {
+  position: fixed;
+  left: 0;
+  z-index: 999999;
+}

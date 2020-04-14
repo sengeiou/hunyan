@@ -90,7 +90,7 @@
 
 
     <view class="flex-row flex-column">
-      <view class="zhixuan f-26" bindtap="getzhixuan">一键获取智选酒店</view>
+      <view class="zhixuan f-26" bindtap="getzhixuan">一键优选酒店</view>
     </view>
 
   </view>
@@ -257,4 +257,8 @@
   <view wx:for='{{xingjilist}}' wx:key='k' wx:for-index='idx' bindtap="xuanxingji" id='{{idx}}' class="{{xinji==idx?'txt-zt':''}} margin-bottom-40 margin-left-40">
     {{item.name}}
   </view> -->
+</view>
+
+<view class="zhidin" bindtap="zhidin">
+  <image src="{{uploadpath}}resource/{{res.zhiding}}" class="icon-50"></image>
 </view>

@@ -425,6 +425,12 @@ class Content extends AppBase {
       url: '/pages/home/home',
     })
   }
+  zhidin() {
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300,
+    })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -456,4 +462,5 @@ body.chenshiFn = content.chenshiFn;
 body.todetail = content.todetail;
 body.onShareAppMessage = content.onShareAppMessage;
 body.backhome = content.backhome;
+body.zhidin = content.zhidin;
 Page(body)

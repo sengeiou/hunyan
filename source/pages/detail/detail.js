@@ -42,6 +42,7 @@ class Content extends AppBase {
       rili: false,
       huadong: false,
       scrtop: 200,
+      zhan:false,
       isshare: this.Base.options.isshare
     })
   }
@@ -287,6 +288,18 @@ class Content extends AppBase {
       path: '/pages/detail/detail?id=' + this.Base.options.id + '&isshare=1'
     }
   }
+  zhankai(){
+    var zhan = this.Base.getMyData().zhan;
+    this.Base.setMyData({
+      zhan: !zhan
+    })
+  }
+  zhidin(){
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300,
+    })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -304,4 +317,6 @@ body.daoscroll1 = content.daoscroll1;
 body.tapDayItem = content.tapDayItem;
 body.mobileFn = content.mobileFn;
 body.onShareAppMessage = content.onShareAppMessage;
+body.zhankai = content.zhankai;
+body.zhidin = content.zhidin;
 Page(body)

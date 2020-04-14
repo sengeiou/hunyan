@@ -1,68 +1,170 @@
+<view class="flex-row flex-center fixed  " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;width:100vw;">
+  <image src="{{uploadpath}}resource/{{res.fanhui}}" wx:if='{{isshare=="0"}}' bindtap="backPage" style="height:50rpx;width:50rpx;margin-left:20rpx;"></image>
+  <image src="{{uploadpath}}resource/{{res.fanhui}}" wx:if='{{isshare!="0"}}' bindtap="backhome" style="height:50rpx;width:50rpx;margin-left:20rpx;"></image>
+  <view style="width:36%;"></view>
+  <!-- <view class="content {{scrollTop>292?'txt-black':'txt-white'}}" style='top:{{StatusBar}}px;'>详情</view> -->
+
+</view>
+<view>
+  <image src="{{uploadpath}}biaoqian/{{biaodetail.bgimg}}" style="width:100vw;height:580rpx;"></image>
+</view>
 
 
- <view wx:if='{{show==false}}' wx:for='{{shangjialist}}' wx:key='key' class="padding-20" style='border-radius:100rpx;' bindtap="todetail" id='{{item.id}}'>
-<image wx:if='{{item.youxuan_value=="Y"}}' src="{{uploadpath}}resource/{{res.youxuansj}}" class="pos"></image>
-    <view class="flex-row flex-center bg-white padding-20" wx:if='{{item.photo!="" && item.photo2=="" && item.photo3==""}}'>
-      <view>
-        <image src="{{uploadpath}}shanjia/{{item.photo}}" class="icon-220" style="border-radius:20rpx;"></image>
+<view class="enr">
+
+
+  <view class="shu"></view>
+
+  <view class="pp">
+    <view class="flex-row flex-center">
+
+      <image src="{{uploadpath}}resource/{{res.yuan}}" style="width:14rpx;height:14rpx;"></image>
+      <!-- <view class="f-26 margin-left-10" style="color:#494949;">{{city}}</view> -->
+      <picker class="margin-left-10" bindchange='chenshiFn' range='{{citylist}}' range-key='name'>
+        <input placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{city}}" disabled="{{true}}" class="f-26" style="color:#000000;width:100rpx;"></input>
+      </picker>
+      <view class="flex-1 margin-left-10" style="">
+        <picker bindchange='cityFn' range='{{qulist}}' range-key='name'>
+          <input placeholder="请选择区域" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{cityqu}}" disabled="{{true}}" class="f-26" style="color:#000000;"></input>
+        </picker>
       </view>
-      <view class="margin-left-20">
-        <view class="flex-row flex-center">
-          <image src='{{uploadpath}}shanjia/{{item.logo}}' class="radius-50" style="width:33rpx;height:33rpx;border:2rpx solid #cccccc;"></image>
-          <view class="txt-black" style="margin-left:10rpx;">{{item.name}}</view>
-        </view>
-        <view class="f-26 margin-top-5">{{item.cityqu_id_name}} {{item.shangquan_id_name}}</view>
-         <view class="flex-row flex-center  margin-top-5">
-          <view wx:if='{{item.pinfen!=""}}' class="h6 margin-right-10">{{item.pinfen}}</view>
-          <view class="f-26"> {{item.xingji_id_name}}</view>
-        </view>
 
-        
-        <view class="h6 margin-top-5 flex-row flex-center" wx:if='{{item.liebiao!=""}}'>
-          <view class="h6" style="color:#DA647E;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
-          <view class="flex-1"></view>
-        </view>
-        <view class="flex-row flex-bottom margin-top-5">
-          <view class="h6" style="color:#FF4153;">￥ </view>
-          <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
-        </view>
+    </view>
+
+    <view class="line" style="margin-top:15rpx;"></view>
+
+
+  </view>
+
+  <view style="margin: auto; width: 642rpx;">
+    <view class="flex-row flex-center">
+
+      <image src="{{uploadpath}}resource/{{res.yuan}}" style="width:14rpx;height:14rpx;"></image>
+      <view class="flex-row flex-center" style="margin-left:26rpx;margin-top:29rpx;">
+        <picker mode='date' value="{{date}}" start='{{starttime}}' bindchange="bindDateChange">
+          <input wx:if='{{biao_id==1}}' placeholder="请选择婚期" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{date}}" disabled="{{true}}" class="f-26" style="color:#000000;"></input>
+          <input wx:if='{{biao_id!=1}}' placeholder="请选择宴会日期" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{date}}" disabled="{{true}}" class="f-26" style="color:#000000;"></input>
+        </picker>
       </view>
     </view>
 
-    <view class="bg-white padding-20" wx:if='{{item.photo2!="" || item.photo3!=""}}'>
-      <view class="flex-row flex-center">
-        <image src="{{uploadpath}}shanjia/{{item.photo}}" wx:if='{{item.photo!=""}}' style="width:30vw;height:200rpx;margin:0 5rpx;border-radius:20rpx;"></image>
-        <image src="{{uploadpath}}shanjia/{{item.photo2}}" wx:if='{{item.photo2!=""}}' style="width:30vw;height:200rpx;margin:0 5rpx;border-radius:20rpx;"></image>
-        <image src="{{uploadpath}}shanjia/{{item.photo3}}" wx:if='{{item.photo3!=""}}' style="width:30vw;height:200rpx;margin:0 5rpx;border-radius:20rpx;"></image>
-      </view>
 
-      <view class="margin-top-20">
-        <view class="flex-row flex-center">
-          <image src='{{uploadpath}}shanjia/{{item.logo}}' class="radius-50" style="width:33rpx;height:33rpx;border:2rpx solid #cccccc;"></image>
-          <view class="txt-black" style="margin-left:10rpx;">{{item.name}}</view>
-        </view>
-        <view class="f-26 margin-top-5 flex-row flex-center">
-          <view class="f-26">{{item.cityqu_id_name}}</view>
-          <view class="f-26 margin-left-10 margin-right-10">{{item.shangquan_id_name}}</view>
-           <view wx:if='{{item.pinfen!=""}}' class="h6 margin-right-10">{{item.pinfen}}</view>
-          <view class="f-26">{{item.xingji_id_name}}</view>
-        </view>
-        
-        <view class="h6 margin-top-5 flex-row flex-center" wx:if='{{item.liebiao!=""}}'>
-          <view class="h6" style="color:#DA647E;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
-          <view class="flex-1"></view>
-        </view>
-        <view class="flex-row flex-bottom margin-top-5">
-          <view class="h6" style="color:#FF4153;">￥ </view>
-          <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
-        </view>
+    <view class="margin-top-20 line" style=""></view>
+
+
+  </view>
+  <view style="margin: auto; width: 642rpx;">
+    <view class="flex-row flex-center">
+
+      <image src="{{uploadpath}}resource/{{res.yuan}}" style="width:14rpx;height:14rpx;"></image>
+      <view class="flex-row flex-center" style="margin-left:26rpx;margin-top:29rpx;">
+        <picker bindchange='priceFn' range='{{yusuanlist}}' range-key='name'>
+          <input placeholder="请选择宴会预算" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{prices}}" disabled="{{true}}" class="f-26" style="color:#000000;"></input>
+        </picker>
       </view>
     </view>
+
+
+    <view class="margin-top-20 line" style=""></view>
+
+
+  </view>
+
+  <view style="margin: auto; width: 642rpx;">
+    <view class="flex-row flex-center">
+
+      <image src="{{uploadpath}}resource/{{res.yuan}}" style="width:14rpx;height:14rpx;"></image>
+      <view class="flex-row flex-center" style="margin-left:26rpx;margin-top:29rpx;">
+        <picker bindchange='zhuoFn' range='{{zhuoshulist}}' range-key='name'>
+          <input placeholder="请选择宴会桌数" placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{zhuo}}" disabled="{{true}}" class="f-26" style="color:#000000;"></input>
+        </picker>
+      </view>
+    </view>
+
+
+    <view class="margin-top-20 line" style=""></view>
 
 
   </view>
 
 
+  <view class="flex-row flex-column">
+    <view class="zhixuan f-26" bindtap="getzhixuan">一键优选酒店</view>
+  </view>
+
+</view>
+<view style="height:16vh;"></view>
+
+<view>
+  <view class="text-center txt-bold" style="color:#FF4153;">{{biaoname}}</view>
+  <view class="xian"></view>
+</view>
+
+<view wx:if='{{show==false}}' wx:for='{{shangjialist}}' wx:key='key' class="padding-20" style='border-radius:100rpx;' bindtap="todetail" id='{{item.id}}'>
+  <image wx:if='{{item.youxuan_value=="Y"}}' src="{{uploadpath}}resource/{{res.youxuansj}}" class="pos"></image>
+  <view class="flex-row flex-center bg-white padding-20" wx:if='{{item.photo!="" && item.photo2=="" && item.photo3==""}}'>
+    <view>
+      <image src="{{uploadpath}}shanjia/{{item.photo}}" class="icon-220" style="border-radius:20rpx;"></image>
+    </view>
+    <view class="margin-left-20">
+      <view class="flex-row flex-center">
+        <image src='{{uploadpath}}shanjia/{{item.logo}}' class="radius-50" style="width:33rpx;height:33rpx;border:2rpx solid #cccccc;"></image>
+        <view class="txt-black" style="margin-left:10rpx;">{{item.name}}</view>
+      </view>
+      <view class="f-26 margin-top-5">{{item.cityqu_id_name}} {{item.shangquan_id_name}}</view>
+      <view class="flex-row flex-center  margin-top-5">
+        <view wx:if='{{item.pinfen!=""}}' class="h6 margin-right-10">{{item.pinfen}}</view>
+        <view class="f-26"> {{item.xingji_id_name}}</view>
+      </view>
+
+
+      <view class="h6 margin-top-5 flex-row flex-center" wx:if='{{item.liebiao!=""}}'>
+        <view class="h6" style="color:#DA647E;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
+        <view class="flex-1"></view>
+      </view>
+      <view class="flex-row flex-bottom margin-top-5">
+        <view class="h6" style="color:#FF4153;">￥ </view>
+        <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bg-white padding-20" wx:if='{{item.photo2!="" || item.photo3!=""}}'>
+    <view class="flex-row flex-center">
+      <image src="{{uploadpath}}shanjia/{{item.photo}}" wx:if='{{item.photo!=""}}' style="width:30vw;height:200rpx;margin:0 5rpx;border-radius:20rpx;"></image>
+      <image src="{{uploadpath}}shanjia/{{item.photo2}}" wx:if='{{item.photo2!=""}}' style="width:30vw;height:200rpx;margin:0 5rpx;border-radius:20rpx;"></image>
+      <image src="{{uploadpath}}shanjia/{{item.photo3}}" wx:if='{{item.photo3!=""}}' style="width:30vw;height:200rpx;margin:0 5rpx;border-radius:20rpx;"></image>
+    </view>
+
+    <view class="margin-top-20">
+      <view class="flex-row flex-center">
+        <image src='{{uploadpath}}shanjia/{{item.logo}}' class="radius-50" style="width:33rpx;height:33rpx;border:2rpx solid #cccccc;"></image>
+        <view class="txt-black" style="margin-left:10rpx;">{{item.name}}</view>
+      </view>
+      <view class="f-26 margin-top-5 flex-row flex-center">
+        <view class="f-26">{{item.cityqu_id_name}}</view>
+        <view class="f-26 margin-left-10 margin-right-10">{{item.shangquan_id_name}}</view>
+        <view wx:if='{{item.pinfen!=""}}' class="h6 margin-right-10">{{item.pinfen}}</view>
+        <view class="f-26">{{item.xingji_id_name}}</view>
+      </view>
+
+      <view class="h6 margin-top-5 flex-row flex-center" wx:if='{{item.liebiao!=""}}'>
+        <view class="h6" style="color:#DA647E;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
+        <view class="flex-1"></view>
+      </view>
+      <view class="flex-row flex-bottom margin-top-5">
+        <view class="h6" style="color:#FF4153;">￥ </view>
+        <view class="f-32" style="color:#FF4153;">{{item.money}}</view>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+
+<view class="zhidin" bindtap="zhidin">
+  <image src="{{uploadpath}}resource/{{res.zhiding}}" class="icon-50"></image>
+</view>
 <!-- <view class="pof" bindtap="qiehuan">
   <image src="{{uploadpath}}resource/{{res.liebiao}}" class="icon-50"></image>
 
