@@ -5,8 +5,10 @@
   <view class="content {{scrollTop>scrtop?'txt-black':'txt-white'}}" style='top:{{StatusBar}}px;'>详情</view>
 
 </view>
+<view id='cd4'>
+<view id='cd3'>
 <view id='cd2'>
-  <view id="cddd">
+  <view id="cd">
     <view id='yh'>
       <view id='sj'>
         <view>
@@ -37,8 +39,10 @@
         <view class="flex-row flex-center text-center {{huadong==true?'top bg-gray':''}}" style='top:{{CustomBar}}px;height:45px;margin-top:{{huadong!=true?"-60rpx":"0rpx"}}'>
           <view class="f-x {{daohang=='sj'?'active h4-5 txt-bold':''}} margin-left-40" bindtap="daoscroll" id='sj'>商家简介</view>
           <view class="f-x {{daohang=='yh'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='yh'>优惠</view>
-          <view class="f-x {{daohang=='cd'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll1" id='cd'>场地</view>
-          <view class="f-x {{daohang=='cd2'?'active h4-5 txt-bold':''}} margin-left-50" bindtap="daoscroll" id='cd2'>菜单</view>
+          <view class="f-x {{daohang==item.id?'active h4-5 txt-bold':''}} margin-left-50" wx:for='{{arr}}' bindtap="daoscroll" id='{{item.id}}'>{{item.name}}</view>
+          <!-- <view class="f-x {{daohang=='cd2'?'active h4-5 txt-bold':''}} margin-left-50" wx:if='{{detail.caidan!=""}}' bindtap="daoscroll" id='cd2'>菜单</view> -->
+          <!-- <view class="f-x {{daohang=='cd3'?'active h4-5 txt-bold':''}} margin-left-50" wx:if='{{detail.xiangqing!=""}}' bindtap="daoscroll" id='cd3'>详情</view>
+          <view class="f-x {{daohang=='cd4'?'active h4-5 txt-bold':''}} margin-left-50" wx:if='{{detail.taocan2!=""}}' bindtap="daoscroll" id='cd4'>套餐</view> -->
         </view>
         <view style='height:20rpx;'></view>
         <!-- 商家信息 -->
@@ -78,9 +82,9 @@
 
     <!-- 场地信息 -->
 
-    <view style="height:26rpx;"></view>
+    <view style="height:26rpx;" wx:if='{{detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13}}'></view>
   </view>
-  <view class="bg-white chandi" id='cd'>
+  <view class="bg-white chandi" id='cd' wx:if='{{detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13}}'>
     <view class="flex-row flex-center padding34">
       <image src="{{uploadpath}}resource/{{res.chandi}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
       <view class="f-30 txt-black txt-bold ">场地信息</view>
@@ -99,10 +103,10 @@
 
   </view>
   <!-- 菜单 -->
-  <view style="height:26rpx;"></view>
+  <view style="height:26rpx;" wx:if='{{detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13}}'></view>
 </view>
 
-<view class="bg-white chandi" id='cd'>
+<view class="bg-white chandi" id='cd' wx:if='{{detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13}}'>
   <view class="flex-row flex-center padding34">
     <image src="{{uploadpath}}resource/{{res.caidan}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
     <view class="f-30 txt-black txt-bold ">菜单</view>
@@ -120,7 +124,49 @@
   </view>
 
 </view>
+  <view style="height:26rpx;"></view>
+</view>
+<!-- 详情 -->
+<view class="bg-white chandi" id='cd' wx:if='{{detail.biaoqian_id != 1 && detail.biaoqian_id != 7 && detail.biaoqian_id!=13}}'>
+  <view class="flex-row flex-center padding34">
+    <image src="{{uploadpath}}resource/{{res.xianqin}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
+    <view class="f-30 txt-black txt-bold ">详情</view>
+  </view>
+  <view class="line2"></view>
+  <!-- <view wx:for='{{detail.chandi}}' wx:key='k'>
+    <image src="{{uploadpath}}shanjia/{{item.img}}" style="width:625rpx;"></image>
+    <view style="height:33rpx"></view>
+  </view> -->
 
+  <import src="../../wxParse/wxParse.wxml" />
+
+  <view class='nostyle padding-28 '>
+    <template is="wxParse" data="{{wxParseData:content3.nodes}}" />
+  </view>
+
+</view>
+  <view style="height:26rpx;"></view>
+</view>
+
+<!-- 套餐 -->
+<view class="bg-white chandi" id='cd' wx:if='{{detail.biaoqian_id != 1 && detail.biaoqian_id != 7 && detail.biaoqian_id!=13}}'>
+  <view class="flex-row flex-center padding34">
+    <image src="{{uploadpath}}resource/{{res.taocan}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
+    <view class="f-30 txt-black txt-bold ">套餐</view>
+  </view>
+  <view class="line2"></view>
+  <!-- <view wx:for='{{detail.chandi}}' wx:key='k'>
+    <image src="{{uploadpath}}shanjia/{{item.img}}" style="width:625rpx;"></image>
+    <view style="height:33rpx"></view>
+  </view> -->
+
+  <import src="../../wxParse/wxParse.wxml" />
+
+  <view class='nostyle padding-28 '>
+    <template is="wxParse" data="{{wxParseData:content4.nodes}}" />
+  </view>
+
+</view>
 <view style="height:85rpx;"></view>
 
 <view class="flex-row flex-center pof">

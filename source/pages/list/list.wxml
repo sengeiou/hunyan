@@ -10,7 +10,7 @@
 </view>
 
 
-<view class="enr">
+<!-- <view class="enr">
 
 
   <view class="shu"></view>
@@ -19,7 +19,6 @@
     <view class="flex-row flex-center">
 
       <image src="{{uploadpath}}resource/{{res.yuan}}" style="width:14rpx;height:14rpx;"></image>
-      <!-- <view class="f-26 margin-left-10" style="color:#494949;">{{city}}</view> -->
       <picker class="margin-left-10" bindchange='chenshiFn' range='{{citylist}}' range-key='name'>
         <input placeholder-class="f-26" placeholder-style="color:#A4A4A4;" name="name" value="{{city}}" disabled="{{true}}" class="f-26" style="color:#000000;width:100rpx;"></input>
       </picker>
@@ -93,10 +92,10 @@
   </view>
 
 </view>
-<view style="height:16vh;"></view>
+<view style="height:16vh;"></view> -->
 
-<view>
-  <view class="text-center txt-bold" style="color:#FF4153;">{{biaoname}}</view>
+<view wx:if='{{shangjialist.length>0}}'>
+  <view class="text-center txt-bold margin-top" style="color:#FF4153;">{{biaoname}}</view>
   <view class="xian"></view>
 </view>
 

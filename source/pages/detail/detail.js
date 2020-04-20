@@ -42,7 +42,7 @@ class Content extends AppBase {
       rili: false,
       huadong: false,
       scrtop: 200,
-      zhan:false,
+      zhan: false,
       isshare: this.Base.options.isshare
     })
   }
@@ -52,13 +52,34 @@ class Content extends AppBase {
     shangjiaapi.shangjiadetail({
       id: this.Base.options.id
     }, (detail) => {
+      if (detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13) {
+        var arr = [{
+          name: '场地',
+          id: 'cd'
+        }, {
+            name: '菜单',
+            id: 'cd2'
+          },]
+      }else {
+        var arr = [{
+          name: '详情',
+          id: 'cd3'
+        }, {
+            name: '套餐',
+          id: 'cd4'
+        },]
+      }
       detail.chandi = ApiUtil.HtmlDecode(detail.chandi);
       detail.caidan = ApiUtil.HtmlDecode(detail.caidan);
+      detail.xiangqing = ApiUtil.HtmlDecode(detail.xiangqing);
+      detail.taocan2 = ApiUtil.HtmlDecode(detail.taocan2);
 
       WxParse.wxParse('content', 'html', detail.chandi, that, 10);
       WxParse.wxParse('content2', 'html', detail.caidan, that, 10);
+      WxParse.wxParse('content3', 'html', detail.xiangqing, that, 10);
+      WxParse.wxParse('content4', 'html', detail.taocan2, that, 10);
       this.Base.setMyData({
-        detail
+        detail, arr
       })
     })
     this.getyuyue();
@@ -288,13 +309,13 @@ class Content extends AppBase {
       path: '/pages/detail/detail?id=' + this.Base.options.id + '&isshare=1'
     }
   }
-  zhankai(){
+  zhankai() {
     var zhan = this.Base.getMyData().zhan;
     this.Base.setMyData({
       zhan: !zhan
     })
   }
-  zhidin(){
+  zhidin() {
     wx.pageScrollTo({
       scrollTop: 0,
       duration: 300,
