@@ -46,7 +46,7 @@ view {
 }
 .line2 {
   width: 100vw;
-  height: 1rpx;
+  height: 2rpx;
   margin: 34rpx 0 38rpx -40rpx;
   background: #EEEEEE;
 }
@@ -55,7 +55,9 @@ view {
   width: 694rpx;
   border-radius: 26rpx;
   margin-left: 28rpx;
-  padding: 36rpx 34rpx 30rpx;
+}
+.pa36 {
+  padding: 36rpx 34rpx 0rpx;
 }
 view {
   overflow: hidden;
@@ -162,4 +164,15 @@ view {
   -webkit-line-clamp:3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+.nostyle view,navigator,input,text,textarea{
+  /* color:#777777; */
+  font-size:unset;
+  width: 100%;
+  word-break: normal;
+  background: #ffffff;
+}
+
+.padding-28 {
+  padding: 28rpx 40rpx 
 }

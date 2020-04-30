@@ -45,27 +45,25 @@ class Content extends AppBase {
       zhan: false,
       isshare: this.Base.options.isshare
     })
-  }
-  onMyShow() {
     var that = this;
     var shangjiaapi = new ShangjiaApi();
     shangjiaapi.shangjiadetail({
       id: this.Base.options.id
     }, (detail) => {
-      if (detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13) {
+      if (detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id == 13) {
         var arr = [{
           name: '场地',
           id: 'cd'
         }, {
-            name: '菜单',
-            id: 'cd2'
-          },]
-      }else {
+          name: '菜单',
+          id: 'cd2'
+        },]
+      } else {
         var arr = [{
           name: '详情',
           id: 'cd3'
         }, {
-            name: '套餐',
+          name: '套餐',
           id: 'cd4'
         },]
       }
@@ -82,6 +80,10 @@ class Content extends AppBase {
         detail, arr
       })
     })
+  }
+  onMyShow() {
+    var that = this;
+   
     this.getyuyue();
   }
   getyuyue() {
@@ -94,15 +96,18 @@ class Content extends AppBase {
     var todayw = year + '/' + mon + '/' + day + ' ' + '23:59:59';
     // console.log(today, 'today', todayw);
     var shangjiaapi = new ShangjiaApi();
+    var cityman = this.Base.getMyData().detail.citymanager.length;
     var arr = [];
     shangjiaapi.yuyuelist({
       // member_id:this.Base.getMyData().memberinfo.id,
+      shanjia_id: this.Base.options.id,
     }, (yuyuelist) => {
-      for (var i = 0; i < yuyuelist.length; i++) {
-        yuyuelist[i].shijian = yuyuelist[i].shijian.replace(/-/g, '/');
-        if (new Date(today).getTime() < new Date(yuyuelist[i].shijian).getTime() && new Date(todayw).getTime() > new Date(yuyuelist[i].shijian).getTime()) {
-          arr.push(yuyuelist[i]);
-        }
+      for (var i =0; i < yuyuelist.length; i++) {
+        // yuyuelist[i].shijian = yuyuelist[i].shijian.replace(/-/g, '/');
+        // if (new Date(today).getTime() < new Date(yuyuelist[i].shijian).getTime() && new Date(todayw).getTime() > new Date(yuyuelist[i].shijian).getTime()) {
+        //   arr.push(yuyuelist[i]);
+        // }
+        
       }
       this.Base.setMyData({
         yuyuelist: arr
@@ -124,8 +129,10 @@ class Content extends AppBase {
     var instinfo = this.Base.getMyData().instinfo;
     var detail = this.Base.getMyData().detail;
     if (detail.sendmsg == 'A') {
-      var citymanager_id = detail.citymanager[0].id;
-      var citymanager_phone = detail.citymanager[0].mobile;
+
+      var citymanager_id = detail.citymanager_id;
+      var citymanager_phone = detail.citymanager_phone;
+
     } else if (detail.sendmsg == 'B') {
       var i = (Math.random() * (detail.citymanager.length - 1)).toFixed(0);
       var citymanager_id = detail.citymanager[i].id;
@@ -134,6 +141,8 @@ class Content extends AppBase {
       this.toast('当前商品不能预约，还没选择相应的城市管理员！');
       return
     }
+
+    var pattern3 = new RegExp("[0-9]+");
     var that = this;
     var name = this.Base.getMyData().name;
     if (name == undefined || name.trim() == "") {
@@ -145,6 +154,11 @@ class Content extends AppBase {
       this.toast('请输入您的电话！');
       return
     }
+    if (!pattern3.test(mobile)) {
+      this.toast("您输入电话不是数字！");
+      return
+    }
+    return
     var shangjiaapi = new ShangjiaApi();
     var aliyunApi = new AliyunApi();
     aliyunApi.sendsms({

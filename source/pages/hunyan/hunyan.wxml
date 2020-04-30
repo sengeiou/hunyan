@@ -5,7 +5,10 @@
   <view class='content ' style='top:{{StatusBar}}px;color:#ffffff'>{{instinfo.name}}</view>
 </view>
 <view>
-  <swiper circular="true" class="indexbanner" autoplay="true">
+
+
+
+  <swiper  class="indexbanner" circular="true" autoplay="true">
     <swiper-item class="indexbanner" wx:for="{{lunbo}}" wx:key="k">
       <image class="indexbanner" src="{{uploadpath}}indexbanner/{{item.img}}" bindtap="todetail" id='{{item.shanjia_id}}'></image>
     </swiper-item>

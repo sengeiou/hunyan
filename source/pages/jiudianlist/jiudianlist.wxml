@@ -139,14 +139,14 @@
           <image src='{{uploadpath}}shanjia/{{item.logo}}' class="radius-50" style="width:33rpx;height:33rpx;border:2rpx solid #cccccc;"></image>
           <view class="txt-black txt-bold" style="margin-left:10rpx;">{{item.name}}</view>
         </view>
-        <view class="f-26 margin-top-5">{{item.cityqu_id_name}} {{item.shangquan_id_name}}</view>
+        <view class="f-26 margin-top-5">{{item.shangquan_id_name}}</view>
         <view class="flex-row flex-center  margin-top-5">
           <view wx:if='{{item.pinfen!=""}}' class="h6 margin-right-10">{{item.pinfen}}</view>
           <view class="f-26"> {{item.xingji_id_name}}</view>
         </view>
 
         <view class="h6 margin-top-5 flex-row flex-center" wx:if='{{item.liebiao!=""}}'>
-          <view class="h6" style="color:#DA647E;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
+          <view class="h6" style="color:#FE4055;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
           <view class="flex-1"></view>
         </view>
         <view class="flex-row flex-bottom margin-top-5">
@@ -169,14 +169,14 @@
           <view class="txt-black txt-bold" style="margin-left:10rpx;">{{item.name}}</view>
         </view>
         <view class="f-26 margin-top-5 flex-row flex-center">
-          <view class="h6">{{item.cityqu_id_name}}</view>
+          <!-- <view class="h6">{{item.cityqu_id_name}}</view> -->
           <view class="h6 margin-left-10 margin-right-10">{{item.shangquan_id_name}}</view>
           <view wx:if='{{item.pinfen!=""}}' class="h6 margin-right-10">{{item.pinfen}}</view>
           <view class="h6">{{item.xingji_id_name}}</view>
 
         </view>
         <view class="h6 margin-top-5 flex-row flex-center" wx:if='{{item.liebiao!=""}}'>
-          <view class="h6" style="color:#DA647E;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
+          <view class="h6" style="color:#FE4055;background:#FEEBF4;padding: 5rpx 10rpx;">{{item.liebiao}}</view>
           <view class="flex-1"></view>
         </view>
         <view class="flex-row flex-bottom margin-top-5">

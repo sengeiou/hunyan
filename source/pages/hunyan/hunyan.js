@@ -71,16 +71,18 @@ class Content extends AppBase {
           seq = type[i].seq - 1;
           lunbo = type[i].dinbu;
           duanlunbo = type[i].zhonbu;
+
+          this.Base.setMyData({
+            type: type,
+            lunbo:type[i].dinbu,
+            duanlunbo: type[i].zhonbu,
+            seq: type[i].seq - 1,
+            shangjialist: shangjialist,
+            jiazai: false
+          })
         }
       }
-      this.Base.setMyData({
-        type,
-        lunbo,
-        duanlunbo,
-        seq,
-        shangjialist,
-        jiazai: false
-      })
+      
     })
   }
   

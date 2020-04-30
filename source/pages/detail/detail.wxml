@@ -85,37 +85,29 @@
     <view style="height:26rpx;" wx:if='{{detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13}}'></view>
   </view>
   <view class="bg-white chandi" id='cd' wx:if='{{detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13}}'>
-    <view class="flex-row flex-center padding34">
+    <view class="flex-row flex-center pa36">
       <image src="{{uploadpath}}resource/{{res.chandi}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
       <view class="f-30 txt-black txt-bold ">场地信息</view>
     </view>
     <view class="line2"></view>
-    <!-- <view wx:for='{{detail.chandi}}' wx:key='k'>
-    <image src="{{uploadpath}}shanjia/{{item.img}}" style="width:625rpx;"></image>
-    <view style="height:33rpx"></view>
-  </view> -->
-
     <import src="../../wxParse/wxParse.wxml" />
 
-    <view class='nostyle padding-28 '>
+    <view class='nostyle padding-28 ' >
       <template is="wxParse" data="{{wxParseData:content.nodes}}" />
     </view>
 
   </view>
+  
   <!-- 菜单 -->
   <view style="height:26rpx;" wx:if='{{detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13}}'></view>
 </view>
 
 <view class="bg-white chandi" id='cd' wx:if='{{detail.biaoqian_id == 1 || detail.biaoqian_id == 7 || detail.biaoqian_id==13}}'>
-  <view class="flex-row flex-center padding34">
+  <view class="flex-row flex-center pa36">
     <image src="{{uploadpath}}resource/{{res.caidan}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
     <view class="f-30 txt-black txt-bold ">菜单</view>
   </view>
   <view class="line2"></view>
-  <!-- <view wx:for='{{detail.chandi}}' wx:key='k'>
-    <image src="{{uploadpath}}shanjia/{{item.img}}" style="width:625rpx;"></image>
-    <view style="height:33rpx"></view>
-  </view> -->
 
   <import src="../../wxParse/wxParse.wxml" />
 
@@ -128,7 +120,7 @@
 </view>
 <!-- 详情 -->
 <view class="bg-white chandi" id='cd' wx:if='{{detail.biaoqian_id != 1 && detail.biaoqian_id != 7 && detail.biaoqian_id!=13}}'>
-  <view class="flex-row flex-center padding34">
+  <view class="flex-row flex-center pa36">
     <image src="{{uploadpath}}resource/{{res.xianqin}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
     <view class="f-30 txt-black txt-bold ">详情</view>
   </view>
@@ -150,7 +142,7 @@
 
 <!-- 套餐 -->
 <view class="bg-white chandi" id='cd' wx:if='{{detail.biaoqian_id != 1 && detail.biaoqian_id != 7 && detail.biaoqian_id!=13}}'>
-  <view class="flex-row flex-center padding34">
+  <view class="flex-row flex-center pa36">
     <image src="{{uploadpath}}resource/{{res.taocan}}" style="width:31rpx;height:31rpx;margin-right:15rpx;"></image>
     <view class="f-30 txt-black txt-bold ">套餐</view>
   </view>
