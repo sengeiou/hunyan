@@ -93,16 +93,18 @@ view {
 }
 
 .nei {
-  padding: 22rpx 0 22rpx 28rpx;
-  column-count: 2;
+  /* padding-left: 20rpx; */
+  padding-top: 22rpx;
+  /* padding: 22rpx 0 22rpx 28rpx; */
+  /* column-count: 2;
   -webkit-column-count: 2;
   column-gap:0;
-  -webkit-column-gap:0;
+  -webkit-column-gap:0; */
 }
 
 .flow {
-   -webkit-column-break-inside: avoid;
-    break-inside: avoid;
+   /* -webkit-column-break-inside: avoid;
+    break-inside: avoid; */
 
 }
 
@@ -117,13 +119,11 @@ view {
 }
 
 .sj {
-  /* width: calc(100%/2 - 28rpx); */
   width: 336rpx;
   background: #ffffff;
-  /* margin-right: 21rpx; */
   border-radius: 26rpx;
-  /* margin-bottom: 26rpx; */
   position: relative;
+  margin-bottom: 22rpx;
 }
 .con {
   padding: 25rpx 26rpx 42rpx 25rpx;
